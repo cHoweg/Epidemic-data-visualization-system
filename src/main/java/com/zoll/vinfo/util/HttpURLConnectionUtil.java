@@ -21,7 +21,6 @@ public class HttpURLConnectionUtil {
             // 通过url打开一个远程连接  强转类型
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-
             conn.setConnectTimeout(15000);
             conn.setReadTimeout(60000);
 

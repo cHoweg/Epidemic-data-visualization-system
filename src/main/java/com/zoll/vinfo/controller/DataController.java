@@ -208,8 +208,8 @@ public class DataController {
         return "map";
     }
 
-    @GetMapping(value={"/guangdong-nowconfirm"})
-    public String guangdongnowconfirm(Model model) {
+    @GetMapping(value={"/guangDong-NowConfirm"})
+    public String guangDongNowConfirm(Model model) {
         List<DataBean> list = dataService.list();
 
         List<MapBean> result = new ArrayList<>();
@@ -219,11 +219,11 @@ public class DataController {
             result.add(mapBean);
         }
         model.addAttribute("mapData", new Gson().toJson(result));
-        return "guangdong-nowconfirm";
+        return "guangDong-NowConfirm";
     }
 
-    @GetMapping("/guangdong-province")
-    public String guangdongmonth(Model model) {
+    @GetMapping("/guangDong-province")
+    public String guangDongMonth(Model model) {
         List<DataBean> dataList = dataService.list();
         model.addAttribute("dataList", dataList);
         List<GraphBean> list = GraphHandler.getGraphData();
@@ -251,6 +251,6 @@ public class DataController {
         model.addAttribute("mapData", new Gson().toJson(result));
         model.addAttribute("dateList", new Gson().toJson(dateList));
         model.addAttribute("nowConfirmList", new Gson().toJson(nowConfirmList));
-        return "guangdong-province";
+        return "guangDong-Province";
     }
 }

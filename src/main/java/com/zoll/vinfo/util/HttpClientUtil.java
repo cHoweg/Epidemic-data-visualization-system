@@ -1,6 +1,7 @@
 package com.zoll.vinfo.util;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,7 +18,7 @@ public class HttpClientUtil {
 
         // 提供了 闭合的httpclient对象
         CloseableHttpClient httpClient = null;
-        // 也提供了  闭合的响应对象
+        // 提供了 闭合的响应对象
         CloseableHttpResponse response = null;
 
         String result = null;
@@ -36,6 +37,7 @@ public class HttpClientUtil {
                     .setConnectTimeout(35000)
                     .setConnectionRequestTimeout(35000)
                     .setSocketTimeout(60000)
+                    .setProxy(new HttpHost("8.133.191.41",8080))
                     .build();
 
             // 设置配置参数

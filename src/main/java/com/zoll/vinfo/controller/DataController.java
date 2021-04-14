@@ -207,4 +207,50 @@ public class DataController {
         model.addAttribute("mapData", new Gson().toJson(result));
         return "map";
     }
+
+    @GetMapping(value={"/guangdong-nowconfirm"})
+    public String guangdongnowconfirm(Model model) {
+        List<DataBean> list = dataService.list();
+
+        List<MapBean> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            DataBean dataBean = list.get(i);
+            MapBean mapBean = new MapBean("佛山市",100);
+            result.add(mapBean);
+        }
+        model.addAttribute("mapData", new Gson().toJson(result));
+        return "guangdong-nowconfirm";
+    }
+
+    @GetMapping("/guangdong-province")
+    public String guangdongmonth(Model model) {
+        List<DataBean> dataList = dataService.list();
+        model.addAttribute("dataList", dataList);
+        List<GraphBean> list = GraphHandler.getGraphData();
+        //  进一步改造数据格式
+        //  因为前端需要的数据是  x轴所有数据的数组和y轴所有数据的数组
+
+        ArrayList<String> dateList = new ArrayList<>();
+        ArrayList<Integer> nowConfirmList = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            GraphBean graphBean = list.get(i);
+            dateList.add(graphBean.getDate());
+            nowConfirmList.add(graphBean.getNowConfirm());
+        }
+
+        List<MapBean> result = new ArrayList<>();
+        for (int i = 0; i < dataList.size(); i++) {
+            DataBean dataBean = dataList.get(i);
+            MapBean mapBean = new MapBean("佛山市",100);
+            result.add(mapBean);
+        }
+
+
+
+        model.addAttribute("mapData", new Gson().toJson(result));
+        model.addAttribute("dateList", new Gson().toJson(dateList));
+        model.addAttribute("nowConfirmList", new Gson().toJson(nowConfirmList));
+        return "guangdong-province";
+    }
 }

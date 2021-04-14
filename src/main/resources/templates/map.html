@@ -22,29 +22,29 @@
         tooltip: {
             trigger: 'item'
         },
-
-        series: [
-            {
-                name: '现存确诊',
-                type: 'map',
-                mapType: 'china',
-                roam: false,
-                label: {
-                    normal: {
-                        // formatter: '{b}',
-                        position: 'center',
-                        show: true,
-                        textStyle: {
-                            color: 'rgba(0,0,0,0.4)'
+            series: [
+                {
+                    name: '现存确诊',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: false,
+                    label: {
+                        normal: {
+                            // formatter: '{b}',
+                            position: 'center',
+                            show: true,
+                            textStyle: {
+                                color: 'rgba(0,0,0,0.4)'
+                            }
+                        },
+                        emphasis: {
+                            show: true
                         }
                     },
-                    emphasis: {
-                        show: true
-                    }
-                },
-                data: JSON.parse(dataStr)
-            }
-        ]
+                    data: JSON.parse(dataStr)
+                }
+            ]
+
     };
     var chart = echarts.init(document.getElementById("main"))
     chart.setOption(option)

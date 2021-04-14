@@ -6,9 +6,10 @@
     <link rel="stylesheet" th:href="@{/bootstrap.css}">
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
     <script type="text/javascript" src="echarts/china.js"></script>
-</head>
-<body style="background-color:#a6e1ec">
 
+</head>
+
+<body style="background-color:#a6e1ec;">
 <div style="border: 0px solid #000000; width: 1000px;margin: 0 auto;">
     <br>
     <div class="page-header"><h2>国内疫情情况如下</h2></div>
@@ -27,7 +28,6 @@
             tooltip: {
                 trigger: 'item'
             },
-
             series: [
                 {
                     name: '现存确诊',
@@ -49,8 +49,9 @@
                     },
                     data: JSON.parse(dataStr)
                 }
-            ]
-        };
+            ],
+
+        }
         var chart = echarts.init(document.getElementById("graph4"))
         chart.setOption(option)
 
@@ -217,7 +218,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th><p>地区</p></th>
+            <th><p>地市</p></th>
             <th><p>现有确诊</p></th>
             <th><p>累计确诊</p></th>
             <th><p>治愈</p></th>

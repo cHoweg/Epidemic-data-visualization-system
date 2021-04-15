@@ -8,6 +8,7 @@ import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,10 +30,10 @@ public class DataController {
 
     //首页显示所有相关数据
     @GetMapping("/")
-    public ModelAndView list() {
-        ModelAndView modelAndView = new ModelAndView();
+    public String homePage(Model model) {
+//        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
-        modelAndView.addObject("dataList", dataList);
+        model.addAttribute("dataList", dataList);
 
         List<MapBean> result = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
@@ -41,7 +42,7 @@ public class DataController {
             result.add(mapBean);
 
         }
-        modelAndView.addObject("mapData", new Gson().toJson(result));
+        model.addAttribute("mapData", new Gson().toJson(result));
 
         String str = GraphHandler.getData();
         List<GraphBean> list = GraphHandler.getGraphData(str);
@@ -57,8 +58,8 @@ public class DataController {
             nowConfirmList.add(graphBean.getNowConfirm());
         }
 
-        modelAndView.addObject("dateList", new Gson().toJson(dateList));
-        modelAndView.addObject("nowConfirmList", new Gson().toJson(nowConfirmList));
+        model.addAttribute("dateList", new Gson().toJson(dateList));
+        model.addAttribute("nowConfirmList", new Gson().toJson(nowConfirmList));
 
 
         List<GraphAddBean> addList = GraphHandler.getGraphAddData(str);
@@ -74,14 +75,14 @@ public class DataController {
             addSuspectList.add(graphAddBean.getAddSuspect());
         }
 
-        modelAndView.addObject("addDateList", new Gson().toJson(addDateList));
-        modelAndView.addObject("addConfirmList", new Gson().toJson(addConfirmList));
-        modelAndView.addObject("addSuspectList", new Gson().toJson(addSuspectList));
+        model.addAttribute("addDateList", new Gson().toJson(addDateList));
+        model.addAttribute("addConfirmList", new Gson().toJson(addConfirmList));
+        model.addAttribute("addSuspectList", new Gson().toJson(addSuspectList));
 
 
         List<GraphPieBean> pieList = GraphHandler.getGraphPieData(str);
         Collections.sort(pieList);
-        modelAndView.addObject("pieList", new Gson().toJson(pieList));
+        model.addAttribute("pieList", new Gson().toJson(pieList));
 
         List<GraphColumnarBean> columnarList = GraphHandler.getGraphColumnarData();
         Collections.sort(columnarList);
@@ -95,10 +96,10 @@ public class DataController {
             fromAbroadList.add(bean.getFromAbroad());
         }
 
-        modelAndView.addObject("nameList", new Gson().toJson(nameList));
-        modelAndView.addObject("fromAbroadList", new Gson().toJson(fromAbroadList));
+        model.addAttribute("nameList", new Gson().toJson(nameList));
+        model.addAttribute("fromAbroadList", new Gson().toJson(fromAbroadList));
 
-        return modelAndView;
+        return "homePage";
     }
 
 
@@ -214,6 +215,7 @@ public class DataController {
 
         }
         modelAndView.addObject("mapData", new Gson().toJson(result));
+        modelAndView.setViewName("map");
         return modelAndView;
     }
 

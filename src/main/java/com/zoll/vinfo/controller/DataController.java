@@ -31,7 +31,6 @@ public class DataController {
     //首页显示所有相关数据
     @GetMapping("/")
     public String homePage(Model model) {
-
 //        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
         model.addAttribute("dataList", dataList);
@@ -213,11 +212,11 @@ public class DataController {
             DataBean dataBean = list.get(i);
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
+
         }
         modelAndView.addObject("mapData", new Gson().toJson(result));
         modelAndView.setViewName("map");
         return modelAndView;
     }
-
 
 }

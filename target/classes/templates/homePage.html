@@ -1,227 +1,208 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <title>疫情实时监控网站</title>
-   <!-- <link rel="stylesheet" th:href="@{/bootstrap.css}">-->
-    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
-    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
-    <script type="text/javascript" src="../static/echarts/echarts.min.js" th:src="echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="../static/echarts/china.js" th:src="echarts/china.js"></script>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8">
+    <title >疫情实时监控网站</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+
+    <style>
+
+        #iframeContent{
+            width: 85%;
+            height: 700px;
+            margin-left: 16%;
+
+        }
+
+    </style>
 </head>
 
 <body>
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">疫情实时监控
-            <span data-feather="globe"></span>
-        </a>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-            </li>
-        </ul>
-    </header>
-    <div class="container-fluid">
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">疫情实时监控
+        <span data-feather="globe"></span>
+    </a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+        </li>
+    </ul>
+</header>
+<div class="container-fluid">
     <div class="row">
+
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="position-sticky pt-3 ">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">
+                        <a class="nav-link" aria-current="page" href="http://localhost:8080/map" target="showmain">
                             <span data-feather="map-pin"></span>
                             国内疫情地图
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#chinaNowTrend">
+                        <a class="nav-link" href="http://localhost:8080/graph" target="showmain">
                             <span data-feather="bar-chart-2"></span>
                             国内现有确诊趋势
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="http://localhost:8080/graphAdd" target="showmain">
                             <span data-feather="bar-chart"></span>
                             国内疫情新增趋势
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="http://localhost:8080/graphPie" target="showmain">
                             <span data-feather="list"></span>
                             国内现有确诊构成
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="http://localhost:8080/graphColumnar" target="showmain">
                             <span data-feather="alert-triangle"></span>
                             省市境外输入TOP10
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item " target="showmain">
                         <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="nav-link">
-                            <span data-feather="layers"></span>
-                            各省市疫情
+                            <span data-feather="layers"></span>各省市疫情情况
                         </a>
-                        <div class="collapse" id="sidebarDashboards">
+                        <div class="collapse" id="sidebarDashboards" >
                             <ul class="side-nav-second-level">
                                 <li>
-                                    <a class="nav-link-1" href="#">北京</a>
+                                    <a class="nav-link-1" href="#" target="showmain">北京</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">上海</a>
+                                    <a class="nav-link-1" href="#"target="showmain">上海</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">天津</a>
+                                    <a class="nav-link-1" href="#" target="showmain">天津</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">重庆</a>
+                                    <a class="nav-link-1" href="#" target="showmain">重庆</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">河北</a>
+                                    <a class="nav-link-1" href="#" target="showmain">河北</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">山西</a>
+                                    <a class="nav-link-1" href="#" target="showmain">山西</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">辽宁</a>
+                                    <a class="nav-link-1" href="#" target="showmain">辽宁</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">吉林</a>
+                                    <a class="nav-link-1" href="#" target="showmain">吉林</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">黑龙江</a>
+                                    <a class="nav-link-1" href="#" target="showmain">黑龙江</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">江苏</a>
+                                    <a class="nav-link-1" href="#" target="showmain">江苏</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">浙江</a>
+                                    <a class="nav-link-1" href="#" target="showmain">浙江</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">安徽</a>
+                                    <a class="nav-link-1" href="#" target="showmain">安徽</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">福建</a>
+                                    <a class="nav-link-1" href="#" target="showmain">福建</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">江西</a>
+                                    <a class="nav-link-1" href="#" target="showmain">江西</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">山东</a>
+                                    <a class="nav-link-1" href="#" target="showmain">山东</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">河南</a>
+                                    <a class="nav-link-1" href="#" target="showmain">河南</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">湖北</a>
+                                    <a class="nav-link-1" href="#" target="showmain">湖北</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">湖南</a>
+                                    <a class="nav-link-1" href="#" target="showmain">湖南</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">广东</a>
+                                    <a class="nav-link-1" href="#" target="showmain">广东</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">四川</a>
+                                    <a class="nav-link-1" href="#" target="showmain">四川</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">贵州</a>
+                                    <a class="nav-link-1" href="#" target="showmain">贵州</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">云南</a>
+                                    <a class="nav-link-1" href="#" target="showmain">云南</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">海南</a>
+                                    <a class="nav-link-1" href="#" target="showmain">海南</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">陕西</a>
+                                    <a class="nav-link-1" href="#" target="showmain">陕西</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">甘肃</a>
+                                    <a class="nav-link-1" href="#" target="showmain">甘肃</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">青海</a>
+                                    <a class="nav-link-1" href="#" target="showmain">青海</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">广西</a>
+                                    <a class="nav-link-1" href="#" target="showmain">广西</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">内蒙古</a>
+                                    <a class="nav-link-1" href="#" target="showmain">内蒙古</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">西藏</a>
+                                    <a class="nav-link-1" href="#" target="showmain">西藏</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">宁夏</a>
+                                    <a class="nav-link-1" href="#" target="showmain">宁夏</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">新疆</a>
+                                    <a class="nav-link-1" href="#" target="showmain">新疆</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">香港</a>
+                                    <a class="nav-link-1" href="#" target="showmain">香港</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">澳门</a>
+                                    <a class="nav-link-1" href="#" target="showmain">澳门</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link-1" href="#">台湾</a>
+                                    <a class="nav-link-1" href="#" target="showmain">台湾</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" target="showmain">
                             <span data-feather="map-pin"></span>
                             全球疫情地图
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" target="showmain">
                             <span data-feather="layers"></span>
                             全球疫情统计表
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="map-pin"></span>
-                            广东省疫情地图
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">国内疫情地图
-                    <span style="font-size: 10px; color: gray;">(仅供参考)</span>
-                </h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <span data-feather="calendar"></span>日期：
-                    </button>
-                </div>
-            </div>
 
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2" id="chinaNowTrend">国内现有确诊趋势
-                    <span style="font-size: 10px; color: gray;">(仅供参考)</span>
-                </h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <span data-feather="calendar"></span>日期：
-                    </button>
-                </div>
-            </div>
-            <canvas class="my-4 w-100" id="myChart2" width="900" height="380" ></canvas>
+        <iframe name="showmain" id="iframeContent" src="#" scrolling="auto"></iframe>
 
-            <canvas class="my-4 w-100" id="myChart3" width="900" height="380"></canvas>
+            <script type="text/javascript" src="../static/echarts/echarts.min.js" th:src="echarts/echarts.min.js"></script>
+            <script type="text/javascript" src="../static/echarts/china.js" th:src="echarts/china.js"></script>
 
-        </main>
+            <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js" th:src="js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript" src="../static/js/feather.min.js" th:src="js/feather.min.js"></script>
+            <script type="text/javascript" src="../static/js/Chart.min.js" th:src="js/Chart.min.js"></script>
+            <script type="text/javascript" src="../static/js/dashboard.js" th:src="js/dashboard.js"></script>
     </div>
 </div>
 
-<script type="text/javascript" src="../static/js/bootstrap.bundle.min.js" th:src="js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="../static/js/feather.min.js" th:src="js/feather.min.js"></script>
-<script type="text/javascript" src="../static/js/Chart.min.js" th:src="js/Chart.min.js"></script>
-<script type="text/javascript" src="../static/js/dashboard.js" th:src="js/dashboard.js"></script>
 </body>
 </html>

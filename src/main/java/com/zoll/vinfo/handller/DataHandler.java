@@ -28,19 +28,18 @@ public class DataHandler {
     @Autowired
     private DataDetailService dataDetailService;
 
-    public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
+     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
 
     public static void main(String[] args) throws Exception {
-        getData();
+        // getData();
     }
 
 
     public void saveData() {
-        List dataBeanList = getData();
-        List<DataBean> dataBeans = (List<DataBean>) dataBeanList.get(0);
-        List<DataDetailBean> dataDetailBeans = (List<DataDetailBean>) dataBeanList.get(1);
-        System.out.println(dataBeans);
-        System.out.println(dataDetailBeans);
+        List<DataBean> dataBeans = JsoupHandler.getData();;
+        List<DataDetailBean> dataDetailBeans = getData();
+        // List<DataDetailBean> dataDetailBean = (List<DataDetailBean>) dataBeanList.get(0);
+
         // 先将数据清空  然后存储数据
         dataService.remove(null);
         dataService.saveBatch(dataBeans);
@@ -57,7 +56,7 @@ public class DataHandler {
     }
 
 
-    public static List<Object> getData() {
+    public static List<DataDetailBean> getData() {
 
         /**
          * 分析json字符串对数据进行筛选和提取
@@ -81,30 +80,17 @@ public class DataHandler {
         // System.out.println(childrenList);
 
         // 遍历然后转化
-        List<Object> list = new ArrayList<>();
-        List<DataBean> result = new ArrayList<>();
         List<DataDetailBean> resultDetail = new ArrayList<>();
 
         for (int i = 0; i < childrenList.size(); i++) {
             Map tmp = (Map) childrenList.get(i);
-            // System.out.println(tmp);
-            String name = (String) tmp.get("name");
-            Map totalMap = (Map) tmp.get("total");
-            double nowConfirm = (Double) totalMap.get("nowConfirm");
-            double confirm = (Double) totalMap.get("confirm");
-            double heal = (Double) totalMap.get("heal");
-            double dead = (Double) totalMap.get("dead");
-
-            DataBean dataBean = new DataBean(name, (int) nowConfirm, (int) confirm,
-                    (int) heal, (int) dead);
-            //System.out.println(dataBean);
 
             ArrayList childrenDetailList = (ArrayList) tmp.get("children");
             for (int j = 0; j < childrenDetailList.size(); j++) {
                 Map city = (Map) childrenDetailList.get(j);
                 // System.out.println(tmp);
                 String cityName = (String) city.get("name");
-                if (cityName.matches(".*输入.*") || cityName.matches(".*待确认.*")) continue;
+                // if (cityName.matches(".*输入.*") || cityName.matches(".*待确认.*")) continue;
                 Map cityTotalMap = (Map) city.get("total");
                 double cityNowConfirm = (Double) cityTotalMap.get("nowConfirm");
                 double cityConfirm = (Double) cityTotalMap.get("confirm");
@@ -115,13 +101,9 @@ public class DataHandler {
                         (int) cityHeal, (int) cityDead, i);
                 // System.out.println(dataDetailBean);
                 resultDetail.add(dataDetailBean);
-                list.add(resultDetail);
             }
-
-            result.add(dataBean);
-            list.add(result);
         }
 
-        return list;
+        return resultDetail;
     }
 }

@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_5_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Epidemic data visualization system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Epidemic data visualization system.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/mapper/DataDetailMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/mapper/DataDetailMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +159,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JsoupHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
+      <module name="Epidemic data visualization system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JsoupHandler.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Epidemic data visualization system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zoll.vinfo.handller" />
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
@@ -172,14 +208,16 @@
       <item itemvalue="Application.HttpClientUtil" />
       <item itemvalue="Application.DataHandler" />
       <item itemvalue="Spring Boot.MyApplication" />
+      <item itemvalue="Application.JsoupHandler" />
+      <item itemvalue="JUnit.JsoupHandler.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="Application.JsoupHandler" />
+        <item itemvalue="JUnit.JsoupHandler.test" />
         <item itemvalue="Application.DataHandler" />
         <item itemvalue="Application.HttpClientUtil" />
-        <item itemvalue="Application.DataHandler" />
-        <item itemvalue="Spring Boot.MyApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +270,7 @@
       <workItem from="1618214231170" duration="396000" />
       <workItem from="1618314529586" duration="1826000" />
       <workItem from="1618375004614" duration="17118000" />
-      <workItem from="1618461461075" duration="3336000" />
+      <workItem from="1618461461075" duration="9171000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -311,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618463616276</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Default Changelist">
+      <created>1618465082545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1618465082545</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,10 +421,10 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="304" y="198" width="1193" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618376778285" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618463615931">
+    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618465082291">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618463615931" />
+    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618465082291" />
     <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618387410234">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -388,54 +433,70 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="644" y="458" key="Github.CreateGistDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618207583593" />
-    <state width="1638" height="296" key="GridCell.Tab.0.bottom" timestamp="1618464403517">
+    <state width="1638" height="296" key="GridCell.Tab.0.bottom" timestamp="1618472095600">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403517" />
-    <state width="1638" height="296" key="GridCell.Tab.0.center" timestamp="1618464403516">
+    <state width="1638" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095600" />
+    <state width="1638" height="296" key="GridCell.Tab.0.center" timestamp="1618472095599">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403516" />
-    <state width="1638" height="296" key="GridCell.Tab.0.left" timestamp="1618464403515">
+    <state width="1638" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095599" />
+    <state width="1638" height="296" key="GridCell.Tab.0.left" timestamp="1618472095599">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403515" />
-    <state width="1638" height="296" key="GridCell.Tab.0.right" timestamp="1618464403516">
+    <state width="1638" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095599" />
+    <state width="1638" height="296" key="GridCell.Tab.0.right" timestamp="1618472095600">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403516" />
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom" timestamp="1618464403374">
+    <state width="1638" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095600" />
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom" timestamp="1618472095476">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403374" />
-    <state width="1638" height="368" key="GridCell.Tab.1.center" timestamp="1618464403373">
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095476" />
+    <state width="1638" height="296" key="GridCell.Tab.1.center" timestamp="1618472095475">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403373" />
-    <state width="1638" height="368" key="GridCell.Tab.1.left" timestamp="1618464403373">
+    <state width="1638" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095475" />
+    <state width="1638" height="296" key="GridCell.Tab.1.left" timestamp="1618472095475">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403373" />
-    <state width="1638" height="368" key="GridCell.Tab.1.right" timestamp="1618464403373">
+    <state width="1638" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095475" />
+    <state width="1638" height="296" key="GridCell.Tab.1.right" timestamp="1618472095476">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618464403373" />
+    <state width="1638" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095476" />
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1618472095477">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095477" />
+    <state width="1638" height="296" key="GridCell.Tab.2.center" timestamp="1618472095477">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state width="1638" height="296" key="GridCell.Tab.2.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095477" />
+    <state width="1638" height="296" key="GridCell.Tab.2.left" timestamp="1618472095476">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state width="1638" height="296" key="GridCell.Tab.2.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095476" />
+    <state width="1638" height="296" key="GridCell.Tab.2.right" timestamp="1618472095477">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state width="1638" height="296" key="GridCell.Tab.2.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618472095477" />
     <state x="349" y="173" key="SettingsEditor" timestamp="1618461899510">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="349" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1618461899510" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1618463621464">
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1618465084841">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618463621464" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618465084841" />
     <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618399692767">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618399692767" />
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618387455503">
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618471230199">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618387455503" />
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618471230199" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

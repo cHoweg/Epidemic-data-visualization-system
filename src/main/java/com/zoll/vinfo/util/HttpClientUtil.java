@@ -37,7 +37,6 @@ public class HttpClientUtil {
                     .setConnectTimeout(35000)
                     .setConnectionRequestTimeout(35000)
                     .setSocketTimeout(60000)
-                    .setProxy(new HttpHost("8.133.191.41",8080))
                     .build();
 
             // 设置配置参数

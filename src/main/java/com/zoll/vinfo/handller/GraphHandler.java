@@ -113,7 +113,7 @@ public class GraphHandler {
             ArrayList children = (ArrayList) tmp.get("children");
             for (int j = 0; j < children.size(); j++) {
                 Map subTmp = (Map) children.get(j);
-                if ("境外输入".equals((String) subTmp.get("name"))) {
+                if ("境外输入".equals(subTmp.get("name"))) {
                     Map total = (Map) subTmp.get("total");
                     double fromAbroad = (Double) total.get("confirm");
 

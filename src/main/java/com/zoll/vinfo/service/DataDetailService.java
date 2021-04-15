@@ -1,10 +1,12 @@
 package com.zoll.vinfo.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.zoll.vinfo.bean.DataBean;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zoll.vinfo.bean.DataDetailBean;
+import com.zoll.vinfo.mapper.DataDetailMapper;
+import org.springframework.stereotype.Service;
 
-public interface DataDetailService extends IService<DataDetailBean> {
+@Service
+public class DataDetailService extends ServiceImpl<DataDetailMapper,DataDetailBean> {
 
 //    List<DataBean> list();
 //

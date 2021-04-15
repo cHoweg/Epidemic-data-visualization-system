@@ -1,10 +1,11 @@
 package com.zoll.vinfo.controller;
 
 
+import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.GraphHandler;
+import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class DataController {
     @Autowired
     private DataService dataService;
 
+    @Autowired
+    private DataDetailService dataDetailService;
 
     //首页显示所有相关数据
     @GetMapping("/")
@@ -224,7 +227,7 @@ public class DataController {
 
     @GetMapping("/guangDong-province")
     public String guangDongMonth(Model model) {
-        List<DataBean> dataList = dataService.list();
+        List<DataDetailBean> dataList = dataDetailService.list();
         model.addAttribute("dataList", dataList);
         List<GraphBean> list = GraphHandler.getGraphData();
         //  进一步改造数据格式
@@ -241,8 +244,8 @@ public class DataController {
 
         List<MapBean> result = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
-            DataBean dataBean = dataList.get(i);
-            MapBean mapBean = new MapBean("佛山市",100);
+            DataDetailBean dataDetailBean = dataList.get(i);
+            MapBean mapBean = new MapBean("address",dataDetailBean.getProvince_id());
             result.add(mapBean);
         }
 

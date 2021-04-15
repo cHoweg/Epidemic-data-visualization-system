@@ -1,7 +1,7 @@
 package com.zoll.vinfo.handller;
 
-import com.zoll.vinfo.bean.DataBean;
 import com.google.gson.Gson;
+import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
@@ -66,16 +66,16 @@ public class DataHandler {
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
-
+        // System.out.println(map);
         // 增加一层处理  而且data对应的数据格式是string
         String subStr = (String) map.get("data");
         Map subMap = gson.fromJson(subStr, Map.class);
-
         // System.out.println(map);
 
         ArrayList areaList = (ArrayList) subMap.get("areaTree");
         Map dataMap = (Map) areaList.get(0);
-        // System.out.println(map);
+        // System.out.println(dataMap);
+
         ArrayList childrenList = (ArrayList) dataMap.get("children");
         // System.out.println(childrenList);
 
@@ -84,7 +84,7 @@ public class DataHandler {
 
         for (int i = 0; i < childrenList.size(); i++) {
             Map tmp = (Map) childrenList.get(i);
-
+            System.out.println(tmp);
             ArrayList childrenDetailList = (ArrayList) tmp.get("children");
             for (int j = 0; j < childrenDetailList.size(); j++) {
                 Map city = (Map) childrenDetailList.get(j);

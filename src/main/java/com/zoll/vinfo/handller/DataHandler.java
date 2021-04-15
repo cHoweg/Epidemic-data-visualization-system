@@ -112,7 +112,7 @@ public class DataHandler {
                 double cityDead = (Double) cityTotalMap.get("dead");
 
                 DataDetailBean dataDetailBean = new DataDetailBean(cityName, (int) cityNowConfirm, (int) cityConfirm,
-                        (int) cityHeal, (int) cityDead, j);
+                        (int) cityHeal, (int) cityDead, i);
                 // System.out.println(dataDetailBean);
                 resultDetail.add(dataDetailBean);
                 list.add(resultDetail);

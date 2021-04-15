@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/Chart.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/feather.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpClientUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpURLConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpURLConnectionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpClientUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpClientUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/guangdong-province.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/guangdong-province.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -66,7 +78,6 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
         <option name="printErrorStackTraces" value="true" />
         <option name="usePluginRegistry" value="true" />
       </MavenGeneralSettings>
@@ -74,7 +85,6 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="createModuleGroups" value="true" />
-        <option name="importAutomatically" value="true" />
         <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
@@ -82,7 +92,6 @@
   <component name="ProjectId" id="1qv3rSydzHjZCQl4tHAJfIOL5nK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -96,7 +105,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -116,17 +125,19 @@
       <recent name="com.xbdx.lyboot.bean" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\REGINA\Documents\GitHub\Epidemic-data-visualization-system\src\main\resources\static" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\static" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\templates" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\static\echarts" />
-      <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\REGINA\Documents\GitHub\Epidemic-data-visualization-system\src\main\resources\static" />
+      <recent name="C:\Users\REGINA\Documents\GitHub\Epidemic-data-visualization-system\src\main\resources\templates" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApplication">
+  <component name="RunManager" selected="JavaScript Debug.homePage.html">
     <configuration name="HttpClientUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.util.HttpClientUtil" />
       <module name="Epidemic data visualization system" />
@@ -139,6 +150,23 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="homePage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Epidemic-data-visualization-system/Epidemic data visualization system/templates/homePage.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="list.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Epidemic-data-visualization-system/Epidemic data visualization system/templates/list.html" useBuiltInWebServerPort="true">
+      <method v="2" />
     </configuration>
     <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Epidemic data visualization system" />
@@ -159,10 +187,14 @@
     <list>
       <item itemvalue="Application.HttpClientUtil" />
       <item itemvalue="Spring Boot.MyApplication" />
+      <item itemvalue="JavaScript Debug.homePage.html" />
+      <item itemvalue="JavaScript Debug.list.html" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.homePage.html" />
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="JavaScript Debug.list.html" />
         <item itemvalue="Application.HttpClientUtil" />
       </list>
     </recent_temporary>
@@ -263,9 +295,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -284,6 +314,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -298,76 +329,6 @@
     <MESSAGE value="Default Changelist" />
     <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="440" y="201" key="#Notifications" timestamp="1618208307889">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="440" y="201" key="#Notifications/0.25.1680.1025@0.25.1680.1025" timestamp="1618208307889" />
-    <state x="304" y="198" width="1193" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618376778285">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="304" y="198" width="1193" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618376778285" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618387486907">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618387486907" />
-    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618387410234">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618387410234" />
-    <state x="644" y="458" key="Github.CreateGistDialog" timestamp="1618207583593">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="644" y="458" key="Github.CreateGistDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618207583593" />
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom" timestamp="1618384097737">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097737" />
-    <state width="1638" height="368" key="GridCell.Tab.0.center" timestamp="1618384097736">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097736" />
-    <state width="1638" height="368" key="GridCell.Tab.0.left" timestamp="1618384097735">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097735" />
-    <state width="1638" height="368" key="GridCell.Tab.0.right" timestamp="1618384097736">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097736" />
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom" timestamp="1618384097739">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097739" />
-    <state width="1638" height="368" key="GridCell.Tab.1.center" timestamp="1618384097738">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097738" />
-    <state width="1638" height="368" key="GridCell.Tab.1.left" timestamp="1618384097737">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097737" />
-    <state width="1638" height="368" key="GridCell.Tab.1.right" timestamp="1618384097738">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618384097738" />
-    <state x="349" y="173" key="SettingsEditor" timestamp="1618208729410">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="349" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1618208729410" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1618209057990">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618209057990" />
-    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618383714882">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618383714882" />
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618387455503">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618387455503" />
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
       <path>
@@ -376,6 +337,11 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Epidemic_data_visualization_system$MyApplication.ic" NAME="MyApplication Coverage Results" MODIFIED="1618326795992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.zoll.vinfo.*</FILTER>
+    </SUITE>
   </component>
   <component name="masterDetails">
     <states>

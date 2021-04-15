@@ -217,4 +217,14 @@ public class DataController {
         return modelAndView;
     }
 
+    /**
+     * 根据省份ID查询省内数据
+     */
+    @GetMapping("/cityData")
+    public List<DataDetailBean> cityData(Integer province_id){
+        ModelAndView modelAndView = new ModelAndView();
+
+        return dataDetailService.findCityDataById(province_id);
+    }
+
 }

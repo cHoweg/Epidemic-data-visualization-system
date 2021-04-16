@@ -32,6 +32,7 @@ public class DataController {
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
+        System.out.println(dataList);
         modelAndView.addObject("dataList", dataList);
 
         List<MapBean> result = new ArrayList<>();
@@ -39,7 +40,6 @@ public class DataController {
             DataBean dataBean = dataList.get(i);
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
-
         }
         modelAndView.addObject("mapData", new Gson().toJson(result));
 
@@ -97,7 +97,7 @@ public class DataController {
 
         modelAndView.addObject("nameList", new Gson().toJson(nameList));
         modelAndView.addObject("fromAbroadList", new Gson().toJson(fromAbroadList));
-
+        modelAndView.setViewName("list");
         return modelAndView;
     }
 

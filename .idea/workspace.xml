@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/bean/WorldDataBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/service/DataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/service/DataService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpURLConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/util/HttpURLConnectionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,11 +110,12 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.xbdx.lyboot.bean" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test" />
+      <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service" />
@@ -120,31 +125,17 @@
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\static\echarts" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zoll.vinfo.bean" />
       <recent name="com.zoll.vinfo.mapper" />
       <recent name="com.zoll.vinfo.service" />
-      <recent name="com.zoll.vinfo.bean" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test" />
-      <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.xbdx.lyboot.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApplication">
-    <configuration name="DataHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.DataHandler" />
-      <module name="Epidemic data visualization system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HttpClientUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.util.HttpClientUtil" />
+  <component name="RunManager" selected="JUnit.JsoupHandler.test">
+    <configuration name="HttpURLConnectionUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.util.HttpURLConnectionUtil" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -165,6 +156,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JsoupHandler.getWorldData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Epidemic data visualization system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zoll.vinfo.handller" />
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
+      <option name="METHOD_NAME" value="getWorldData" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -202,19 +209,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.HttpClientUtil" />
-      <item itemvalue="Application.DataHandler" />
       <item itemvalue="Application.JsoupHandler" />
       <item itemvalue="JUnit.JsoupHandler.test" />
       <item itemvalue="Spring Boot.MyApplication" />
+      <item itemvalue="JUnit.JsoupHandler.getWorldData" />
+      <item itemvalue="Application.HttpURLConnectionUtil" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.MyApplication" />
-        <item itemvalue="Application.DataHandler" />
-        <item itemvalue="Application.JsoupHandler" />
         <item itemvalue="JUnit.JsoupHandler.test" />
-        <item itemvalue="Application.HttpClientUtil" />
+        <item itemvalue="JUnit.JsoupHandler.getWorldData" />
+        <item itemvalue="Application.HttpURLConnectionUtil" />
+        <item itemvalue="Application.JsoupHandler" />
+        <item itemvalue="Spring Boot.MyApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +275,7 @@
       <workItem from="1618314529586" duration="1826000" />
       <workItem from="1618375004614" duration="17118000" />
       <workItem from="1618461461075" duration="19748000" />
-      <workItem from="1618496204204" duration="824000" />
+      <workItem from="1618496204204" duration="12847000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -368,7 +375,21 @@
       <option name="project" value="LOCAL" />
       <updated>1618493052605</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Default Changelist">
+      <created>1618497110228</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1618497110228</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Default Changelist">
+      <created>1618499639642</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1618499639642</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,10 +454,18 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="304" y="198" width="1193" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618376778285" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618493052166">
+    <state x="653" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1618498161189">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618493052166" />
+    <state x="653" y="247" key="#com.intellij.ide.util.MemberChooser/0.25.1680.1025@0.25.1680.1025" timestamp="1618498161189" />
+    <state x="578" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1618555070275">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="578" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618555070275" />
+    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618499639417">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618499639417" />
     <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618387410234">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -445,62 +474,62 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="644" y="458" key="Github.CreateGistDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618207583593" />
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom" timestamp="1618496193813">
+    <state width="1638" height="296" key="GridCell.Tab.0.bottom" timestamp="1618562109515">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193813" />
-    <state width="1638" height="368" key="GridCell.Tab.0.center" timestamp="1618496193813">
+    <state width="1638" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109515" />
+    <state width="1638" height="296" key="GridCell.Tab.0.center" timestamp="1618562109514">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193813" />
-    <state width="1638" height="368" key="GridCell.Tab.0.left" timestamp="1618496193812">
+    <state width="1638" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109514" />
+    <state width="1638" height="296" key="GridCell.Tab.0.left" timestamp="1618562109514">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193812" />
-    <state width="1638" height="368" key="GridCell.Tab.0.right" timestamp="1618496193813">
+    <state width="1638" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109514" />
+    <state width="1638" height="296" key="GridCell.Tab.0.right" timestamp="1618562109515">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193813" />
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom" timestamp="1618496193814">
+    <state width="1638" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109515" />
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom" timestamp="1618562109387">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193814" />
-    <state width="1638" height="368" key="GridCell.Tab.1.center" timestamp="1618496193814">
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109387" />
+    <state width="1638" height="296" key="GridCell.Tab.1.center" timestamp="1618562109386">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193814" />
-    <state width="1638" height="368" key="GridCell.Tab.1.left" timestamp="1618496193813">
+    <state width="1638" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109386" />
+    <state width="1638" height="296" key="GridCell.Tab.1.left" timestamp="1618562109386">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193813" />
-    <state width="1638" height="368" key="GridCell.Tab.1.right" timestamp="1618496193814">
+    <state width="1638" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109386" />
+    <state width="1638" height="296" key="GridCell.Tab.1.right" timestamp="1618562109387">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="368" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193814" />
-    <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1618496193808">
+    <state width="1638" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618562109387" />
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1618554843661">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.2.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193808" />
-    <state width="1638" height="296" key="GridCell.Tab.2.center" timestamp="1618496193808">
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618554843661" />
+    <state width="1638" height="296" key="GridCell.Tab.2.center" timestamp="1618554843660">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.2.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193808" />
-    <state width="1638" height="296" key="GridCell.Tab.2.left" timestamp="1618496193807">
+    <state width="1638" height="296" key="GridCell.Tab.2.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618554843660" />
+    <state width="1638" height="296" key="GridCell.Tab.2.left" timestamp="1618554843660">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.2.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193807" />
-    <state width="1638" height="296" key="GridCell.Tab.2.right" timestamp="1618496193808">
+    <state width="1638" height="296" key="GridCell.Tab.2.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618554843660" />
+    <state width="1638" height="296" key="GridCell.Tab.2.right" timestamp="1618554843660">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state width="1638" height="296" key="GridCell.Tab.2.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618496193808" />
-    <state x="349" y="173" key="SettingsEditor" timestamp="1618461899510">
+    <state width="1638" height="296" key="GridCell.Tab.2.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618554843660" />
+    <state x="349" y="173" key="SettingsEditor" timestamp="1618551986998">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="349" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1618461899510" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1618496109582">
+    <state x="349" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1618551986998" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1618497113207">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618496109582" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618497113207" />
     <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618399692767">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -509,10 +538,10 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="602" y="160" key="refactoring.ChangeSignatureDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618475152944" />
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618471230199">
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618498148597">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618471230199" />
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618498148597" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

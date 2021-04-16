@@ -28,7 +28,7 @@ public class DataHandler {
     @Autowired
     private DataDetailService dataDetailService;
 
-     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
+     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_";
 
     public static void main(String[] args) throws Exception {
         // getData();
@@ -62,6 +62,8 @@ public class DataHandler {
          * 分析json字符串对数据进行筛选和提取
          */
         // 实时获取数据
+
+        urlStr += "h5";
         String respJson = HttpURLConnectionUtil.doGet(urlStr);
 
         Gson gson = new Gson();

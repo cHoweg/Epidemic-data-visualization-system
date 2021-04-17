@@ -9,12 +9,12 @@
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-<div id="main" style="width: 600px;height:400px;"></div>
+<div id="main111" style="width: 600px;height:400px;"></div>
 
 <!--在js中接收服务端返回数据-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
+    var myChart = echarts.init(document.getElementById('main111'));
 
     var str = [[${list}]];
 
@@ -39,6 +39,9 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
+
+
+
 
 </body>
 </html>

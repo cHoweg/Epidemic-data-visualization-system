@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="echarts/china.js"></script>
+</head>
+<body>
+
+<div id="main" style="width: 1000px;height:700px;"></div>
+<script th:inline="javascript">
+    var dataStr = [[${mapData}]];
+    // var dataStr=[
+    //     {name:"云南",value:10}, {name:"广东",value:10}
+    //     ]
+
+    option = {
+        title: {
+            text: '国内疫情疫情分布情况',
+            subtext: '仅供参考',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+
+        visualMap: {
+            // 左下角的颜色区域
+            show:true,
+            type: "piecewise", // 定义为分段型 visualMap
+            itemWidth: 40,
+            bottom: 60,
+            left: 20,
+            pieces: [
+                // 自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                { min: 40,  max: 50, label: "100000~1000000000", color: "#6ad86e" }, // (900, 1000]
+                { min: 30,  max: 40, label: "10000~100000", color: "#9adcfa" }, // (500, 900]
+                { min: 20,  max: 30, label: "1000~10000", color: "#ffeb3b" }, // (310, 500]
+                { min: 10,  max: 20, label: "10~1000", color: "#ff9800" }, // (200, 300]
+                { min: 0,   max: 10, label: "0~10人", color: "#ff0000" }, // (10, 200]
+                { value:0, label: "无数据", color: "#999" } // [0]
+            ]
+        },
+
+        series: [
+            {
+                name: '现存确诊',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                label: {
+                    normal: {
+                        // formatter: '{b}',
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(25,255,10,0.4)'
+                        }
+                    }
+                },
+                data: JSON.parse(dataStr),
+                // data: dataStr,
+            },
+        ]
+
+    };
+    var chart = echarts.init(document.getElementById("main"))
+    chart.setOption(option)
+    // console.log(JSON.parse(dataStr))
+    console.log(dataStr)
+</script>
+
+</body>
+</html>

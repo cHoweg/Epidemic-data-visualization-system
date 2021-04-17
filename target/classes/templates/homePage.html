@@ -1,35 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title >疫情实时监控网站</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
-    <link rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <meta charset="utf-8">
+    <title>疫情实时监控网站</title>
+   <!-- <link rel="stylesheet" th:href="@{/bootstrap.css}">-->
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="../static/echarts/echarts.min.js" th:src="@{echarts/echarts.min.js}"></script>
+    <script type="text/javascript" src="../static/echarts/china.js" th:src="@{echarts/china.js}"></script>
+<style>
 
-    <style>
+    #iframeContent{
+        width: 85%;
+        height: 700px;
+        margin-left: 16%;
 
-        #iframeContent{
-            width: 85%;
-            height: 700px;
-            margin-left: 16%;
+    }
 
-        }
-
-    </style>
+</style>
 </head>
 
 <body>
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">疫情实时监控
-        <span data-feather="globe"></span>
-    </a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-        </li>
-    </ul>
-</header>
-<div class="container-fluid">
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">疫情实时监控
+            <span data-feather="globe"></span>
+        </a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+            </li>
+        </ul>
+    </header>
+    <div class="container-fluid">
     <div class="row">
 
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -192,17 +193,26 @@
             </div>
         </nav>
 
-        <iframe name="showmain" id="iframeContent" src="#" scrolling="auto"></iframe>
 
-            <script type="text/javascript" src="../static/echarts/echarts.min.js" th:src="echarts/echarts.min.js"></script>
-            <script type="text/javascript" src="../static/echarts/china.js" th:src="echarts/china.js"></script>
 
-            <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js" th:src="js/bootstrap.bundle.min.js"></script>
-            <script type="text/javascript" src="../static/js/feather.min.js" th:src="js/feather.min.js"></script>
-            <script type="text/javascript" src="../static/js/Chart.min.js" th:src="js/Chart.min.js"></script>
-            <script type="text/javascript" src="../static/js/dashboard.js" th:src="js/dashboard.js"></script>
+
+        <iframe name="showmain" id="iframeContent" src="http://localhost:8080/" scrolling="auto"></iframe>
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 
+<script type="text/javascript" src="../static/js/bootstrap.bundle.min.js" th:src="@{js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" src="../static/js/feather.min.js" th:src="@{js/feather.min.js}"></script>
+<script type="text/javascript" src="../static/js/Chart.min.js" th:src="@{js/Chart.min.js}"></script>
+<script type="text/javascript" src="../static/js/dashboard.js" th:src="@{js/dashboard.js}"></script>
 </body>
 </html>

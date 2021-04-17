@@ -178,6 +178,10 @@ public class DataController {
 
         modelAndView.addObject("nameList", new Gson().toJson(nameList));
         modelAndView.addObject("fromAbroadList", new Gson().toJson(fromAbroadList));
+
+
+
+
         return modelAndView;
     }
 
@@ -218,5 +222,4 @@ public class DataController {
         modelAndView.setViewName("map");
         return modelAndView;
     }
-
 }

@@ -1,18 +1,12 @@
 package com.zoll.vinfo.handller;
 
 
-import com.zoll.vinfo.bean.DataBean;
 import com.google.gson.Gson;
+import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
-import com.zoll.vinfo.service.DataDetailService;
-import com.zoll.vinfo.service.DataService;
+import com.zoll.vinfo.bean.WorldDataBean;
 import com.zoll.vinfo.util.HttpURLConnectionUtil;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +19,11 @@ import java.util.Map;
 public class JsoupHandler {
 
     public static void main(String[] args) {
+        getData();
     }
 
     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
+    public static String worldUrlStr = "https://lab.isaaclin.cn/nCoV/api/area?latest=0";
 
     /*
     public static String urlStr = "https://ncov.dxy.cn/ncovh5/view/pneumonia?" +
@@ -77,15 +73,19 @@ public class JsoupHandler {
          */
         // 实时获取数据
         String respJson = HttpURLConnectionUtil.doGet(urlStr);
+        // {"ret":0,"data":"{\"lastUpdateTime\":\"
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
+        // {ret=0.0, data={"lastUpdateTime":"2021-04-16 10:36:24"
 
         // 增加一层处理  而且data对应的数据格式是string
         String subStr = (String) map.get("data");
-        Map subMap = gson.fromJson(subStr, Map.class);
+        // {"lastUpdateTime":"2021-04-16 10:36:24","chinaTotal":{"
 
-        // System.out.println(map);
+        Map subMap = gson.fromJson(subStr, Map.class);
+        System.out.println(subMap);
+        // {lastUpdateTime=2021-04-16 10:36:24, chinaTotal={confirm=103203.0,
 
         ArrayList areaList = (ArrayList) subMap.get("areaTree");
         Map dataMap = (Map) areaList.get(0);
@@ -94,7 +94,6 @@ public class JsoupHandler {
         // System.out.println(childrenList);
 
         // 遍历然后转化
-        List<Object> list = new ArrayList<>();
         List<DataBean> result = new ArrayList<>();
 
         for (int i = 0; i < childrenList.size(); i++) {
@@ -116,4 +115,59 @@ public class JsoupHandler {
 
         return result;
     }
+
+    public static List<DataDetailBean> getDetailData() {
+
+        /**
+         * 分析json字符串对数据进行筛选和提取
+         */
+        // 实时获取数据
+        String respJson = HttpURLConnectionUtil.doGet(urlStr);
+        Gson gson = new Gson();
+        Map map = gson.fromJson(respJson, Map.class);
+        String subStr = (String) map.get("data");
+        Map subMap = gson.fromJson(subStr, Map.class);
+
+        ArrayList areaList = (ArrayList) subMap.get("areaTree");
+        Map dataMap = (Map) areaList.get(0);
+
+        ArrayList childrenList = (ArrayList) dataMap.get("children");
+
+        List<DataDetailBean> resultDetail = new ArrayList<>();
+        for (int i = 0; i < childrenList.size(); i++) {
+            Map tmp = (Map) childrenList.get(i);
+            System.out.println(tmp);
+            ArrayList childrenDetailList = (ArrayList) tmp.get("children");
+            for (int j = 0; j < childrenDetailList.size(); j++) {
+                Map city = (Map) childrenDetailList.get(j);
+                String cityName = (String) city.get("name");
+                Map cityTotalMap = (Map) city.get("total");
+                double cityNowConfirm = (Double) cityTotalMap.get("nowConfirm");
+                double cityConfirm = (Double) cityTotalMap.get("confirm");
+                double cityHeal = (Double) cityTotalMap.get("heal");
+                double cityDead = (Double) cityTotalMap.get("dead");
+
+                DataDetailBean dataDetailBean = new DataDetailBean(cityName, (int) cityNowConfirm, (int) cityConfirm,
+                        (int) cityHeal, (int) cityDead, i);
+                resultDetail.add(dataDetailBean);
+            }
+        }
+
+        return resultDetail;
+    }
+
+
+    @Test
+    public void test() {
+        String respJson = HttpURLConnectionUtil.doGet("https://lab.isaaclin.cn/nCoV/api/area?latest=0");
+        System.out.println(respJson);
+        Gson gson = new Gson();
+        Map map = gson.fromJson(respJson, Map.class);
+        System.out.println(map);
+
+        // 增加一层处理  而且data对应的数据格式是string
+        ArrayList arrayList = (ArrayList) map.get("results");
+        System.out.println(arrayList);
+    }
+
 }

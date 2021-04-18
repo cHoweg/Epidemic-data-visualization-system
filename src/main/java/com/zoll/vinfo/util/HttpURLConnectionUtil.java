@@ -60,7 +60,7 @@ public class HttpURLConnectionUtil {
 
     public static void main(String[] args) {
         String str = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
-        String str1 = "https://ncov.dxy.cn/ncovh5/view/pneumonia?scene=2&from=singlemessage&isappinstalled=0";
+        String str1 = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_foreign";
         String result = doGet(str1);
         System.out.println(result);
     }

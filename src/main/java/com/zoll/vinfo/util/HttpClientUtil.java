@@ -1,7 +1,6 @@
 package com.zoll.vinfo.util;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -30,6 +29,7 @@ public class HttpClientUtil {
             HttpGet httpGet = new HttpGet(urlStr);
             // 设置请求头的方式
             httpGet.addHeader("Accept", "application/json");
+
 
             // 设置请求参数  连接时间、数据读取时间(socketTimeOut)等  单位是ms
             //   ConnectionRequestTimeout  指从共享连接池中取出连接的超时时间

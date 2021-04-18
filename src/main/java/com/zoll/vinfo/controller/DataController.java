@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.GraphHandler;
 import com.zoll.vinfo.handller.NewsHandler;
+import com.zoll.vinfo.handller.RumorHandler;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;

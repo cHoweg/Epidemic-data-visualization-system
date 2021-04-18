@@ -98,7 +98,7 @@ public class GraphHandler {
         String subStr = (String) map.get("data");
         Map subMap = gson.fromJson(subStr, Map.class);
 
-//        System.out.println(map);
+        // System.out.println(map);
 
         ArrayList areaList = (ArrayList) subMap.get("areaTree");
         Map dataMap = (Map) areaList.get(0);

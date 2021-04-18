@@ -1,16 +1,11 @@
 package com.zoll.vinfo.handller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.zoll.vinfo.bean.DataBean;
+import com.zoll.vinfo.bean.DataDetailBean;
 import com.zoll.vinfo.bean.WorldDataBean;
 import com.zoll.vinfo.util.HttpURLConnectionUtil;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -121,6 +116,47 @@ public class JsoupHandler {
         return result;
     }
 
+    public static List<DataDetailBean> getDetailData() {
+
+        /**
+         * 分析json字符串对数据进行筛选和提取
+         */
+        // 实时获取数据
+        String respJson = HttpURLConnectionUtil.doGet(urlStr);
+        Gson gson = new Gson();
+        Map map = gson.fromJson(respJson, Map.class);
+        String subStr = (String) map.get("data");
+        Map subMap = gson.fromJson(subStr, Map.class);
+
+        ArrayList areaList = (ArrayList) subMap.get("areaTree");
+        Map dataMap = (Map) areaList.get(0);
+
+        ArrayList childrenList = (ArrayList) dataMap.get("children");
+
+        List<DataDetailBean> resultDetail = new ArrayList<>();
+        for (int i = 0; i < childrenList.size(); i++) {
+            Map tmp = (Map) childrenList.get(i);
+            System.out.println(tmp);
+            ArrayList childrenDetailList = (ArrayList) tmp.get("children");
+            for (int j = 0; j < childrenDetailList.size(); j++) {
+                Map city = (Map) childrenDetailList.get(j);
+                String cityName = (String) city.get("name");
+                Map cityTotalMap = (Map) city.get("total");
+                double cityNowConfirm = (Double) cityTotalMap.get("nowConfirm");
+                double cityConfirm = (Double) cityTotalMap.get("confirm");
+                double cityHeal = (Double) cityTotalMap.get("heal");
+                double cityDead = (Double) cityTotalMap.get("dead");
+
+                DataDetailBean dataDetailBean = new DataDetailBean(cityName, (int) cityNowConfirm, (int) cityConfirm,
+                        (int) cityHeal, (int) cityDead, i);
+                resultDetail.add(dataDetailBean);
+            }
+        }
+
+        return resultDetail;
+    }
+
+
     @Test
     public void getWorldData() {
 
@@ -143,9 +179,9 @@ public class JsoupHandler {
 
         ArrayList areaList = (ArrayList) subMap.get("areaTree");
         Map dataMap = (Map) areaList.get(0);
-         System.out.println(map);
+        System.out.println(map);
         ArrayList childrenList = (ArrayList) dataMap.get("children");
-         System.out.println(childrenList);
+        System.out.println(childrenList);
 
         // 遍历然后转化
         List<WorldDataBean> result = new ArrayList<>();
@@ -164,7 +200,6 @@ public class JsoupHandler {
             //System.out.println(dataBean);
             result.add(worldDataBean);
 
-
         }
 
         return;
@@ -182,4 +217,5 @@ public class JsoupHandler {
         ArrayList arrayList = (ArrayList) map.get("results");
         System.out.println(arrayList);
     }
+
 }

@@ -4,6 +4,7 @@ package com.zoll.vinfo.controller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.GraphHandler;
+import com.zoll.vinfo.handller.NewsHandler;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class DataController {
 
 //        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
+
         model.addAttribute("dataList", dataList);
 
         List<MapBean> result = new ArrayList<>();
@@ -219,5 +221,13 @@ public class DataController {
         return modelAndView;
     }
 
+
+    @GetMapping("/news")
+    public String news(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<NewsBean> newsBeansList = NewsHandler.getData();
+        modelAndView.addObject("newsBeansList",newsBeansList);
+        return newsBeansList.toString();
+    }
 
 }

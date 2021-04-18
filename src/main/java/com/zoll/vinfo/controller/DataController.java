@@ -230,4 +230,8 @@ public class DataController {
         return newsBeansList.toString();
     }
 
+    @GetMapping("/cityData")
+    public List<DataDetailBean> cityData(String province_id){
+        return dataDetailService.findCityDataById(Integer.valueOf(province_id));
+    }
 }

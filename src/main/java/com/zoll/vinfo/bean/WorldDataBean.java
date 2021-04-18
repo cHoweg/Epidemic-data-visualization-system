@@ -22,4 +22,5 @@ public class WorldDataBean implements Serializable {
     private int heal;
     //死亡人数
     private int dead;
+
 }

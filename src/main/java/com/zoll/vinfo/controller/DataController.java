@@ -230,6 +230,15 @@ public class DataController {
         return newsBeansList.toString();
     }
 
+    @GetMapping("/rumors")
+    public String rumors(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<RumorBean> RumorBeansList = RumorHandler.getData();
+        modelAndView.addObject("rumorBeansList",RumorBeansList);
+        return RumorBeansList.toString();
+    }
+
+
     @GetMapping("/cityData")
     public List<DataDetailBean> cityData(String province_id){
         return dataDetailService.findCityDataById(Integer.valueOf(province_id));

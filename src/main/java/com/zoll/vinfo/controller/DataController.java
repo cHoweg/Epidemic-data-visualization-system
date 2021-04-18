@@ -233,7 +233,6 @@ public class DataController {
     @GetMapping("/cityData")
     public String cityData(Integer province_id){
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        System.out.println(cityDataById);
         return cityDataById.toString();
     }
 }

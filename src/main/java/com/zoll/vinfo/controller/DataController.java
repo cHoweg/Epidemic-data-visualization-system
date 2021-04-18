@@ -226,7 +226,7 @@ public class DataController {
     }
 
     @RequestMapping(value = "/provincelist")
-    public String pl(Model model,@RequestParam(value = "select2",required = false) String id) {
+    public String pl(Model model,@RequestParam(value = "select1",required = false) String id1) {
 //        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
         model.addAttribute("dataList", dataList);
@@ -295,7 +295,9 @@ public class DataController {
 
         model.addAttribute("nameList", new Gson().toJson(nameList));
         model.addAttribute("fromAbroadList", new Gson().toJson(fromAbroadList));
-        System.out.println("我是"+id);
+        System.out.println("我"+id1);
         return "provincelist";
     }
+
+
 }

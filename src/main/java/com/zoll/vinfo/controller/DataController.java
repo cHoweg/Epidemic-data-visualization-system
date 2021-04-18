@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -230,10 +231,19 @@ public class DataController {
         return newsBeansList.toString();
     }
 
+//    @GetMapping("/cityData")
+//    public String cityData( Integer province_id){
+//        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+//        System.out.println("我"+cityDataById);
+//        return cityDataById.toString();
+//    }
+
     @GetMapping("/cityData")
-    public String cityData(Integer province_id){
+    public ModelAndView cityData(ModelAndView modelAndView, @RequestParam(value = "select2",required = false)Integer province_id){
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        System.out.println(cityDataById);
-        return cityDataById.toString();
+        modelAndView.addObject("cityDataById",cityDataById);
+        modelAndView.setViewName("provincelist");
+        System.out.println("我"+province_id);
+        return modelAndView;
     }
 }

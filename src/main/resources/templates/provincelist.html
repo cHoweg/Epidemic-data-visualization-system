@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -12,67 +12,65 @@
 
 
 <form name="chooseprovince">
-    <select  id="select1" onclick="a()">
-        <option name="choose" value=0 >香港</option>
-        <option name="choose" value=1 >云南</option>
-        <option name="choose" value=2 >上海</option>
-        <option name="choose" value=3 >广东</option>
-        <option name="choose" value=4 >台湾</option>
-        <option name="choose" value=5 >福建</option>
-        <option name="choose" value=6 >四川</option>
-        <option name="choose" value=7 >陕西</option>
-        <option name="choose" value=8 >北京</option>
-        <option name="choose" value=9 >山西</option>
-        <option name="choose" value=10>江苏</option>
-        <option name="choose" value=11>山东</option>
-        <option name="choose" value=12>浙江</option>
-        <option name="choose" value=13>天津	</option>
-        <option name="choose" value=14>河南</option>
-        <option name="choose" value=15>湖南</option>
-        <option name="choose" value=16>广西</option>
-        <option name="choose" value=17>湖北</option>
-        <option name="choose" value=18>内蒙古</option>
-        <option name="choose" value=19>辽宁</option>
-        <option name="choose" value=20>广西</option>
-        <option name="choose" value=21>湖北</option>
-        <option name="choose" value=22>内蒙古</option>
-        <option name="choose" value=23>辽宁</option>
-        <option name="choose" value=24>甘肃</option>
-        <option name="choose" value=25>澳门</option>
-        <option name="choose" value=26>西藏</option>
-        <option name="choose" value=27>贵州</option>
-        <option name="choose" value=28>青海</option>
-        <option name="choose" value=29>新疆</option>
-        <option name="choose" value=30>江西</option>
-        <option name="choose" value=31>海南</option>
-        <option name="choose" value=32>黑龙江</option>
-        <option name="choose" value=33>宁夏</option>
-        <option name="choose" value=34>安徽</option>
-        <option name="choose" value=35>重庆</option>
-        <option name="choose" value=36>吉林</option>
+    <select  id="select1" name="select1">
+        <option class="choose" value=0  >香港</option>
+        <option class="choose" value=1  selected>云南</option>
+        <option class="choose" value=2  >上海</option>
+        <option class="choose" value=3  >广东</option>
+        <option class="choose" value=4  >台湾</option>
+        <option class="choose" value=5  >福建</option>
+        <option class="choose" value=6  >四川</option>
+        <option class="choose" value=7  >陕西</option>
+        <option class="choose" value=8  >北京</option>
+        <option class="choose" value=9  >山西</option>
+        <option class="choose" value=10 >江苏</option>
+        <option class="choose" value=11 >山东</option>
+        <option class="choose" value=12 >浙江</option>
+        <option class="choose" value=13 >天津</option>
+        <option class="choose" value=14 >河南</option>
+        <option class="choose" value=15 >湖南</option>
+        <option class="choose" value=16 >广西</option>
+        <option class="choose" value=17 >湖北</option>
+        <option class="choose" value=18 >内蒙古</option>
+        <option class="choose" value=19 >辽宁</option>
+        <option class="choose" value=20 >广西</option>
+        <option class="choose" value=21 >湖北</option>
+        <option class="choose" value=22 >内蒙古</option>
+        <option class="choose" value=23 >辽宁</option>
+        <option class="choose" value=24 >甘肃</option>
+        <option class="choose" value=25 >澳门</option>
+        <option class="choose" value=26 >西藏</option>
+        <option class="choose" value=27 >贵州</option>
+        <option class="choose" value=28 >青海</option>
+        <option class="choose" value=29 >新疆</option>
+        <option class="choose" value=30 >江西</option>
+        <option class="choose" value=31 >海南</option>
+        <option class="choose" value=32 >黑龙江</option>
+        <option class="choose" value=33 >宁夏</option>
+        <option class="choose" value=34 >安徽</option>
+        <option class="choose" value=35 >重庆</option>
+        <option class="choose" value=36 >吉林</option>
     </select>
+    <input type="submit" onclick="a()">
 </form>
-
-
+<p id="id1"></p>
 <script type="text/javascript">
-    var a=function() {
-        var selectId=$("#select1").val();
-console.log(selectId)
+
+    var a=function(){
+        var id=$("#select1").val()
+
+        console.log( id)
         $.ajax({
-            url:"DataController/list",
-            data:selectId,
-            type:"post",
-            dataType:"text",
-            success:function (resp) {
-                alert(resp)
-            }
+            url: "/provincelist",
+            type: 'post',
+           data: JSON.stringify({id:id}),
+            dataType:'text',
+            contentType: 'text/xml',
+            success: function(data){ },
+            error: function () {}
         })
-    }
-
+     }
 </script>
-
-
-
 
 
 

@@ -74,7 +74,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="web" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -479,14 +479,14 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="304" y="198" width="1193" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618376778285" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618572845405">
+    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618736680220">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618572845405" />
-    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618736516271">
+    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618736680220" />
+    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618736609902">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618736516271" />
+    <state x="100" y="125" width="1480" height="825" key="DiffContextDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618736609902" />
     <state x="644" y="458" key="Github.CreateGistDialog" timestamp="1618207583593">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -568,10 +568,10 @@
     </state>
     <state x="402" y="202" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618509203008" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618496109582" />
-    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618567870845">
+    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618736688793">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618567870845" />
+    <state x="625" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618736688793" />
     <state x="505" y="179" key="git4idea.branch.GitSmartOperationDialog" timestamp="1618572837089">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>

@@ -240,7 +240,8 @@ public class DataController {
 
 
     @GetMapping("/cityData")
-    public List<DataDetailBean> cityData(String province_id){
-        return dataDetailService.findCityDataById(Integer.valueOf(province_id));
+    public String cityData(Integer province_id){
+        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+        return cityDataById.toString();
     }
 }

@@ -29,26 +29,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/news.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/js/Chart.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/js/feather.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/news.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/province.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/provincelist.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_10_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_10_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphPie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +159,7 @@
       <recent name="com.xbdx.lyboot.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApplication">
+  <component name="RunManager" selected="JavaScript Debug.news.html">
     <configuration name="JsoupHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
       <module name="Epidemic data visualization system" />
@@ -177,19 +169,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -241,9 +220,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.homePage.html" />
         <item itemvalue="JavaScript Debug.news.html" />
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="JavaScript Debug.homePage.html" />
         <item itemvalue="JUnit.JsoupHandler.test" />
       </list>
     </recent_temporary>
@@ -300,7 +279,8 @@
       <workItem from="1618815538245" duration="2858000" />
       <workItem from="1618823452497" duration="3080000" />
       <workItem from="1618826579782" duration="1205000" />
-      <workItem from="1618827915227" duration="320000" />
+      <workItem from="1618827915227" duration="2011000" />
+      <workItem from="1618833539543" duration="5340000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -407,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618567710680</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Default Changelist">
+      <created>1618828248443</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1618828248443</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

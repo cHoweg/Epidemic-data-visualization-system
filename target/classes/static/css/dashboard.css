@@ -33,7 +33,7 @@ body {
   width: 6px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .sidebar {
     top: 5rem;
   }
@@ -131,7 +131,7 @@ ul{
 }
 
 .box{
-  width: 100%;
+  width: 950px;
   margin-right: auto;
   margin-left: auto
 }

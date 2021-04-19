@@ -1,6 +1,5 @@
 package com.zoll.vinfo.controller;
 
-
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.*;
@@ -233,6 +232,7 @@ public class DataController {
     }
 
     @GetMapping("/rumors")
+    @ResponseBody
     public String rumors(){
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
@@ -242,12 +242,14 @@ public class DataController {
 
 
     @GetMapping("/cityData")
+    @ResponseBody
     public String cityData(Integer province_id){
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
         return cityDataById.toString();
     }
 
     @GetMapping("/worldData")
+    @ResponseBody
     public String worldData(){
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList= WorldDataHandler.getData();
@@ -256,6 +258,7 @@ public class DataController {
     }
 
     @GetMapping("/worldDataDetail")
+    @ResponseBody
     public String worldDetailData(){
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList= WorldDataDetailHandler.getData();

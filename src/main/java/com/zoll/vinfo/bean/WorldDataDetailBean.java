@@ -15,13 +15,13 @@ public class WorldDataDetailBean implements Serializable {
     //国家疫情地区id
     private int provinceId ;
      //国家疫情地区
-    private String provinceProvincename ;
+    private String provinceProvinceName ;
     //国家现存确诊人数
-    private int provinceConfirmedcount;
+    private int provinceConfirmedCount;
     //国家累计确诊治愈人数
-    private int provinceCuredcount;
+    private int provinceCuredCount;
     //国家累计死亡人数
-    private int provinceDeadcount;
+    private int provinceDeadCount;
     // 国家对应上级大洲id
     private int countryId ;
 

@@ -3,9 +3,7 @@ package com.zoll.vinfo.controller;
 
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
-import com.zoll.vinfo.handller.GraphHandler;
-import com.zoll.vinfo.handller.NewsHandler;
-import com.zoll.vinfo.handller.RumorHandler;
+import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
 import net.sf.json.JSONObject;
@@ -247,5 +245,21 @@ public class DataController {
     public String cityData(Integer province_id){
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
         return cityDataById.toString();
+    }
+
+    @GetMapping("/worldData")
+    public String worldData(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataBean> worldDataBeanList= WorldDataHandler.getData();
+        modelAndView.addObject("worldBeansList",worldDataBeanList);
+        return worldDataBeanList.toString();
+    }
+
+    @GetMapping("/worldDataDetail")
+    public String worldDetailData(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList= WorldDataDetailHandler.getData();
+        modelAndView.addObject("worldBeansList",worldDataDetailBeanBeanList);
+        return worldDataDetailBeanBeanList.toString();
     }
 }

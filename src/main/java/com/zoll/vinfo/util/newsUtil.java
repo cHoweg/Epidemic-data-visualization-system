@@ -19,6 +19,9 @@ import java.util.Map;
  * @USER: eugenechow
  * @DATE: 2021/4/17 上午11:45
  */
+
+//用友网API接口------统一调用的接口。
+
 public class newsUtil {
 
         public static final String DEF_CHATSET = "UTF-8";

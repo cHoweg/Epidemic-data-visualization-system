@@ -59,6 +59,6 @@ public class HttpClientUtil {
     public static void main(String[] args) {
         String str = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_other";
         String result = doGet(str);
-        System.out.println(result);
+        //System.out.println(result);
     }
 }

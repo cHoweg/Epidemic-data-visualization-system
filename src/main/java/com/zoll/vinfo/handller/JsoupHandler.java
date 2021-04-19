@@ -4,7 +4,6 @@ package com.zoll.vinfo.handller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
-import com.zoll.vinfo.bean.WorldDataBean;
 import com.zoll.vinfo.util.HttpURLConnectionUtil;
 import org.junit.Test;
 

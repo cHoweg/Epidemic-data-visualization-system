@@ -8,10 +8,12 @@ import com.zoll.vinfo.handller.NewsHandler;
 import com.zoll.vinfo.handller.RumorHandler;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -224,11 +226,12 @@ public class DataController {
 
 
     @GetMapping("/news")
-    public String news(){
-        ModelAndView modelAndView = new ModelAndView();
-        List<NewsBean> newsBeansList = NewsHandler.getData();
-        modelAndView.addObject("newsBeansList",newsBeansList);
-        return newsBeansList.toString();
+    @ResponseBody
+    public List<JSONObject> news(){
+        // ModelAndView modelAndView = new ModelAndView();
+        List<JSONObject> data = NewsHandler.getData();
+        // model.addAttribute("newsBeansList",data);
+        return data;
     }
 
     @GetMapping("/rumors")

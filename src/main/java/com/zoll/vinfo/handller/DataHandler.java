@@ -1,18 +1,14 @@
 package com.zoll.vinfo.handller;
 
-import com.google.gson.Gson;
 import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
-import com.zoll.vinfo.util.HttpURLConnectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -38,7 +34,6 @@ public class DataHandler {
     public void saveData() {
         List<DataBean> dataBeans = JsoupHandler.getData();;
         List<DataDetailBean> dataDetailBeans = JsoupHandler.getDetailData();
-        // List<DataDetailBean> dataDetailBean = (List<DataDetailBean>) dataBeanList.get(0);
 
         // 先将数据清空  然后存储数据
         dataService.remove(null);

@@ -37,12 +37,12 @@ public class RumorHandler {
 
         mapchange = (Map<String, String>) gson.fromJson(respJson, map.getClass());
         HashMap date_get=new  HashMap<>(mapchange);
-        ArrayList newslist=(ArrayList)date_get.get("newslist");
+        ArrayList newsList=(ArrayList)date_get.get("newslist");
 
         List<RumorBean> result = new ArrayList<>();
 
-        for (int i = 0; i < newslist.size(); i++) {
-            Map date_reget= (Map)newslist.get(i);
+        for (int i = 0; i < newsList.size(); i++) {
+            Map date_reget= (Map)newsList.get(i);
             String date=date_reget.get("date").toString();
             String title=date_reget.get("title").toString();
             String explain=date_reget.get("explain").toString();

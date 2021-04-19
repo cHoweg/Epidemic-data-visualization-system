@@ -14,7 +14,7 @@
 <form name="chooseprovince">
     <select  id="select1" name="select2">
         <option class="choose" value=0  >香港</option>
-        <option class="choose" value=1  selected>云南</option>
+        <option class="choose" value=1  >云南</option>
         <option class="choose" value=2  >上海</option>
         <option class="choose" value=3  >广东</option>
         <option class="choose" value=4  >台湾</option>
@@ -57,7 +57,6 @@
 
     var a=function(){
         var id=$("#select1").val()
-
         console.log( id)
         $.ajax({
             url: "/cityData",
@@ -68,11 +67,9 @@
             success: function(data){ alert(id) },
             error: function () {}
         })
+
      }
 </script>
-
-
-
     <table class="table table-hover">
         <thead>
         <tr>
@@ -84,13 +81,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="data:${cityDataById}">
-            <td th:text="${data.area}">name</td>
-            <td th:text="${data.nowConfirm}">nowConfirm</td>
-            <td th:text="${data.confirm}">confirm</td>
-            <td th:text="${data.heal}">heal</td>
-            <td th:text="${data.dead}">dead</td>
+        <tr id="0" th:each="data:${cityDataById}">
+            <td id="1" th:text="${data.area}">name</td>
+            <td id="2" th:text="${data.nowConfirm}">nowConfirm</td>
+            <td id="3" th:text="${data.confirm}">confirm</td>
+            <td id="4" th:text="${data.heal}">heal</td>
+            <td id="5" th:text="${data.dead}">dead</td>
         </tr>
+
         </tbody>
     </table>
 </div>

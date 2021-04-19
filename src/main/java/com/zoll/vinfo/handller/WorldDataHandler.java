@@ -30,8 +30,6 @@ public class WorldDataHandler {
          */
         String respJson = newsUtil.getRequest(urlStr);
 
-        //将数据转化成Map类型
-
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
 
@@ -39,8 +37,6 @@ public class WorldDataHandler {
 
         ArrayList continent = (ArrayList) data.get("continent");
         List<WorldDataBean> result = new ArrayList<>();
-
-        //for循环提取需要的字段，并且通过bean类 插入到list里面
 
         for (int i = 0; i < continent.size(); i++) {
             Map worldData= (Map) continent.get(i);

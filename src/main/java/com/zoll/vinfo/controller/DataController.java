@@ -5,11 +5,11 @@ import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +33,6 @@ public class DataController {
     @GetMapping("/")
     public String homePage(Model model) {
 
-//        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
 
         model.addAttribute("dataList", dataList);
@@ -223,29 +222,32 @@ public class DataController {
 
 
     @GetMapping("/news")
-    @ResponseBody
-    public List<JSONObject> news(){
-        // ModelAndView modelAndView = new ModelAndView();
-        List<JSONObject> data = NewsHandler.getData();
-        // model.addAttribute("newsBeansList",data);
-        return data;
+    public ModelAndView news(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<NewsBean> newsBeanList = NewsHandler.getData();
+        modelAndView.addObject("newBeanList",newsBeanList);
+        modelAndView.setViewName("news");
+        System.out.println(new Gson().toJson(newsBeanList));
+        return modelAndView;
     }
 
     @GetMapping("/rumors")
-    @ResponseBody
-    public String rumors(){
+    public ModelAndView rumors(){
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
         modelAndView.addObject("rumorBeansList",RumorBeansList);
-        return RumorBeansList.toString();
+        modelAndView.setViewName("Rumors");
+        System.out.println(RumorBeansList);
+        return modelAndView;
     }
 
-
     @GetMapping("/cityData")
-    @ResponseBody
-    public String cityData(Integer province_id){
+    public ModelAndView cityData(@RequestParam(value = "select2",required = false)Integer province_id){
+        ModelAndView modelAndView = new ModelAndView();
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        return cityDataById.toString();
+        modelAndView.addObject("cityDataById",cityDataById);
+        modelAndView.setViewName("provinceList");
+        return modelAndView;
     }
 
     @GetMapping("/worldData")

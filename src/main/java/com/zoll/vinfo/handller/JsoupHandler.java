@@ -84,7 +84,7 @@ public class JsoupHandler {
         // {"lastUpdateTime":"2021-04-16 10:36:24","chinaTotal":{"
 
         Map subMap = gson.fromJson(subStr, Map.class);
-        System.out.println(subMap);
+        //System.out.println(subMap);
         // {lastUpdateTime=2021-04-16 10:36:24, chinaTotal={confirm=103203.0,
 
         ArrayList areaList = (ArrayList) subMap.get("areaTree");
@@ -136,7 +136,7 @@ public class JsoupHandler {
         List<DataDetailBean> resultDetail = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map tmp = (Map) childrenList.get(i);
-            System.out.println(tmp);
+            //System.out.println(tmp);
             ArrayList childrenDetailList = (ArrayList) tmp.get("children");
             for (int j = 0; j < childrenDetailList.size(); j++) {
                 Map city = (Map) childrenDetailList.get(j);
@@ -160,14 +160,14 @@ public class JsoupHandler {
     @Test
     public void test() {
         String respJson = HttpURLConnectionUtil.doGet("https://lab.isaaclin.cn/nCoV/api/area?latest=0");
-        System.out.println(respJson);
+        //System.out.println(respJson);
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
-        System.out.println(map);
+        //System.out.println(map);
 
         // 增加一层处理  而且data对应的数据格式是string
         ArrayList arrayList = (ArrayList) map.get("results");
-        System.out.println(arrayList);
+        //System.out.println(arrayList);
     }
 
 }

@@ -12,15 +12,15 @@ import java.io.Serializable;
 @TableName("world_illness")
 public class WorldDataBean implements Serializable {
 
-    //疫情地区
-    private String area;
-    //现存确诊人数
-    private int nowConfirm;
-    //累计确诊人数
-    private int confirm;
-    //治愈人数
-    private int heal;
-    //死亡人数
-    private int dead;
+    //大洲疫情地区id
+    private int countryId ;
+     //大洲疫情地区
+    private String continentName;
+    //大洲现存确诊人数
+    private int confirmedCount;
+    //大洲累计确诊治愈人数
+    private int curedCount;
+    //大洲累计死亡人数
+    private double deadCount;
 
 }

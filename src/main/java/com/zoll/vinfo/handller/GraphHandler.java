@@ -173,6 +173,6 @@ public class GraphHandler {
 
         List<GraphColumnarBean> list = getGraphColumnarData();
         Collections.sort(list);
-        System.out.println();
+        //System.out.println();
     }
 }

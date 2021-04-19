@@ -31,25 +31,25 @@ public class RumorHandler {
         String respJson = newsUtil.getRequest(urlStr);
 
         Gson gson = new Gson();
-        Map map1 = gson.fromJson(respJson, Map.class);
+        Map map = gson.fromJson(respJson, Map.class);
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> mapchange = new HashMap<String, String>();
 
-        map = (Map<String, String>) gson.fromJson(respJson, map.getClass());
-        HashMap date1=new  HashMap<>(map);
-        ArrayList newslist=(ArrayList)date1.get("newslist");
+        mapchange = (Map<String, String>) gson.fromJson(respJson, map.getClass());
+        HashMap date_get=new  HashMap<>(mapchange);
+        ArrayList newslist=(ArrayList)date_get.get("newslist");
 
         List<RumorBean> result = new ArrayList<>();
 
         for (int i = 0; i < newslist.size(); i++) {
-            Map date2= (Map)newslist.get(i);
-            String date=date2.get("date").toString();
-            String title=date2.get("title").toString();
-            String explain=date2.get("explain").toString();
-            System.out.println("---------------------------");
-            System.out.println(date);
-            System.out.println(title);
-            System.out.println(explain);
+            Map date_reget= (Map)newslist.get(i);
+            String date=date_reget.get("date").toString();
+            String title=date_reget.get("title").toString();
+            String explain=date_reget.get("explain").toString();
+            //System.out.println("---------------------------");
+           //System.out.println(date);
+            //System.out.println(title);
+            //System.out.println(explain);
             RumorBean rumorBean = new RumorBean(date,title, explain);
             result.add(rumorBean);
         }

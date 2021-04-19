@@ -38,7 +38,7 @@ public class HttpURLConnectionUtil {
             // 逐行读取  不为空就继续
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                System.out.print(line);
+                //System.out.print(line);
             }
 
 
@@ -62,6 +62,6 @@ public class HttpURLConnectionUtil {
         String str = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
         String str1 = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_foreign";
         String result = doGet(str1);
-        System.out.println(result);
+        //System.out.println(result);
     }
 }

@@ -9,7 +9,7 @@
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-<div id="main" style="width: 1000px;height:700px;"></div>
+<div id="main" style="width: 950px;height:680px;margin: auto;"></div>
 
 <!--在js中接收服务端返回数据-->
 <script th:inline="javascript">
@@ -21,12 +21,25 @@
     // 指定图表的配置项和数据
     var option = {
         title: {  // 标题组件
-            text: '全国现有确诊趋势'
+            text: '全国现有确诊趋势',
+            textStyle: {
+                color: "black", // 主标题文字的颜色。
+                fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+                fontWeight: "bolder", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'
+                fontFamily: "Serif", // 主标题文字的字体系列。
+                fontSize: 25, // 字体大小
+                lineHeight: "40", // 行高
+            },
+            x: 'center',
         },
         tooltip: {  // 提示框组件
             trigger: 'axis'
         },
         legend: {  // 曲线含义说明
+            orient: 'horizontal',//可设置vertical,
+            x:'right',  //可设定图例在左、右、居中
+            y:'top',  //可设定图例在上、下、居中
+            padding:[30,100,0,0],
             data: ['现有确诊']
         },
         xAxis: {

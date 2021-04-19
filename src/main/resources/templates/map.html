@@ -9,41 +9,49 @@
 </head>
 <body>
 
-<div id="main" style="width: 1000px;height:700px;"></div>
+<div id="main" style="width: 950px;height:680px;margin:auto;"></div>
 <script th:inline="javascript">
     var dataStr = [[${mapData}]];
 
     option = {
         title: {
             text: '国内疫情疫情分布情况',
+            textStyle: {
+                color: "black", // 主标题文字的颜色。
+                fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+                fontWeight: "bolder", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'
+                fontFamily: "Serif", // 主标题文字的字体系列。
+                fontSize: 25, // 字体大小
+                lineHeight: "40", // 行高
+            },
             subtext: '仅供参考',
-            x: 'center'
+            x: 'center',
         },
         tooltip: {
             trigger: 'item'
         },
-            series: [
-                {
-                    name: '现存确诊',
-                    type: 'map',
-                    mapType: 'china',
-                    roam: false,
-                    label: {
-                        normal: {
-                            // formatter: '{b}',
-                            position: 'center',
-                            show: true,
-                            textStyle: {
-                                color: 'rgba(0,0,0,0.4)'
-                            }
-                        },
-                        emphasis: {
-                            show: true
+        series: [
+            {
+                name: '现存确诊',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                label: {
+                    normal: {
+                        // formatter: '{b}',
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
                         }
                     },
-                    data: JSON.parse(dataStr)
-                }
-            ]
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data: JSON.parse(dataStr)
+            }
+        ]
 
     };
     var chart = echarts.init(document.getElementById("main"))

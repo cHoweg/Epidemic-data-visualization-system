@@ -51,8 +51,9 @@ public class NewsHandler {
             NewsBean newsBean = new NewsBean(pubDateStr, title, summary, infoSource, sourceUrl);
             // JSONObject jsonObject = JSONObject.fromObject(newsBean);
             result.add(newsBean);
-        }
 
+        }
+        System.out.println(result);
         return result;
     }
 

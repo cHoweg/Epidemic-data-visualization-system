@@ -1,5 +1,6 @@
 package com.zoll.vinfo.bean;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@TableName("news")
 public class NewsBean {
 
     // 时间

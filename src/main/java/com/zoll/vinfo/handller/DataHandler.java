@@ -1,22 +1,18 @@
 package com.zoll.vinfo.handller;
 
-import com.google.gson.Gson;
 import com.zoll.vinfo.bean.DataBean;
-import com.zoll.vinfo.bean.WorldDataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
+import com.zoll.vinfo.bean.WorldDataBean;
 import com.zoll.vinfo.bean.WorldDataDetailBean;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
-import com.zoll.vinfo.service.WorldDataService;
 import com.zoll.vinfo.service.WorldDataDetailService;
-import com.zoll.vinfo.util.HttpURLConnectionUtil;
+import com.zoll.vinfo.service.WorldDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -37,8 +33,6 @@ public class DataHandler {
 
     @Autowired
     private WorldDataDetailService worldDataDetailService;
-
-     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
 
     public static void main(String[] args) throws Exception {
         // getData();

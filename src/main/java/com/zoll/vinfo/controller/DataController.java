@@ -33,7 +33,6 @@ public class DataController {
     @GetMapping("/")
     public String homePage(Model model) {
 
-//        ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
 
         model.addAttribute("dataList", dataList);
@@ -225,9 +224,7 @@ public class DataController {
     @GetMapping("/news")
     @ResponseBody
     public List<JSONObject> news(){
-        // ModelAndView modelAndView = new ModelAndView();
         List<JSONObject> data = NewsHandler.getData();
-        // model.addAttribute("newsBeansList",data);
         return data;
     }
 

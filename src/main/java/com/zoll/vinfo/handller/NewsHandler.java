@@ -32,7 +32,7 @@ public class NewsHandler {
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
 
-        ArrayList arrayList = (ArrayList) map.get("newslist");
+        ArrayList arrayList = (ArrayList) map.get("newsList");
         Map mapData = (Map) arrayList.get(0);
 
         ArrayList news = (ArrayList) mapData.get("news");
@@ -53,11 +53,6 @@ public class NewsHandler {
             JSONObject jsonObject = JSONObject.fromObject(newsBean);
             result.add(jsonObject);
         }
-        /*JSONObject jsonObject = new JSONObject();
-        jsonObject.put("status","200");
-        jsonObject.put("desc","返回成功");
-        jsonObject.put("data",result);*/
-        // System.out.println(jsonArray);
 
         return result;
     }

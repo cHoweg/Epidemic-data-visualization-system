@@ -253,9 +253,15 @@ public class DataController {
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById", cityDataById);
-        modelAndView.setViewName("provinceList");
+        if (province_id == 37) {
+            List<DataBean> dataBeans = dataService.list();
+            // System.out.println(dataBeans);
+            modelAndView.addObject("cityDataById",dataBeans);
+        } else {
+            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("cityDataById", cityDataById);
+            modelAndView.setViewName("provinceList");
+        }
         return modelAndView;
     }
 

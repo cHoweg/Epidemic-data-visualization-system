@@ -33,7 +33,7 @@ body {
   width: 6px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .sidebar {
     top: 5rem;
   }
@@ -122,4 +122,54 @@ body {
 
 ul{
   list-style: none!important;
+}
+
+@media (min-width:700px) {
+  .box {
+    max-width: 85%
+  }
+}
+
+.box{
+  width: 950px;
+  margin-right: auto;
+  margin-left: auto
+}
+
+.box2 {
+  display: flex;
+  flex-wrap: wrap;/*拆行*/
+  margin: 1rem;
+}
+
+.size {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;/*换行*/
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem/*圆角*/
+}
+
+.form-header {
+  padding: .5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125)
+}
+
+.form-header:first-child {
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+}
+
+.form-body {
+  flex: 1 1 auto;
+  padding: 1rem 1rem
 }

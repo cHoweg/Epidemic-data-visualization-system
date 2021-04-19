@@ -22,7 +22,6 @@ public class JsoupHandler {
     }
 
     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
-    public static String worldUrlStr = "https://lab.isaaclin.cn/nCoV/api/area?latest=0";
 
     /*
     public static String urlStr = "https://ncov.dxy.cn/ncovh5/view/pneumonia?" +
@@ -164,7 +163,6 @@ public class JsoupHandler {
         Map map = gson.fromJson(respJson, Map.class);
         //System.out.println(map);
 
-        // 增加一层处理  而且data对应的数据格式是string
         ArrayList arrayList = (ArrayList) map.get("results");
         //System.out.println(arrayList);
     }

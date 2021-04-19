@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rumors</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+
+<div class="box1">
+    <div class="box2">
+        <div class="size">
+            <div class="form">
+                <div class="form-header">新闻</div>
+                <div class="form-body">
+                    <div>
+                        <div class="list-group" id="list-group1">
+                            <a class="list-group-item list-group-item-action" href="#">
+                                <span class="text" id="1">#{str}</span>
+                            </a>
+<!--                            <a class="list-group-item list-group-item-action" href="#">-->
+<!--                                <span class="text" id="2"></span>-->
+<!--                            </a>-->
+<!--                            <a class="list-group-item list-group-item-action" href="#">-->
+<!--                                <span class="text" id="3">11111111</span>-->
+<!--                            </a>-->
+<!--                            <a class="list-group-item list-group-item-action" href="#">-->
+<!--                                <span class="text" id="4">11111111</span>-->
+<!--                            </a>-->
+<!--                            <a class="list-group-item list-group-item-action" href="#">-->
+<!--                                <span class="text" id="5">11111111</span>-->
+<!--                            </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+
+    var a=[[${rumorBeansList}]]
+    var str=``;
+    for(var i=0;i<a.length;i++)
+    {
+        str+=`<a class="list-group-item list-group-item-action">
+<span class="text" id="${i}">
+<p>发布日期：${a[i].date}</p>
+<p>发布内容：${a[i].title}</p>
+<p>是否谣言：${a[i].explain}</p></span>
+</a>`
+
+    }
+    console.log(str)
+    document.getElementById('list-group1').innerHTML = str
+
+</script>
+</html>

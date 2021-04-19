@@ -45,9 +45,6 @@ public class DataHandler {
         List<WorldDataBean> worldDataBeans = WorldDataHandler.getData();
         List<WorldDataDetailBean> worldDataDetailBeans = WorldDataDetailHandler.getData();
 
-
-
-
         // 先将数据清空  然后存储数据
         dataService.remove(null);
         dataService.saveBatch(dataBeans);

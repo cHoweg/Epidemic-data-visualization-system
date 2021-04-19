@@ -5,8 +5,6 @@ import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
-import net.sf.json.JSONObject;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -232,12 +230,12 @@ public class DataController {
     }
 
     @GetMapping("/rumors")
-    @ResponseBody
-    public String rumors(){
+    public ModelAndView rumors(){
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
         modelAndView.addObject("rumorBeansList",RumorBeansList);
-        return RumorBeansList.toString();
+        modelAndView.setViewName("rumors");
+        return modelAndView;
     }
 
     @GetMapping("/cityData")

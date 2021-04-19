@@ -1,17 +1,16 @@
 package com.zoll.vinfo.controller;
 
-
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
-import com.zoll.vinfo.handller.GraphHandler;
-import com.zoll.vinfo.handller.NewsHandler;
+import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -224,26 +223,46 @@ public class DataController {
 
 
     @GetMapping("/news")
-    public String news(){
-        ModelAndView modelAndView = new ModelAndView();
-        List<NewsBean> newsBeansList = NewsHandler.getData();
-        modelAndView.addObject("newsBeansList",newsBeansList);
-        return newsBeansList.toString();
+    @ResponseBody
+    public List<JSONObject> news(){
+        // ModelAndView modelAndView = new ModelAndView();
+        List<JSONObject> data = NewsHandler.getData();
+        // model.addAttribute("newsBeansList",data);
+        return data;
     }
 
-//    @GetMapping("/cityData")
-//    public String cityData( Integer province_id){
-//        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-//        System.out.println("我"+cityDataById);
-//        return cityDataById.toString();
-//    }
+    @GetMapping("/rumors")
+    @ResponseBody
+    public String rumors(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<RumorBean> RumorBeansList = RumorHandler.getData();
+        modelAndView.addObject("rumorBeansList",RumorBeansList);
+        return RumorBeansList.toString();
+    }
+
 
     @GetMapping("/cityData")
-    public ModelAndView cityData(ModelAndView modelAndView, @RequestParam(value = "select2",required = false)Integer province_id){
+    @ResponseBody
+    public String cityData(Integer province_id){
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById",cityDataById);
-        modelAndView.setViewName("provincelist");
-        System.out.println("我"+province_id);
-        return modelAndView;
+        return cityDataById.toString();
+    }
+
+    @GetMapping("/worldData")
+    @ResponseBody
+    public String worldData(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataBean> worldDataBeanList= WorldDataHandler.getData();
+        modelAndView.addObject("worldBeansList",worldDataBeanList);
+        return worldDataBeanList.toString();
+    }
+
+    @GetMapping("/worldDataDetail")
+    @ResponseBody
+    public String worldDetailData(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList= WorldDataDetailHandler.getData();
+        modelAndView.addObject("worldBeansList",worldDataDetailBeanBeanList);
+        return worldDataDetailBeanBeanList.toString();
     }
 }

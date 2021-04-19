@@ -226,6 +226,8 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<NewsBean> newsBeanList = NewsHandler.getData();
         modelAndView.addObject("newBeanList",newsBeanList);
+        modelAndView.setViewName("news");
+        System.out.println(new Gson().toJson(newsBeanList));
         return modelAndView;
     }
 
@@ -234,7 +236,8 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
         modelAndView.addObject("rumorBeansList",RumorBeansList);
-        modelAndView.setViewName("rumors");
+        modelAndView.setViewName("Rumors");
+        System.out.println(RumorBeansList);
         return modelAndView;
     }
 

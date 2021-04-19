@@ -3,7 +3,6 @@ package com.zoll.vinfo.handller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.NewsBean;
 import com.zoll.vinfo.util.newsUtil;
-import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class NewsHandler {
         getData();
     }
 
-    public static List<JSONObject> getData() {
+    public static List<NewsBean> getData() {
 
         /**
          * 分析json字符串对数据进行筛选和提取
@@ -32,13 +31,13 @@ public class NewsHandler {
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
 
-        ArrayList arrayList = (ArrayList) map.get("newsList");
+        ArrayList arrayList = (ArrayList) map.get("newslist");
         Map mapData = (Map) arrayList.get(0);
 
         ArrayList news = (ArrayList) mapData.get("news");
 
         // 遍历然后转化
-        List<JSONObject> result = new ArrayList<>();
+        List<NewsBean> result = new ArrayList<>();
 
         for (int i = 0; i < news.size(); i++) {
             Map tmp = (Map) news.get(i);
@@ -50,8 +49,8 @@ public class NewsHandler {
             String sourceUrl = (String) tmp.get("sourceUrl");
 
             NewsBean newsBean = new NewsBean(pubDateStr, title, summary, infoSource, sourceUrl);
-            JSONObject jsonObject = JSONObject.fromObject(newsBean);
-            result.add(jsonObject);
+            // JSONObject jsonObject = JSONObject.fromObject(newsBean);
+            result.add(newsBean);
         }
 
         return result;

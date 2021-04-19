@@ -6,10 +6,12 @@ import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.DataDetailService;
 import com.zoll.vinfo.service.DataService;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -222,10 +224,11 @@ public class DataController {
 
 
     @GetMapping("/news")
-    @ResponseBody
-    public List<JSONObject> news(){
-        List<JSONObject> data = NewsHandler.getData();
-        return data;
+    public ModelAndView news(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<NewsBean> newsBeanList = NewsHandler.getData();
+        modelAndView.addObject("newBeanList",newsBeanList);
+        return modelAndView;
     }
 
     @GetMapping("/rumors")
@@ -237,12 +240,13 @@ public class DataController {
         return RumorBeansList.toString();
     }
 
-
     @GetMapping("/cityData")
-    @ResponseBody
-    public String cityData(Integer province_id){
+    public ModelAndView cityData(@RequestParam(value = "select2",required = false)Integer province_id){
+        ModelAndView modelAndView = new ModelAndView();
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        return cityDataById.toString();
+        modelAndView.addObject("cityDataById",cityDataById);
+        modelAndView.setViewName("provinceList");
+        return modelAndView;
     }
 
     @GetMapping("/worldData")

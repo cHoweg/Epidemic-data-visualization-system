@@ -3,8 +3,7 @@ package com.zoll.vinfo.controller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.*;
-import com.zoll.vinfo.service.DataDetailService;
-import com.zoll.vinfo.service.DataService;
+import com.zoll.vinfo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +27,15 @@ public class DataController {
 
     @Autowired
     private DataDetailService dataDetailService;
+
+    @Autowired
+    private WorldDataService worldDataService;
+
+    @Autowired
+    private WorldDataDetailService worldDataDetailService;
+
+    @Autowired
+    private NewsService newsService;
 
     //首页显示所有相关数据
     @GetMapping("/")
@@ -107,6 +115,7 @@ public class DataController {
 
     /**
      * 单个折线图显示现存确诊人数
+     *
      * @param
      * @return
      */
@@ -133,6 +142,7 @@ public class DataController {
 
     /**
      * 双重折线图显示新增确诊人数和疑似确诊人数
+     *
      * @param
      * @return
      */
@@ -160,6 +170,7 @@ public class DataController {
 
     /**
      * 显示全国排名前十的境外输入人数的条形统计图
+     *
      * @param
      * @return
      */
@@ -186,6 +197,7 @@ public class DataController {
 
     /**
      * 饼状图
+     *
      * @param
      * @return
      */
@@ -201,6 +213,7 @@ public class DataController {
 
     /**
      * 根据地区名和确诊人数绘制中国地图
+     *
      * @param
      * @return
      */
@@ -220,48 +233,47 @@ public class DataController {
         return modelAndView;
     }
 
-
     @GetMapping("/news")
-    public ModelAndView news(){
+    public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
-        List<NewsBean> newsBeanList = NewsHandler.getData();
-        modelAndView.addObject("newBeanList",newsBeanList);
+        List<NewsBean> newsBeanList = newsService.list();
+        modelAndView.addObject("newBeanList", newsBeanList);
         return modelAndView;
     }
 
     @GetMapping("/rumors")
-    public ModelAndView rumors(){
+    public ModelAndView rumors() {
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
-        modelAndView.addObject("rumorBeansList",RumorBeansList);
+        modelAndView.addObject("rumorBeansList", RumorBeansList);
         modelAndView.setViewName("rumors");
         return modelAndView;
     }
 
     @GetMapping("/cityData")
-    public ModelAndView cityData(@RequestParam(value = "select2",required = false)Integer province_id){
+    public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById",cityDataById);
+        modelAndView.addObject("cityDataById", cityDataById);
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
 
     @GetMapping("/worldData")
     @ResponseBody
-    public String worldData(){
+    public String worldData() {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataBean> worldDataBeanList= WorldDataHandler.getData();
-        modelAndView.addObject("worldBeansList",worldDataBeanList);
+        List<WorldDataBean> worldDataBeanList = worldDataService.list();
+        modelAndView.addObject("worldBeansList", worldDataBeanList);
         return worldDataBeanList.toString();
     }
 
     @GetMapping("/worldDataDetail")
     @ResponseBody
-    public String worldDetailData(){
+    public String worldDetailData(Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList= WorldDataDetailHandler.getData();
-        modelAndView.addObject("worldBeansList",worldDataDetailBeanBeanList);
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(id);
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
         return worldDataDetailBeanBeanList.toString();
     }
 }

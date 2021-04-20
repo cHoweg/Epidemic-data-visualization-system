@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <title >疫情最新动态</title>
     <link rel="stylesheet" th:href="@{/bootstrap.css}">
-    <script type="text/javascript" src="echarts/echarts.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="echarts/echarts.min.js"></script>
+
 </head>
 
 <body style="background-color:#a6e1ec;">
 
 
-<form name="chooseprovince">
+<form name="chooseprovince" style="width:200px">
     <select  id="select1" name="select2">
         <option class="choose" value=0  >香港</option>
         <option class="choose" value=1  >云南</option>
@@ -53,23 +54,27 @@
     </select>
     <input type="submit" onclick="a()">
 </form>
+
+
+
+<span id="showcity"></span>
 <script type="text/javascript">
 
     var a=function(){
         var id=$("#select1").val()
-        console.log( id)
         $.ajax({
             url: "/cityData",
             type: 'post',
            data: JSON.stringify({id:id}),
             dataType:'text',
             contentType: 'text/xml',
-            success: function(data){ alert(id) },
-            error: function () {}
+            success: function(data){ alert(data) },
+            error: function () {},
         })
-
      }
 </script>
+
+
     <table class="table table-hover">
         <thead>
         <tr>

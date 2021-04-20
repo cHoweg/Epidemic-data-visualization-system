@@ -7,32 +7,37 @@
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
     <script type="text/javascript" src="echarts/world.js"></script>
 </head>
-<body>
-
+<body onload="a()">
+<button onclick="a()">累计确诊</button>
+<button onclick="b()">累计死亡</button>
 <div id="main" style="width: 1000px;height:700px;"></div>
 <script th:inline="javascript">
     //var dataStr = [[${mapData}]];
-    var dataStr=[
-        {
-            "name": "中国",
-            "value": 34126.24
-        },
-        ]
+    var dataStr=[[${worldBeansList}]]
+    console.log(dataStr)
+    var AllCountData = [];
+    var AllDeadData = [];
 
-    option = {
+    for(var i=0;i<dataStr.length;i++)
+    {
+        AllCountData.push({   name:dataStr[i].provinceProvinceName,
+                value:dataStr[i].provinceConfirmedCount
+            })
+        AllDeadData.push({
+            name:dataStr[i].provinceProvinceName,
+            value:dataStr[i].provinceDeadCount
+        })
+    }
+
+    var AllCountData_option = {
         title: {
-            text: '世界疫情疫情分布情况',
+            text: '世界疫情疫情累计确诊分布情况',
             subtext: '仅供参考',
             x: 'center'
         },
         tooltip: {
             trigger: 'item'
         },
-
-
-
-
-
 
         series: [
             {
@@ -56,16 +61,54 @@
                         }
                     }
                 },
-                //data: JSON.parse(dataStr),
-                data: dataStr,
+                data: AllCountData,
             },
         ]
 
     };
+    var AllDeadData_option  = {
+        title: {
+            text: '世界疫情疫情累计死亡分布情况',
+            subtext: '仅供参考',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+
+        series: [
+            {
+                name: '现存确诊',
+                type: 'map',
+                mapType: 'world',
+                roam: false,
+                label: {
+                    normal: {
+                        // formatter: '{b}',
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(25,255,10,0.4)'
+                        }
+                    }
+                },
+                data: AllDeadData,
+            },
+        ]
+
+    };
+
+
     var chart = echarts.init(document.getElementById("main"))
-    chart.setOption(option)
-    // console.log(JSON.parse(dataStr))
-    console.log(dataStr)
+
+    function a(){chart.setOption(AllCountData_option)}
+    function b(){chart.setOption(AllDeadData_option)}
 </script>
 
 </body>

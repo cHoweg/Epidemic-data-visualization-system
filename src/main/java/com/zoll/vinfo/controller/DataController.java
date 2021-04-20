@@ -50,7 +50,6 @@ public class DataController {
             DataBean dataBean = dataList.get(i);
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
-
         }
         model.addAttribute("mapData", new Gson().toJson(result));
 
@@ -228,6 +227,16 @@ public class DataController {
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
         }
+
+        List<MapBean> count = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            DataBean dataBean = list.get(i);
+            MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getConfirm());
+            count.add(mapBean);
+        }
+
+
+        modelAndView.addObject("mapCountData", new Gson().toJson(count));
         modelAndView.addObject("mapData", new Gson().toJson(result));
         modelAndView.setViewName("map");
         return modelAndView;
@@ -259,13 +268,15 @@ public class DataController {
         return modelAndView;
     }
 
-    @GetMapping("/worldData")
+    @GetMapping("/dazhouData")
     @ResponseBody
-    public String worldData() {
+    public ModelAndView worldData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
-        return worldDataBeanList.toString();
+        modelAndView.setViewName("worldmap");
+//        return worldDataBeanList.toString();
+        return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
@@ -274,6 +285,17 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(id);
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        //modelAndView.setViewName("worldmap");
         return worldDataDetailBeanBeanList.toString();
+    }
+
+    @GetMapping("/countryDetail")
+    @ResponseBody
+    public ModelAndView countryData() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        modelAndView.setViewName("worldmap");
+        return modelAndView;
     }
 }

@@ -281,12 +281,16 @@ public class DataController {
 
     @GetMapping("/worldDataDetail")
     @ResponseBody
-    public String worldDetailData(Integer id) {
+    public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(id);
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-        //modelAndView.setViewName("worldmap");
-        return worldDataDetailBeanBeanList.toString();
+
+        List<WorldDataDetailBean> worldList1 = worldDataDetailService.list();
+        modelAndView.addObject("worldlist", worldList1);
+
+        modelAndView.setViewName("WorldList");
+        return modelAndView;
     }
 
     @GetMapping("/countryDetail")

@@ -105,7 +105,6 @@ public class JsoupHandler {
             double dead = (Double) totalMap.get("dead");
 
             DataBean dataBean = new DataBean(name, (int) nowConfirm, (int) confirm, (int) heal, (int) dead);
-            System.out.println(dataBean);
             result.add(dataBean);
 
 

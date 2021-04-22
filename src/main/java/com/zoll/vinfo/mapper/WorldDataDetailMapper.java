@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface WorldDataDetailMapper extends BaseMapper<WorldDataDetailBean> {
     // select * from worlddetail_illness where countryId=输入参数
-    @Select("SELECT\n" + "*" + "FROM\n" + "worlddetail_illness\n" + "WHERE\n" + "\t worlddetail_illness.countryId= #{provinceId}")
+    @Select("SELECT\n" + "*" + "FROM\n" + "worlddetail_illness\n" + "WHERE\n" + "\t worlddetail_illness.country_id= #{provinceId}")
     List<WorldDataDetailBean> findCityDetailDataById(Integer province_id);
 
 }

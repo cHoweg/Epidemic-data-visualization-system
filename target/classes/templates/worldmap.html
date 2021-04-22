@@ -14,7 +14,9 @@
 <script th:inline="javascript">
     //var dataStr = [[${mapData}]];
     var dataStr=[[${worldBeansList}]]
+
     console.log(dataStr)
+
     var AllCountData = [];
     var AllDeadData = [];
 
@@ -41,7 +43,7 @@
 
         series: [
             {
-                name: '现存确诊',
+                name: '累计确诊',
                 type: 'map',
                 mapType: 'world',
                 roam: false,
@@ -78,7 +80,7 @@
 
         series: [
             {
-                name: '现存确诊',
+                name: '累计死亡',
                 type: 'map',
                 mapType: 'world',
                 roam: false,

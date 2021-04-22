@@ -53,7 +53,6 @@ public class NewsHandler {
             result.add(newsBean);
 
         }
-        System.out.println(result);
         return result;
     }
 

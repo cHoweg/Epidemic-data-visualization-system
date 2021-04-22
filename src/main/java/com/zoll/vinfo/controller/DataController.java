@@ -242,6 +242,10 @@ public class DataController {
         return modelAndView;
     }
 
+    /**
+     * 新闻
+     * @return
+     */
     @GetMapping("/news")
     public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
@@ -250,6 +254,10 @@ public class DataController {
         return modelAndView;
     }
 
+    /**
+     * 谣言
+     * @return
+     */
     @GetMapping("/rumors")
     public ModelAndView rumors() {
         ModelAndView modelAndView = new ModelAndView();
@@ -269,18 +277,15 @@ public class DataController {
     }
 
     @GetMapping("/dazhouData")
-    @ResponseBody
     public ModelAndView worldData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
-        modelAndView.setViewName("worldmap");
-//        return worldDataBeanList.toString();
+        modelAndView.setViewName("worldap");
         return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
-    @ResponseBody
     public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
@@ -294,7 +299,6 @@ public class DataController {
     }
 
     @GetMapping("/countryDetail")
-    @ResponseBody
     public ModelAndView countryData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();

@@ -14,7 +14,7 @@ public class WorldDataDetailService extends ServiceImpl<WorldDataDetailMapper,Wo
     @Autowired
     private WorldDataDetailMapper worldDataDetailMapper;
 
-    // 根据省份ID查询省内数据
+    // 根据国家ID查询国家数据
     public List<WorldDataDetailBean> findCityDataById(Integer province_id){
 
         return worldDataDetailMapper.findCityDetailDataById(province_id);

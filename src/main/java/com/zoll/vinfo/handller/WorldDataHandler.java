@@ -3,6 +3,7 @@ package com.zoll.vinfo.handller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.RumorBean;
 import com.zoll.vinfo.bean.WorldDataBean;
+import com.zoll.vinfo.mapper.DataDetailMapper;
 import com.zoll.vinfo.util.newsUtil;
 
 import java.util.ArrayList;
@@ -32,9 +33,7 @@ public class WorldDataHandler {
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
-
         Map data = (Map) map.get("data");
-
         ArrayList continent = (ArrayList) data.get("continent");
         List<WorldDataBean> result = new ArrayList<>();
 
@@ -44,14 +43,7 @@ public class WorldDataHandler {
             double confirmed_Count = (Double) worldData.get("confirmedCount");
             double cured_Count = (Double)worldData.get("curedCount");
             double dead_Count= (Double)worldData.get("deadCount");
-            //ArrayList country= (ArrayList)worlddata.get("country");
-            //System.out.println("---------------------------");
-            //System.out.println(continentName);
-            //System.out.println(confirmedCount);
-            //System.out.println(curedCount);
-            //System.out.println(deadCount);
             WorldDataBean worldBean = new WorldDataBean(i,continent_Name,(int)confirmed_Count, (int)cured_Count,(int)dead_Count);
-            //System.out.println(worldBean);
             result.add(worldBean);
         }
 

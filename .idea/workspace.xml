@@ -20,19 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_32.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/WorldDataDetailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/WorldDataDetailHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/WorldDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/WorldDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Epidemic data visualization system.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/provincelist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/provincelist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,8 +145,8 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.MyApplication">
-    <configuration name="WorldDataHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.WorldDataHandler" />
+    <configuration name="GraphHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.GraphHandler" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -224,17 +220,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.WorldDataHandler" />
       <item itemvalue="Application.newsUtil" />
       <item itemvalue="JUnit.JsoupHandler.test" />
       <item itemvalue="JUnit.JsoupHandler.test2" />
       <item itemvalue="Spring Boot.MyApplication" />
+      <item itemvalue="Application.GraphHandler" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.MyApplication" />
-        <item itemvalue="JUnit.JsoupHandler.test2" />
         <item itemvalue="JUnit.JsoupHandler.test" />
+        <item itemvalue="Application.GraphHandler" />
+        <item itemvalue="JUnit.JsoupHandler.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -466,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619060736922</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Default Changelist">
+      <created>1619185221526</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1619185221526</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,10 +560,10 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="578" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618816757271" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1618817280131">
+    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1619185221240">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1618817280131" />
+    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1619185221240" />
     <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618736609902">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -572,66 +576,66 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="644" y="458" key="Github.CreateGistDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618207583593" />
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom" timestamp="1619185161929">
+    <state width="1638" height="368" key="GridCell.Tab.0.bottom" timestamp="1619196116778">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="1638" height="368" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161929" />
-    <state width="1638" height="368" key="GridCell.Tab.0.center" timestamp="1619185161928">
+    <state width="1638" height="368" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619196116778" />
+    <state width="1638" height="368" key="GridCell.Tab.0.center" timestamp="1619196116777">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="1638" height="368" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161928" />
-    <state width="1638" height="368" key="GridCell.Tab.0.left" timestamp="1619185161928">
+    <state width="1638" height="368" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619196116777" />
+    <state width="1638" height="368" key="GridCell.Tab.0.left" timestamp="1619196116775">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="1638" height="368" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161928" />
-    <state width="1638" height="368" key="GridCell.Tab.0.right" timestamp="1619185161929">
+    <state width="1638" height="368" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619196116775" />
+    <state width="1638" height="368" key="GridCell.Tab.0.right" timestamp="1619196116777">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="1638" height="368" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161929" />
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom" timestamp="1619185161930">
+    <state width="1638" height="368" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619196116777" />
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom" timestamp="1619196113720">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="1638" height="368" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161930" />
-    <state width="1638" height="368" key="GridCell.Tab.1.center" timestamp="1619185161930">
+    <state width="1638" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619196113720" />
+    <state width="1638" height="296" key="GridCell.Tab.1.center" timestamp="1619196113719">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="1638" height="368" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161930" />
-    <state width="1638" height="368" key="GridCell.Tab.1.left" timestamp="1619185161929">
+    <state width="1638" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619196113719" />
+    <state width="1638" height="296" key="GridCell.Tab.1.left" timestamp="1619196113719">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="1638" height="368" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161929" />
-    <state width="1638" height="368" key="GridCell.Tab.1.right" timestamp="1619185161930">
+    <state width="1638" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619196113719" />
+    <state width="1638" height="296" key="GridCell.Tab.1.right" timestamp="1619196113719">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="1638" height="368" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619185161930" />
-    <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1618833548611">
+    <state width="1638" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619196113719" />
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1619194170936">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618508298835" />
-    <state width="1638" height="296" key="GridCell.Tab.2.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618833548611" />
-    <state width="1638" height="296" key="GridCell.Tab.2.center" timestamp="1618833548611">
+    <state width="1638" height="296" key="GridCell.Tab.2.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619194170936" />
+    <state width="1638" height="296" key="GridCell.Tab.2.center" timestamp="1619194170935">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1618508298835" />
-    <state width="1638" height="296" key="GridCell.Tab.2.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618833548611" />
-    <state width="1638" height="296" key="GridCell.Tab.2.left" timestamp="1618833548611">
+    <state width="1638" height="296" key="GridCell.Tab.2.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619194170935" />
+    <state width="1638" height="296" key="GridCell.Tab.2.left" timestamp="1619194170935">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1618508298834" />
-    <state width="1638" height="296" key="GridCell.Tab.2.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618833548611" />
-    <state width="1638" height="296" key="GridCell.Tab.2.right" timestamp="1618833548611">
+    <state width="1638" height="296" key="GridCell.Tab.2.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619194170935" />
+    <state width="1638" height="296" key="GridCell.Tab.2.right" timestamp="1619194170935">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1618508298835" />
-    <state width="1638" height="296" key="GridCell.Tab.2.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618833548611" />
+    <state width="1638" height="296" key="GridCell.Tab.2.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619194170935" />
     <state x="147" y="64" key="MergeDialog" timestamp="1618847668378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -653,11 +657,15 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="478" y="259" key="VCS.ChangeListViewerDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618742964541" />
-    <state x="402" y="202" key="Vcs.Push.Dialog.v2" timestamp="1619060844168">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1619185225539">
+      <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="402" y="202" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619060844168" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618832946735" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1619185225539" />
+    <state width="840" height="512" key="XDebugger.FullValuePopup" timestamp="1619195644242">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state width="840" height="512" key="XDebugger.FullValuePopup/0.25.1680.1025@0.25.1680.1025" timestamp="1619195644242" />
     <state x="571" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618847630058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -668,18 +676,18 @@
     </state>
     <state x="462" y="124" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1618847638073" />
     <state x="505" y="179" key="git4idea.branch.GitSmartOperationDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618812800762" />
-    <state x="602" y="160" key="refactoring.ChangeSignatureDialog" timestamp="1618475152944">
+    <state x="602" y="160" key="refactoring.ChangeSignatureDialog" timestamp="1619195125454">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="602" y="160" key="refactoring.ChangeSignatureDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618475152944" />
+    <state x="602" y="160" key="refactoring.ChangeSignatureDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1619195125454" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1619069142867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1619069142867" />
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1618631265265">
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1619191799126">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618631265265" />
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1619191799126" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

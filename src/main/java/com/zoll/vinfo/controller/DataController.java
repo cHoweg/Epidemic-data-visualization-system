@@ -3,8 +3,7 @@ package com.zoll.vinfo.controller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.*;
-import com.zoll.vinfo.service.DataDetailService;
-import com.zoll.vinfo.service.DataService;
+import com.zoll.vinfo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +28,15 @@ public class DataController {
     @Autowired
     private DataDetailService dataDetailService;
 
+    @Autowired
+    private WorldDataService worldDataService;
+
+    @Autowired
+    private WorldDataDetailService worldDataDetailService;
+
+    @Autowired
+    private NewsService newsService;
+
     //首页显示所有相关数据
     @GetMapping("/")
     public String homePage(Model model) {
@@ -42,7 +50,6 @@ public class DataController {
             DataBean dataBean = dataList.get(i);
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
-
         }
         model.addAttribute("mapData", new Gson().toJson(result));
 
@@ -107,6 +114,7 @@ public class DataController {
 
     /**
      * 单个折线图显示现存确诊人数
+     *
      * @param
      * @return
      */
@@ -133,6 +141,7 @@ public class DataController {
 
     /**
      * 双重折线图显示新增确诊人数和疑似确诊人数
+     *
      * @param
      * @return
      */
@@ -160,6 +169,7 @@ public class DataController {
 
     /**
      * 显示全国排名前十的境外输入人数的条形统计图
+     *
      * @param
      * @return
      */
@@ -186,6 +196,7 @@ public class DataController {
 
     /**
      * 饼状图
+     *
      * @param
      * @return
      */
@@ -201,6 +212,7 @@ public class DataController {
 
     /**
      * 根据地区名和确诊人数绘制中国地图
+     *
      * @param
      * @return
      */
@@ -215,56 +227,79 @@ public class DataController {
             MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
             result.add(mapBean);
         }
+
+        List<MapBean> count = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            DataBean dataBean = list.get(i);
+            MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getConfirm());
+            count.add(mapBean);
+        }
+
+
+        modelAndView.addObject("mapCountData", new Gson().toJson(count));
         modelAndView.addObject("mapData", new Gson().toJson(result));
         modelAndView.setViewName("map");
         return modelAndView;
     }
 
-
     @GetMapping("/news")
-    public ModelAndView news(){
+    public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
-        List<NewsBean> newsBeanList = NewsHandler.getData();
-        modelAndView.addObject("newBeanList",newsBeanList);
-        modelAndView.setViewName("news");
-        System.out.println(new Gson().toJson(newsBeanList));
+        List<NewsBean> newsBeanList = newsService.list();
+        modelAndView.addObject("newBeanList", newsBeanList);
         return modelAndView;
     }
 
     @GetMapping("/rumors")
-    public ModelAndView rumors(){
+    public ModelAndView rumors() {
         ModelAndView modelAndView = new ModelAndView();
         List<RumorBean> RumorBeansList = RumorHandler.getData();
-        modelAndView.addObject("rumorBeansList",RumorBeansList);
-        modelAndView.setViewName("Rumors");
-        System.out.println(RumorBeansList);
+        modelAndView.addObject("rumorBeansList", RumorBeansList);
+        modelAndView.setViewName("rumors");
         return modelAndView;
     }
 
     @GetMapping("/cityData")
-    public ModelAndView cityData(@RequestParam(value = "select2",required = false)Integer province_id){
+    public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById",cityDataById);
+        modelAndView.addObject("cityDataById", cityDataById);
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
 
-    @GetMapping("/worldData")
+    @GetMapping("/dazhouData")
     @ResponseBody
-    public String worldData(){
+    public ModelAndView worldData() {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataBean> worldDataBeanList= WorldDataHandler.getData();
-        modelAndView.addObject("worldBeansList",worldDataBeanList);
-        return worldDataBeanList.toString();
+        List<WorldDataBean> worldDataBeanList = worldDataService.list();
+        modelAndView.addObject("worldBeansList", worldDataBeanList);
+        modelAndView.setViewName("worldmap");
+//        return worldDataBeanList.toString();
+        return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
     @ResponseBody
-    public String worldDetailData(){
+    public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList= WorldDataDetailHandler.getData();
-        modelAndView.addObject("worldBeansList",worldDataDetailBeanBeanList);
-        return worldDataDetailBeanBeanList.toString();
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+
+        List<WorldDataDetailBean> worldList1 = worldDataDetailService.list();
+        modelAndView.addObject("worldlist", worldList1);
+
+        modelAndView.setViewName("WorldList");
+        return modelAndView;
+    }
+
+    @GetMapping("/countryDetail")
+    @ResponseBody
+    public ModelAndView countryData() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        modelAndView.setViewName("worldmap");
+        return modelAndView;
     }
 }

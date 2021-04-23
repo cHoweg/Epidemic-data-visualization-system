@@ -11,4 +11,5 @@ public class MapBean {
     private String name;
     //确诊人数
     private int value;
+
 }

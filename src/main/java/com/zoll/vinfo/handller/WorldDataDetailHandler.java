@@ -67,7 +67,7 @@ public class WorldDataDetailHandler {
 
                 WorldDataDetailBean worlddetailBean = new WorldDataDetailBean(j,province_provinceName,(int)province_confirmedCount,
                         (int)province_curedCount,(int)province_deadCount,i);
-                //System.out.println(worlddetailBean);
+                System.out.println("我是"+worlddetailBean);
                 result.add(worlddetailBean);
 
             }

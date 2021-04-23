@@ -40,6 +40,7 @@ public class WorldDataHandler {
 
         for (int i = 0; i < continent.size(); i++) {
             Map worldData= (Map) continent.get(i);
+            System.out.println(worldData);
             String continent_Name = (String)worldData.get("continentName");
             double confirmed_Count = (Double) worldData.get("confirmedCount");
             double cured_Count = (Double)worldData.get("curedCount");

@@ -274,22 +274,20 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
-        modelAndView.setViewName("worldmap");
+        modelAndView.setViewName("worldMap");
 //        return worldDataBeanList.toString();
         return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
     @ResponseBody
-    public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
 
-        List<WorldDataDetailBean> worldList1 = worldDataDetailService.list();
-        modelAndView.addObject("worldlist", worldList1);
 
-        modelAndView.setViewName("WorldList");
+        modelAndView.setViewName("worldList");
         return modelAndView;
     }
 
@@ -299,7 +297,7 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-        modelAndView.setViewName("worldmap");
+        modelAndView.setViewName("worldMap");
         return modelAndView;
     }
 }

@@ -40,19 +40,11 @@ public class WorldDataHandler {
 
         for (int i = 0; i < continent.size(); i++) {
             Map worldData= (Map) continent.get(i);
-            System.out.println(worldData);
             String continent_Name = (String)worldData.get("continentName");
             double confirmed_Count = (Double) worldData.get("confirmedCount");
             double cured_Count = (Double)worldData.get("curedCount");
             double dead_Count= (Double)worldData.get("deadCount");
-            //ArrayList country= (ArrayList)worlddata.get("country");
-            //System.out.println("---------------------------");
-            //System.out.println(continentName);
-            //System.out.println(confirmedCount);
-            //System.out.println(curedCount);
-            //System.out.println(deadCount);
             WorldDataBean worldBean = new WorldDataBean(i,continent_Name,(int)confirmed_Count, (int)cured_Count,(int)dead_Count);
-            //System.out.println(worldBean);
             result.add(worldBean);
         }
 

@@ -8,7 +8,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class DataService extends ServiceImpl<DataMapper,DataBean> {
 
-//    List<DataBean> list();
-//
-//    List<DataBean> listById(int id);
 }

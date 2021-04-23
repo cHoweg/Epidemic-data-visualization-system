@@ -262,11 +262,24 @@ public class DataController {
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById", cityDataById);
+        if (province_id == null){
+            List<DataBean> dataList = dataService.list();
+            modelAndView.addObject("cityDataById", dataList);
+        }else {
+            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("cityDataById", cityDataById);
+        }
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
+
+    @GetMapping("/chinaData")
+    public ModelAndView chinaData() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("provinceList");
+        return modelAndView;
+    }
+
 
     @GetMapping("/dazhouData")
     @ResponseBody
@@ -275,7 +288,6 @@ public class DataController {
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
         modelAndView.setViewName("worldMap");
-//        return worldDataBeanList.toString();
         return modelAndView;
     }
 
@@ -285,7 +297,6 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-
 
         modelAndView.setViewName("worldList");
         return modelAndView;

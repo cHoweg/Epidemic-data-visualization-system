@@ -242,10 +242,6 @@ public class DataController {
         return modelAndView;
     }
 
-    /**
-     * 新闻
-     * @return
-     */
     @GetMapping("/news")
     public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
@@ -254,10 +250,6 @@ public class DataController {
         return modelAndView;
     }
 
-    /**
-     * 谣言
-     * @return
-     */
     @GetMapping("/rumors")
     public ModelAndView rumors() {
         ModelAndView modelAndView = new ModelAndView();
@@ -277,33 +269,35 @@ public class DataController {
     }
 
     @GetMapping("/dazhouData")
+    @ResponseBody
     public ModelAndView worldData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
-        modelAndView.setViewName("worldap");
+        modelAndView.setViewName("worldMap");
+//        return worldDataBeanList.toString();
         return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
-    public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
+    @ResponseBody
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
 
-        List<WorldDataDetailBean> worldList1 = worldDataDetailService.list();
-        modelAndView.addObject("worldlist", worldList1);
 
-        modelAndView.setViewName("WorldList");
+        modelAndView.setViewName("worldList");
         return modelAndView;
     }
 
     @GetMapping("/countryDetail")
+    @ResponseBody
     public ModelAndView countryData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-        modelAndView.setViewName("worldmap");
+        modelAndView.setViewName("worldMap");
         return modelAndView;
     }
 }

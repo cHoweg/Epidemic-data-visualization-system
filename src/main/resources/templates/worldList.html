@@ -12,24 +12,18 @@
 <body style="background-color:#a6e1ec;">
 
 <form name="chooseprovince" style="width:200px">
-    <select  id="select1" name="select2">
-
+    <select  id="select1" name="select3">
+        <option value=0>亚洲</option>
+        <option value=1>欧洲</option>
+        <option value=2>北美洲</option>
+        <option value=3>南美洲</option>
+        <option value=4>非洲</option>
+        <option value=5>大洋洲</option>
+        <option value=6>其他</option>
     </select>
     <input type="submit" onclick="a()">
 </form>
-
 <script type="text/javascript" th:inline="javascript">
-
-    var worldlist=[[${worldlist}]];
-    var addoption=function(){
-        var str=``;
-        for(var i=0;i<worldlist.length;i++){
-            str+=`<option value="${i}">${worldlist[i].provinceProvinceName}</option>`
-        }
-        document.getElementById("select1").innerHTML=str
-
-    }
-    addoption();
     var a=function(){
         var id=$("#select1").val()
         $.ajax({
@@ -42,12 +36,7 @@
             error: function () {},
         })
     }
-    console.log("我"+worldlist)
-
 </script>
-
-
-
 <table class="table table-hover">
     <thead>
     <tr>
@@ -58,15 +47,14 @@
         <th><p>死亡</p></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody_list">
     <tr id="0" th:each="data:${worldBeansList}">
-        <td id="1" th:text="${worldBeansList}">name</td>
-        <td id="2" th:text="${worldBeansList}">nowConfirm</td>
-        <td id="3" th:text="${worldBeansList}">confirm</td>
-        <td id="4" th:text="${worldBeansList}">heal</td>
-        <td id="5" th:text="${worldBeansList}">dead</td>
+        <td id="1" th:text="${data.provinceProvinceName}">name</td>
+        <td id="2" th:text="${data.provinceConfirmedCount}">nowConfirm</td>
+        <td id="3" th:text="${data.provinceProvinceName}">confirm</td>
+        <td id="4" th:text="${data.provinceCuredCount}">heal</td>
+        <td id="5" th:text="${data.provinceDeadCount}">dead</td>
     </tr>
-
     </tbody>
 </table>
 </div>

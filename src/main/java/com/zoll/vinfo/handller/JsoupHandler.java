@@ -6,6 +6,7 @@ import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
 import com.zoll.vinfo.bean.GraphAddBean;
 import com.zoll.vinfo.bean.GraphBean;
+import com.zoll.vinfo.service.CityService;
 import com.zoll.vinfo.util.HttpClientUtil;
 import com.zoll.vinfo.util.HttpURLConnectionUtil;
 import org.junit.Test;
@@ -159,8 +160,10 @@ public class JsoupHandler {
 
     @Test
     public void test() {
-        String worldStr = HttpClientUtil.doGet("https://view.inews.qq.com/g2/getOnsInfo?name=disease_foreign");
-        Gson gson = new Gson();
+        String name = "广州";
+        CityService cityService = new CityService();
+        List<String> cityByProvinceId = cityService.findCityByProvinceId(1);
+        System.out.println(cityByProvinceId);
 
     }
 

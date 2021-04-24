@@ -23,10 +23,6 @@ public class TravelHandler {
     // public static int to=xxxxx;    目的的城市 入参为城市id
 
     public static void main(String[] args) {
-        System.out.println(getData(10009,10030));
-        // for (int i=10001;i<=10360;i++){
-        //String urlStr="http://apis.juhe.cn/springTravel/query?key= + key + &from=+xxxx+ &to=+ xxxxx;;
-        //System.out.println(urlStr);
     }
 
 
@@ -76,6 +72,36 @@ public class TravelHandler {
         );
         result.add(travelBean);
 
+        return result;
+    }
+
+    public static String riskUrl = "http://apis.juhe.cn/springTravel/risk?key=2a045db4716657a67be6f8340405c6f8";
+
+    public static List<List<Map>> riskArea(){
+        String respJson = HttpClientUtil.doGet(riskUrl);
+        List<List<Map>> result = new ArrayList<>();
+
+        ArrayList<Map> high_maps = new ArrayList<>();
+        ArrayList<Map> middle_maps = new ArrayList<>();
+        Gson gson = new Gson();
+        Map map = gson.fromJson(respJson, Map.class);
+        Map mapNext = (Map) map.get("result");
+        if (mapNext.get("high_count") != "0"){
+            ArrayList high_list = (ArrayList) mapNext.get("high_list");
+            for (int i = 0; i < high_list.size(); i++) {
+                Map highMap = (Map) high_list.get(i);
+                high_maps.add(highMap);
+            }
+        }
+        if (mapNext.get("middle_count") != "0"){
+            ArrayList middle_list = (ArrayList) mapNext.get("middle_list");
+            for (int i = 0; i < middle_list.size(); i++) {
+                Map middleMap = (Map) middle_list.get(i);
+                middle_maps.add(middleMap);
+            }
+        }
+        result.add(high_maps);
+        result.add(middle_maps);
         return result;
     }
 

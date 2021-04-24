@@ -20,23 +20,6 @@ public class VaccinesHandler {
     //public static int city_id=xxxxxx;
 
     public static void main(String[] args) {
-        // System.out.println(getData(10028));
-        // for (int i=10001;i<=10360;i++){
-        //String urlStr="http://apis.juhe.cn/springTravel/hsjg?"+"key="+key+"&"+"city_id="+i;
-        //System.out.println(urlStr);
-        //String respJson = HttpClientUtil.doGet(urlStr);
-        //Gson gson = new Gson();
-        //Map map = gson.fromJson(respJson, Map.class);
-        //Map map2 = (Map) map.get("result");
-        //System.out.println(map2);
-        //ArrayList data = (ArrayList) map2.get("data");
-        //System.out.println(data);
-        //for (int j = 0; j < data.size(); j++) {
-        //Map tmp2 = (Map) data.get(j);
-        //String name = (String) tmp2.get("name");
-        //String phone = (String) tmp2.get("phone");
-        //String address = (String) tmp2.get("address");
-        //System.out.println(map.getClass().toString());
 
     }
 
@@ -51,11 +34,7 @@ public class VaccinesHandler {
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
-        //System.out.println(map22.getClass().toString());
         Map mapNext = (Map) map.get("result");
-        //System.out.println(arrayList);
-        //System.out.println(arrayList.getClass().toString());
-        //System.out.println(arrayList.size());
         ArrayList arrayList = (ArrayList) mapNext.get("data");
         List<VaccinesBean> result = new ArrayList<>();
 

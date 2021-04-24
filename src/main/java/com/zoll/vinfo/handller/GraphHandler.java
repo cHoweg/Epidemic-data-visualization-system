@@ -23,12 +23,35 @@ public class GraphHandler {
     public static String urlStrAll = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
 
 
+    public static void main(String[] args) {
+    }
+
     public static String getData() {
         return HttpClientUtil.doGet(urlStr);
     }
 
     public static List<List<GraphBean>> getGraphData() {
         return getGraphData(getData());
+    }
+
+
+    public static Map getNowData() {
+        String str = HttpClientUtil.doGet(urlStrAll);
+        Gson gson = new Gson();
+        Map map = gson.fromJson(str, Map.class);
+        Map subMap = (Map) map.get("data");
+        Map chinaTotal = (Map) subMap.get("chinaTotal");
+        return chinaTotal;
+    }
+
+    public static Map getWorldNowData() {
+        String worldStr = HttpClientUtil.doGet(worldUrlStr);
+        ArrayList<GraphAddBean> worldAdd = new ArrayList<>();
+        Gson gson = new Gson();
+        Map json = gson.fromJson(worldStr, Map.class);
+        Map strMap = (Map) json.get("data");
+        Map worldToday = (Map) strMap.get("FAutoGlobalStatis");
+        return worldToday;
     }
 
     public static List<List<GraphBean>> getGraphData(String str) {
@@ -205,14 +228,4 @@ public class GraphHandler {
         return result;
     }
 
-
-    public static void main(String[] args) {
-//        getGraphData();
-
-//        List<GraphColumnarBean> list = getGraphColumnarData();
-//        Collections.sort(list);
-        //System.out.println();
-
-        //getGraphAddData();
-    }
 }

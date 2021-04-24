@@ -1,5 +1,6 @@
 package com.zoll.vinfo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.GraphHandler;
@@ -7,6 +8,7 @@ import com.zoll.vinfo.handller.RumorHandler;
 import com.zoll.vinfo.handller.TravelHandler;
 import com.zoll.vinfo.handller.VaccinesHandler;
 import com.zoll.vinfo.service.*;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 处理获取对应的相关数据信息封装到相应的bean对象里并且返回给前端
@@ -45,37 +48,6 @@ public class DataController {
     //首页显示所有相关数据
     @GetMapping("/")
     public String homePage() {
-
-        /*List<DataBean> dataList = dataService.list();
-
-        model.addAttribute("dataList", dataList);
-
-        List<MapBean> result = new ArrayList<>();
-        for (int i = 0; i < dataList.size(); i++) {
-            DataBean dataBean = dataList.get(i);
-            MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());
-            result.add(mapBean);
-        }
-        model.addAttribute("mapData", new Gson().toJson(result));
-
-        String str = GraphHandler.getData();
-        List<List<GraphBean>> list = GraphHandler.getGraphData(str);
-        //  进一步改造数据格式
-        //  因为前端需要的数据是  x轴所有数据的数组和y轴所有数据的数组
-
-        ArrayList<String> dateList = new ArrayList<>();
-        ArrayList<Integer> nowConfirmList = new ArrayList<>();
-
-        for (int i = 0; i < list.size(); i++) {
-            GraphBean graphBean = list.get(i);
-            dateList.add(graphBean.getDate());
-            nowConfirmList.add(graphBean.getNowConfirm());
-        }
-
-        model.addAttribute("dateList", new Gson().toJson(dateList));
-        model.addAttribute("nowConfirmList", new Gson().toJson(nowConfirmList));
-
-*/
 
         return "homePage";
     }
@@ -106,6 +78,8 @@ public class DataController {
         }
         modelAndView.addObject("dateList", new Gson().toJson(dateList));
         modelAndView.addObject("nowConfirmList", new Gson().toJson(nowConfirmList));
+        Map nowData = GraphHandler.getNowData();
+        modelAndView.addObject("todayChina", new JSONObject(nowData));
 
         dateList.clear();
         nowConfirmList.clear();
@@ -116,6 +90,8 @@ public class DataController {
         }
         modelAndView.addObject("worldDateList", new Gson().toJson(dateList));
         modelAndView.addObject("worldNowConfirmList", new Gson().toJson(nowConfirmList));
+        Map worldNowData = GraphHandler.getWorldNowData();
+        modelAndView.addObject("todayWorld", new JSONObject(worldNowData));
 
         return modelAndView;
     }
@@ -288,6 +264,13 @@ public class DataController {
         } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
 
         modelAndView.setViewName("travel");
+
+        List<List<Map>> lists = TravelHandler.riskArea();
+        List<Map> high_maps = lists.get(0);
+        List<Map> middle_maps = lists.get(1);
+        modelAndView.addObject("high_maps", new JSONArray(high_maps));
+        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
+
         return modelAndView;
     }
 
@@ -313,7 +296,7 @@ public class DataController {
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (province_id == null||province_id==38) {
+        if (province_id == null || province_id == 38) {
 
             List<DataBean> dataList = dataService.list();
             modelAndView.addObject("cityDataById", dataList);

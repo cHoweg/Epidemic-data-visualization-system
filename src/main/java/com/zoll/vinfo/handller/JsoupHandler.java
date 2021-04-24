@@ -4,6 +4,10 @@ package com.zoll.vinfo.handller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.DataBean;
 import com.zoll.vinfo.bean.DataDetailBean;
+import com.zoll.vinfo.bean.GraphAddBean;
+import com.zoll.vinfo.bean.GraphBean;
+import com.zoll.vinfo.service.CityService;
+import com.zoll.vinfo.util.HttpClientUtil;
 import com.zoll.vinfo.util.HttpURLConnectionUtil;
 import org.junit.Test;
 
@@ -156,14 +160,11 @@ public class JsoupHandler {
 
     @Test
     public void test() {
-        String respJson = HttpURLConnectionUtil.doGet("https://lab.isaaclin.cn/nCoV/api/area?latest=0");
-        //System.out.println(respJson);
-        Gson gson = new Gson();
-        Map map = gson.fromJson(respJson, Map.class);
-        //System.out.println(map);
+        String name = "广州";
+        CityService cityService = new CityService();
+        List<String> cityByProvinceId = cityService.findCityByProvinceId(1);
+        System.out.println(cityByProvinceId);
 
-        ArrayList arrayList = (ArrayList) map.get("results");
-        //System.out.println(arrayList);
     }
 
 }

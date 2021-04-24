@@ -2,16 +2,18 @@ package com.zoll.vinfo.controller;
 
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
-import com.zoll.vinfo.handller.*;
+import com.zoll.vinfo.handller.GraphHandler;
+import com.zoll.vinfo.handller.RumorHandler;
+import com.zoll.vinfo.handller.TravelHandler;
+import com.zoll.vinfo.handller.VaccinesHandler;
 import com.zoll.vinfo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,11 +39,14 @@ public class DataController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private CityService cityService;
+
     //首页显示所有相关数据
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage() {
 
-        List<DataBean> dataList = dataService.list();
+        /*List<DataBean> dataList = dataService.list();
 
         model.addAttribute("dataList", dataList);
 
@@ -54,7 +59,7 @@ public class DataController {
         model.addAttribute("mapData", new Gson().toJson(result));
 
         String str = GraphHandler.getData();
-        List<GraphBean> list = GraphHandler.getGraphData(str);
+        List<List<GraphBean>> list = GraphHandler.getGraphData(str);
         //  进一步改造数据格式
         //  因为前端需要的数据是  x轴所有数据的数组和y轴所有数据的数组
 
@@ -70,43 +75,7 @@ public class DataController {
         model.addAttribute("dateList", new Gson().toJson(dateList));
         model.addAttribute("nowConfirmList", new Gson().toJson(nowConfirmList));
 
-
-        List<GraphAddBean> addList = GraphHandler.getGraphAddData(str);
-
-        ArrayList<String> addDateList = new ArrayList<>();
-        ArrayList<Integer> addConfirmList = new ArrayList<>();
-        ArrayList<Integer> addSuspectList = new ArrayList<>();
-
-        for (int i = 0; i < addList.size(); i++) {
-            GraphAddBean graphAddBean = addList.get(i);
-            addDateList.add(graphAddBean.getDate());
-            addConfirmList.add(graphAddBean.getAddConfirm());
-            addSuspectList.add(graphAddBean.getAddSuspect());
-        }
-
-        model.addAttribute("addDateList", new Gson().toJson(addDateList));
-        model.addAttribute("addConfirmList", new Gson().toJson(addConfirmList));
-        model.addAttribute("addSuspectList", new Gson().toJson(addSuspectList));
-
-
-        List<GraphPieBean> pieList = GraphHandler.getGraphPieData(str);
-        Collections.sort(pieList);
-        model.addAttribute("pieList", new Gson().toJson(pieList));
-
-        List<GraphColumnarBean> columnarList = GraphHandler.getGraphColumnarData();
-        Collections.sort(columnarList);
-
-        ArrayList<String> nameList = new ArrayList<>();
-        ArrayList<Integer> fromAbroadList = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            GraphColumnarBean bean = columnarList.get(i);
-            nameList.add(bean.getArea());
-            fromAbroadList.add(bean.getFromAbroad());
-        }
-
-        model.addAttribute("nameList", new Gson().toJson(nameList));
-        model.addAttribute("fromAbroadList", new Gson().toJson(fromAbroadList));
+*/
 
         return "homePage";
     }
@@ -121,21 +90,33 @@ public class DataController {
     @GetMapping("/graph")
     public ModelAndView graph() {
         ModelAndView modelAndView = new ModelAndView();
-        List<GraphBean> list = GraphHandler.getGraphData();
+        List<List<GraphBean>> list = GraphHandler.getGraphData();
+        List<GraphBean> worldGraphBeans = list.get(0);
+        List<GraphBean> graphBeans = list.get(1);
         //  进一步改造数据格式
         //  因为前端需要的数据是  x轴所有数据的数组和y轴所有数据的数组
 
         ArrayList<String> dateList = new ArrayList<>();
         ArrayList<Integer> nowConfirmList = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            GraphBean graphBean = list.get(i);
+        for (int i = 0; i < graphBeans.size(); i++) {
+            GraphBean graphBean = graphBeans.get(i);
             dateList.add(graphBean.getDate());
             nowConfirmList.add(graphBean.getNowConfirm());
         }
-
         modelAndView.addObject("dateList", new Gson().toJson(dateList));
         modelAndView.addObject("nowConfirmList", new Gson().toJson(nowConfirmList));
+
+        dateList.clear();
+        nowConfirmList.clear();
+        for (int i = 0; i < worldGraphBeans.size(); i++) {
+            GraphBean graphBean = worldGraphBeans.get(i);
+            dateList.add(graphBean.getDate());
+            nowConfirmList.add(graphBean.getNowConfirm());
+        }
+        modelAndView.addObject("worldDateList", new Gson().toJson(dateList));
+        modelAndView.addObject("worldNowConfirmList", new Gson().toJson(nowConfirmList));
+
         return modelAndView;
     }
 
@@ -148,14 +129,16 @@ public class DataController {
     @GetMapping("/graphAdd")
     public ModelAndView graphAdd() {
         ModelAndView modelAndView = new ModelAndView();
-        List<GraphAddBean> list = GraphHandler.getGraphAddData();
+        List list = GraphHandler.getGraphAddData();
+        List<GraphAddBean> chinaAdd = (ArrayList) list.get(0);
+        List<GraphAddBean> worldAdd = (ArrayList) list.get(1);
 
         ArrayList<String> dateList = new ArrayList<>();
         ArrayList<Integer> addConfirmList = new ArrayList<>();
         ArrayList<Integer> addSuspectList = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            GraphAddBean graphAddBean = list.get(i);
+        for (int i = 0; i < chinaAdd.size(); i++) {
+            GraphAddBean graphAddBean = chinaAdd.get(i);
             dateList.add(graphAddBean.getDate());
             addConfirmList.add(graphAddBean.getAddConfirm());
             addSuspectList.add(graphAddBean.getAddSuspect());
@@ -164,6 +147,21 @@ public class DataController {
         modelAndView.addObject("dateList", new Gson().toJson(dateList));
         modelAndView.addObject("addConfirmList", new Gson().toJson(addConfirmList));
         modelAndView.addObject("addSuspectList", new Gson().toJson(addSuspectList));
+
+        dateList.clear();
+        addConfirmList.clear();
+        addSuspectList.clear();
+
+        for (int i = 0; i < worldAdd.size(); i++) {
+            GraphAddBean graphAddBean = worldAdd.get(i);
+            dateList.add(graphAddBean.getDate());
+            addConfirmList.add(graphAddBean.getAddConfirm());
+            addSuspectList.add(graphAddBean.getAddSuspect());
+        }
+        modelAndView.addObject("worldDateList", new Gson().toJson(dateList));
+        modelAndView.addObject("worldAddConfirmList", new Gson().toJson(addConfirmList));
+        modelAndView.addObject("worldAddHealList", new Gson().toJson(addSuspectList));
+
         return modelAndView;
     }
 
@@ -235,12 +233,64 @@ public class DataController {
             count.add(mapBean);
         }
 
-
         modelAndView.addObject("mapCountData", new Gson().toJson(count));
         modelAndView.addObject("mapData", new Gson().toJson(result));
         modelAndView.setViewName("map");
         return modelAndView;
     }
+
+
+    @GetMapping("/vaccines")
+    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (name == null && province_id == null) {
+
+            List<CityBean> list = cityService.list();
+            modelAndView.addObject("cityList", list);
+
+        } else if (name == null && province_id != null) {
+
+            List<String> cityList = cityService.findCityByProvinceId(province_id);
+            modelAndView.addObject("cityList", cityList);
+
+        } else {
+
+            List<CityBean> list = cityService.list();
+            modelAndView.addObject("provinceList", list);
+            Integer id = cityService.findCityIdByName(name);
+            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
+            modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+
+        }
+        modelAndView.setViewName("vaccines");
+        return modelAndView;
+    }
+
+    @GetMapping("/travel")
+    public ModelAndView travel(@RequestParam(value = "lzy写", required = false) String from_name, @RequestParam(value = "lzy", required = false) Integer from_province_id, @RequestParam(value = "lzy写", required = false) String to_name, @RequestParam(value = "lzy", required = false) Integer to_province_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (from_name == null || to_name == null) {
+
+            List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);
+            modelAndView.addObject("from_cityList", from_cityList);
+
+            List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);
+            modelAndView.addObject("to_cityList", to_cityList);
+
+        } else if (from_name != null && to_name != null) {
+
+            Integer from_id = cityService.findCityIdByName(from_name);
+            Integer to_id = cityService.findCityIdByName(to_name);
+            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+
+        } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
+
+        modelAndView.setViewName("travel");
+        return modelAndView;
+    }
+
 
     @GetMapping("/news")
     public ModelAndView news() {
@@ -262,44 +312,54 @@ public class DataController {
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("cityDataById", cityDataById);
+
+        if (province_id == null) {
+
+            List<DataBean> dataList = dataService.list();
+            modelAndView.addObject("cityDataById", dataList);
+
+        } else {
+
+            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("cityDataById", cityDataById);
+
+        }
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
 
-    @GetMapping("/dazhouData")
-    @ResponseBody
-    public ModelAndView worldData() {
+    @GetMapping("/chinaData")
+    public ModelAndView chinaData() {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataBean> worldDataBeanList = worldDataService.list();
-        modelAndView.addObject("worldBeansList", worldDataBeanList);
-        modelAndView.setViewName("worldmap");
-//        return worldDataBeanList.toString();
+        modelAndView.setViewName("provinceList");
         return modelAndView;
     }
 
     @GetMapping("/worldDataDetail")
-    @ResponseBody
-    public ModelAndView worldDetailData(@RequestParam(value = "select2", required = false) Integer province_id) {
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
 
-        List<WorldDataDetailBean> worldList1 = worldDataDetailService.list();
-        modelAndView.addObject("worldlist", worldList1);
+        if (province_id == null) {
 
-        modelAndView.setViewName("WorldList");
+            List<WorldDataBean> worldDataBeanList = worldDataService.list();
+            modelAndView.addObject("worldDataBeanList", worldDataBeanList);
+
+        } else {
+
+            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+
+        }
+        modelAndView.setViewName("worldList");
         return modelAndView;
     }
 
     @GetMapping("/countryDetail")
-    @ResponseBody
     public ModelAndView countryData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-        modelAndView.setViewName("worldmap");
+        modelAndView.setViewName("worldMap");
         return modelAndView;
     }
 }

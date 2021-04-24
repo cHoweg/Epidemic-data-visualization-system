@@ -46,10 +46,7 @@ public class WorldDataDetailHandler {
 
         for (int i = 0; i < continent.size(); i++) {
             Map worlddata= (Map) continent.get(i);
-           // String continentName = (String)worlddata.get("continentName");
-            //double confirmedCount = (Double) worlddata.get("confirmedCount");
-            //double curedCount = (Double)worlddata.get("curedCount");
-            //double deadCount= (Double)worlddata.get("deadCount");
+
             ArrayList country= (ArrayList)worlddata.get("country");
             for (int j=0;j<country.size();j++){
                 Map province =(Map) country.get(j);
@@ -57,17 +54,9 @@ public class WorldDataDetailHandler {
                 double province_confirmedCount = (Double) province.get("confirmedCount");
                 double province_curedCount = (Double) province.get("curedCount");
                 double province_deadCount = (Double) province.get("deadCount");
-                //System.out.println(province_provinceName);
-                //System.out.println(province.getClass().toString());
-                //System.out.println("---------------------------");
-                //System.out.println(continentName);
-                //System.out.println(confirmedCount);
-                //System.out.println(curedCount);
-                //System.out.println(deadCount);
 
                 WorldDataDetailBean worlddetailBean = new WorldDataDetailBean(j,province_provinceName,(int)province_confirmedCount,
                         (int)province_curedCount,(int)province_deadCount,i);
-                System.out.println("我是"+worlddetailBean);
                 result.add(worlddetailBean);
 
             }

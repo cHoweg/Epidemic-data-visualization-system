@@ -9,7 +9,6 @@ import com.zoll.vinfo.util.HttpClientUtil;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -20,25 +19,45 @@ public class GraphHandler {
 
 
     public static String urlStr = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_other";
+    public static String worldUrlStr = "https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis,FAutoContinentStatis,FAutoGlobalDailyList,FAutoCountryConfirmAdd";
+    public static String urlStrAll = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
 
-    public static String getData(){
+
+    public static String getData() {
         return HttpClientUtil.doGet(urlStr);
     }
 
-    public static List<GraphBean> getGraphData() {
+    public static List<List<GraphBean>> getGraphData() {
         return getGraphData(getData());
     }
 
-    public static List<GraphBean> getGraphData(String str) {
-        List<GraphBean> result = new ArrayList<>();
-
+    public static List<List<GraphBean>> getGraphData(String str) {
+        List<List<GraphBean>> result = new ArrayList<>();
         Gson gson = new Gson();
-        Map map = gson.fromJson(str, Map.class);
 
+        String worldStr = HttpClientUtil.doGet("https://view.inews.qq.com/g2/getOnsInfo?name=disease_foreign");
+
+        Map mapData = gson.fromJson(worldStr, Map.class);
+        String sub_Str = (String) mapData.get("data");
+        Map sub_Map = gson.fromJson(sub_Str, Map.class);
+        ArrayList globalDailyHistory = (ArrayList) sub_Map.get("globalDailyHistory");
+        ArrayList<GraphBean> worldConfirm = new ArrayList<>();
+
+        for (int i = 0; i < globalDailyHistory.size(); i++) {
+            Map tmp = (Map) globalDailyHistory.get(i);
+            Map all = (Map) tmp.get("all");
+            String date = (String) tmp.get("date");
+            double nowConfirm = (Double) all.get("confirm");
+            GraphBean graphBean = new GraphBean(date, (int) nowConfirm);
+            worldConfirm.add(graphBean);
+        }
+
+
+        Map map = gson.fromJson(str, Map.class);
         String subStr = (String) map.get("data");
         Map subMap = gson.fromJson(subStr, Map.class);
-
         ArrayList list = (ArrayList) subMap.get("chinaDayList");
+        ArrayList<GraphBean> chinaConfirm = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
             Map tmp = (Map) list.get(i);
@@ -46,22 +65,39 @@ public class GraphHandler {
             String date = (String) tmp.get("date");
             double nowConfirm = (Double) tmp.get("nowConfirm");
             GraphBean graphBean = new GraphBean(date, (int) nowConfirm);
-            result.add(graphBean);
+            chinaConfirm.add(graphBean);
         }
 
+        result.add(worldConfirm);
+        result.add(chinaConfirm);
         return result;
     }
 
 
-    public static List<GraphAddBean> getGraphAddData() {
+    public static List<List<GraphAddBean>> getGraphAddData() {
         return getGraphAddData(getData());
     }
 
-    public static List<GraphAddBean> getGraphAddData(String str) {
-
-        List<GraphAddBean> result = new ArrayList<>();
-
+    public static List<List<GraphAddBean>> getGraphAddData(String str) {
         Gson gson = new Gson();
+
+        String worldStr = HttpClientUtil.doGet(worldUrlStr);
+        ArrayList<GraphAddBean> worldAdd = new ArrayList<>();
+        Map json = gson.fromJson(worldStr, Map.class);
+        Map strMap = (Map) json.get("data");
+        ArrayList arrayList = (ArrayList) strMap.get("FAutoGlobalDailyList");
+        for (int i = 0; i < arrayList.size(); i++) {
+            Map tmp = (Map) arrayList.get(i);
+            String date = (String) tmp.get("date");
+            Map subTmp = (Map) tmp.get("all");
+            double addConfirm = (Double) subTmp.get("newAddConfirm");
+            double addHeal = (Double) subTmp.get("heal");
+            GraphAddBean graphAddBean = new GraphAddBean(date, (int) addConfirm, (int) addHeal);
+            worldAdd.add(graphAddBean);
+        }
+
+
+        List<GraphAddBean> chinaAdd = new ArrayList<>();
         Map map = gson.fromJson(str, Map.class);
 
         String subStr = (String) map.get("data");
@@ -77,14 +113,16 @@ public class GraphHandler {
 
             GraphAddBean graphAddBean = new GraphAddBean(date,
                     (int) addConfirm, (int) addSuspect);
-            result.add(graphAddBean);
+            chinaAdd.add(graphAddBean);
         }
 
+
+        List<List<GraphAddBean>> result = new ArrayList<>();
+        result.add(chinaAdd);
+        result.add(worldAdd);
         return result;
     }
 
-
-    public static String urlStrAll = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
 
     public static List<GraphColumnarBean> getGraphColumnarData() {
         List<GraphColumnarBean> result = new ArrayList<>();
@@ -171,8 +209,10 @@ public class GraphHandler {
     public static void main(String[] args) {
 //        getGraphData();
 
-        List<GraphColumnarBean> list = getGraphColumnarData();
-        Collections.sort(list);
+//        List<GraphColumnarBean> list = getGraphColumnarData();
+//        Collections.sort(list);
         //System.out.println();
+
+        //getGraphAddData();
     }
 }

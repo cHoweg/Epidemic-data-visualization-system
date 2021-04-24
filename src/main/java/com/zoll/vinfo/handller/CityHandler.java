@@ -51,7 +51,6 @@ public class CityHandler {
                 //System.out.println(city);
                 CityBean cityBean = new CityBean(province_id, province, city_id, city);
                 result.add(cityBean);
-                System.out.println(cityBean);
             }
         }
         return result;

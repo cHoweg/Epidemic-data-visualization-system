@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.handller.GraphHandler;
 import com.zoll.vinfo.handller.RumorHandler;
+import com.zoll.vinfo.handller.TravelHandler;
+import com.zoll.vinfo.handller.VaccinesHandler;
 import com.zoll.vinfo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,9 @@ public class DataController {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private CityService cityService;
 
     //首页显示所有相关数据
     @GetMapping("/")
@@ -234,6 +239,29 @@ public class DataController {
         return modelAndView;
     }
 
+
+    @GetMapping("/vaccines")
+    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        Integer id = cityService.findCityIdByName(name);
+        List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
+        modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+        modelAndView.setViewName("vaccines");
+        return modelAndView;
+    }
+
+    @GetMapping("/travel")
+    public ModelAndView travel(@RequestParam(value = "lzy写", required = false) String from_name, @RequestParam(value = "lzy写", required = false) String to_name) {
+        ModelAndView modelAndView = new ModelAndView();
+        Integer from_id = cityService.findCityIdByName(from_name);
+        Integer to_id = cityService.findCityIdByName(to_name);
+        List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+        modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+        modelAndView.setViewName("travel");
+        return modelAndView;
+    }
+
+
     @GetMapping("/news")
     public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
@@ -254,10 +282,10 @@ public class DataController {
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        if (province_id == null){
+        if (province_id == null) {
             List<DataBean> dataList = dataService.list();
             modelAndView.addObject("cityDataById", dataList);
-        }else {
+        } else {
             List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
             modelAndView.addObject("cityDataById", cityDataById);
         }

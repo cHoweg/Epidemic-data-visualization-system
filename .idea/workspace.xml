@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/CityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/CityHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,9 +137,9 @@
       <recent name="com.xbdx.lyboot.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApplication">
-    <configuration name="GraphHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.GraphHandler" />
+  <component name="RunManager" selected="Application.VaccinesHandler">
+    <configuration name="TravelHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.TravelHandler" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -158,20 +151,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="newsUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.util.newsUtil" />
-      <module name="Epidemic data visualization system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zoll.vinfo.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JsoupHandler.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VaccinesHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.VaccinesHandler" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -179,15 +160,12 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.zoll.vinfo.handller" />
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JsoupHandler.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WorldDataDetailHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.WorldDataDetailHandler" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -195,10 +173,19 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.zoll.vinfo.handller" />
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.JsoupHandler" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorldDataHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.WorldDataHandler" />
+      <module name="Epidemic data visualization system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -220,18 +207,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.newsUtil" />
-      <item itemvalue="JUnit.JsoupHandler.test" />
-      <item itemvalue="JUnit.JsoupHandler.test2" />
       <item itemvalue="Spring Boot.MyApplication" />
-      <item itemvalue="Application.GraphHandler" />
+      <item itemvalue="Application.WorldDataHandler" />
+      <item itemvalue="Application.WorldDataDetailHandler" />
+      <item itemvalue="Application.TravelHandler" />
+      <item itemvalue="Application.VaccinesHandler" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.MyApplication" />
-        <item itemvalue="JUnit.JsoupHandler.test" />
-        <item itemvalue="Application.GraphHandler" />
-        <item itemvalue="JUnit.JsoupHandler.test2" />
+        <item itemvalue="Application.VaccinesHandler" />
+        <item itemvalue="Application.TravelHandler" />
+        <item itemvalue="Application.WorldDataDetailHandler" />
+        <item itemvalue="Application.WorldDataHandler" />
       </list>
     </recent_temporary>
   </component>

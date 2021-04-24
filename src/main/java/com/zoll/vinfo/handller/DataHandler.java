@@ -31,6 +31,9 @@ public class DataHandler {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private CityService CityService;
+
     public static void main(String[] args) throws Exception {
         // getData();
     }
@@ -42,6 +45,8 @@ public class DataHandler {
 
         List<WorldDataBean> worldDataBeans = WorldDataHandler.getData();
         List<WorldDataDetailBean> worldDataDetailBeans = WorldDataDetailHandler.getData();
+
+        List<CityBean> cityBeans =CityHandler.getData();
 
         List<NewsBean> newsBeans = NewsHandler.getData();
 
@@ -57,6 +62,9 @@ public class DataHandler {
 
         worldDataDetailService.remove(null);
         worldDataDetailService.saveBatch(worldDataDetailBeans);
+
+        CityService.remove(null);
+        CityService.saveBatch(cityBeans);
 
         newsService.saveBatch(newsBeans);
         newsService.filterData();

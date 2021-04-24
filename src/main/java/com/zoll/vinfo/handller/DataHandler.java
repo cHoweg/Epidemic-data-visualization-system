@@ -33,6 +33,11 @@ public class DataHandler {
 
     public static void main(String[] args) throws Exception {
         // getData();
+        //CityService cityService = new CityService();
+        //List<String> cityByProvinceId = cityService.findCityByProvinceId(1);
+        WorldDataDetailService worldDataDetailService = new WorldDataDetailService();
+        List<WorldDataDetailBean> cityDataById = worldDataDetailService.findCityDataById(1);
+        System.out.println(cityDataById);
     }
 
 

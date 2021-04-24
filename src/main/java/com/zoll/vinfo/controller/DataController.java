@@ -245,12 +245,15 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
 
         if (name == null && province_id == null) {
+
             List<CityBean> list = cityService.list();
             modelAndView.addObject("cityList", list);
 
         } else if (name == null && province_id != null) {
+
             List<String> cityList = cityService.findCityByProvinceId(province_id);
             modelAndView.addObject("cityList", cityList);
+
         } else {
 
             List<CityBean> list = cityService.list();
@@ -258,6 +261,7 @@ public class DataController {
             Integer id = cityService.findCityIdByName(name);
             List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
             modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+
         }
         modelAndView.setViewName("vaccines");
         return modelAndView;
@@ -267,16 +271,20 @@ public class DataController {
     public ModelAndView travel(@RequestParam(value = "lzy写", required = false) String from_name, @RequestParam(value = "lzy", required = false) Integer from_province_id, @RequestParam(value = "lzy写", required = false) String to_name, @RequestParam(value = "lzy", required = false) Integer to_province_id) {
         ModelAndView modelAndView = new ModelAndView();
         if (from_name == null || to_name == null) {
+
             List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);
             modelAndView.addObject("from_cityList", from_cityList);
 
             List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);
             modelAndView.addObject("to_cityList", to_cityList);
+
         } else if (from_name != null && to_name != null) {
+
             Integer from_id = cityService.findCityIdByName(from_name);
             Integer to_id = cityService.findCityIdByName(to_name);
             List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
             modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+
         } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
 
         modelAndView.setViewName("travel");
@@ -304,12 +312,17 @@ public class DataController {
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
+
         if (province_id == null) {
+
             List<DataBean> dataList = dataService.list();
             modelAndView.addObject("cityDataById", dataList);
+
         } else {
+
             List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
             modelAndView.addObject("cityDataById", cityDataById);
+
         }
         modelAndView.setViewName("provinceList");
         return modelAndView;
@@ -325,9 +338,18 @@ public class DataController {
     @GetMapping("/worldDataDetail")
     public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
 
+        if (province_id == null) {
+
+            List<WorldDataBean> worldDataBeanList = worldDataService.list();
+            modelAndView.addObject("worldDataBeanList", worldDataBeanList);
+
+        } else {
+
+            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+
+        }
         modelAndView.setViewName("worldList");
         return modelAndView;
     }

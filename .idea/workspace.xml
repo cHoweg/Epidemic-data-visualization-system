@@ -20,19 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_32.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_32.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/mapper/CityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/mapper/CityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service/CityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service/CityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +141,20 @@
       <recent name="com.xbdx.lyboot.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.JsoupHandler.test">
+  <component name="RunManager" selected="Spring Boot.MyApplication">
+    <configuration name="DataHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.DataHandler" />
+      <module name="Epidemic data visualization system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TravelHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.TravelHandler" />
       <module name="Epidemic data visualization system" />
@@ -164,19 +170,6 @@
     </configuration>
     <configuration name="VaccinesHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.VaccinesHandler" />
-      <module name="Epidemic data visualization system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WorldDataDetailHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.WorldDataDetailHandler" />
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
         <pattern>
@@ -221,19 +214,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.WorldDataDetailHandler" />
       <item itemvalue="Application.TravelHandler" />
       <item itemvalue="Application.VaccinesHandler" />
       <item itemvalue="Spring Boot.MyApplication" />
       <item itemvalue="JUnit.JsoupHandler.test" />
+      <item itemvalue="Application.DataHandler" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.JsoupHandler.test" />
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="Application.DataHandler" />
+        <item itemvalue="JUnit.JsoupHandler.test" />
         <item itemvalue="Application.VaccinesHandler" />
         <item itemvalue="Application.TravelHandler" />
-        <item itemvalue="Application.WorldDataDetailHandler" />
       </list>
     </recent_temporary>
   </component>
@@ -479,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619243807762</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Default Changelist">
+      <created>1619247589617</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1619247589617</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,10 +569,10 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="578" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618816757271" />
-    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1619247581226">
+    <state x="276" y="138" key="CommitChangelistDialog2" timestamp="1619247589418">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
-    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1619247581226" />
+    <state x="276" y="138" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1619247589418" />
     <state x="100" y="125" width="1480" height="825" key="DiffContextDialog" timestamp="1618736609902">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -585,46 +585,46 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="644" y="458" key="Github.CreateGistDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618207583593" />
-    <state width="818" height="296" key="GridCell.Tab.0.bottom" timestamp="1619246514723">
+    <state width="818" height="296" key="GridCell.Tab.0.bottom" timestamp="1619248301675">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="818" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514723" />
-    <state width="818" height="296" key="GridCell.Tab.0.center" timestamp="1619246514722">
+    <state width="818" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301675" />
+    <state width="818" height="296" key="GridCell.Tab.0.center" timestamp="1619248301674">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="818" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514722" />
-    <state width="818" height="296" key="GridCell.Tab.0.left" timestamp="1619246514721">
+    <state width="818" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301674" />
+    <state width="818" height="296" key="GridCell.Tab.0.left" timestamp="1619248301674">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="818" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514721" />
-    <state width="818" height="296" key="GridCell.Tab.0.right" timestamp="1619246514722">
+    <state width="818" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301674" />
+    <state width="818" height="296" key="GridCell.Tab.0.right" timestamp="1619248301675">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619078357797" />
-    <state width="818" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514722" />
-    <state width="818" height="296" key="GridCell.Tab.1.bottom" timestamp="1619246514610">
+    <state width="818" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301675" />
+    <state width="818" height="296" key="GridCell.Tab.1.bottom" timestamp="1619248301677">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="818" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514610" />
-    <state width="818" height="296" key="GridCell.Tab.1.center" timestamp="1619246514609">
+    <state width="818" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301677" />
+    <state width="818" height="296" key="GridCell.Tab.1.center" timestamp="1619248301676">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="818" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514609" />
-    <state width="818" height="296" key="GridCell.Tab.1.left" timestamp="1619246514609">
+    <state width="818" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301676" />
+    <state width="818" height="296" key="GridCell.Tab.1.left" timestamp="1619248301675">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="818" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514609" />
-    <state width="818" height="296" key="GridCell.Tab.1.right" timestamp="1619246514610">
+    <state width="818" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301675" />
+    <state width="818" height="296" key="GridCell.Tab.1.right" timestamp="1619248301676">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619078357798" />
-    <state width="818" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619246514610" />
+    <state width="818" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619248301676" />
     <state width="1638" height="296" key="GridCell.Tab.2.bottom" timestamp="1619194170936">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -666,11 +666,11 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="478" y="259" key="VCS.ChangeListViewerDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618742964541" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1619185225539">
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1619247591668">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="402" y="202" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619060844168" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1619185225539" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1619247591668" />
     <state width="840" height="512" key="XDebugger.FullValuePopup" timestamp="1619195644242">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>

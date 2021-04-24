@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public interface CityMapper extends BaseMapper<CityBean> {
 
-    @Select("SELECT\n" + "city" + "FROM\n" + "citys\n" + "WHERE\n" + "\tcitys.province_id = #{province_id}")
+    @Select("SELECT\n" + "city" + "FROM\n" + "citys\n" + "WHERE\n" + "\t citys.province_id = #{province_id}")
     List<String> findCityByProvinceId(Integer province_id);
 
 
-    @Select("SELECT\n" + "city_id" + "FROM\n" + "citys\n" + "WHERE\n" + "\tcitys.city = #{city}")
+    @Select("SELECT\n" + "city_id" + "FROM\n" + "citys\n" + "WHERE\n" + "\t citys.city = #{city}")
     Integer findCityIdByName(String city);
 }

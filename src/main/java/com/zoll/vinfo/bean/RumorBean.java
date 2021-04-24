@@ -20,5 +20,8 @@ public class RumorBean {
     private String title;
     // 结论
     private String explain;
-
+    // 内容
+    private String desc;
+    // 链接
+    private String url;
 }

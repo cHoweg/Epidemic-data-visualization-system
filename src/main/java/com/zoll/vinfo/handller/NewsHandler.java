@@ -35,7 +35,7 @@ public class NewsHandler {
         Map mapData = (Map) arrayList.get(0);
 
         ArrayList news = (ArrayList) mapData.get("news");
-
+        System.out.println(news);
         // 遍历然后转化
         List<NewsBean> result = new ArrayList<>();
 

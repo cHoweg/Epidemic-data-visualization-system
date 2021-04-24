@@ -12,8 +12,8 @@
 
 <body class="pvl">
 <form name="chooseProvince" style="width:1000px">
-    <select class="select1" id="select1" name="select2">
-        <option class="choose" >全国</option>
+    <select class="select1" id="select1" name="select2" onchange="a()">
+        <option class="choose" value=38>全国</option>
         <option class="choose" value=0>香港</option>
         <option class="choose" value=1>云南</option>
         <option class="choose" value=2>上海</option>
@@ -52,7 +52,7 @@
         <option class="choose" value=35>重庆</option>
         <option class="choose" value=36>吉林</option>
     </select>
-    <input type="submit" onclick="a()" class="input1">
+    <input type="submit" id="submit1" onclick="a()" class="input1">
 </form>
 
 <script type="text/javascript">
@@ -70,6 +70,10 @@
             error: function () {
             },
         })
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("submit1").dispatchEvent(e);
+
     }
 </script>
 

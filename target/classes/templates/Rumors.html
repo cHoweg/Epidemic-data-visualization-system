@@ -14,7 +14,7 @@
     <div class="box2">
         <div class="size">
             <div class="form">
-                <div class="form-header">新闻</div>
+                <div class="form-header">辟谣专区</div>
                 <div class="form-body">
                     <div>
                         <div class="list-group" id="list-group1">
@@ -47,13 +47,39 @@
     var str=``;
     for(var i=0;i<a.length;i++)
     {
-        str+=`<a class="list-group-item list-group-item-action">
-<span class="text" id="${i}">
-<p>发布日期：${a[i].date}</p>
-<p>发布内容：${a[i].title}</p>
-<p>是否谣言：${a[i].explain}</p></span>
+        if(a[i].explain=="谣言") {
+            str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
+<div class="text" id="${i}" style="display: inline-block;width=1000 ">
+<p style="display: inline-block">发布日期：${a[i].date}</p><br>
+<p style="display: inline-block">发布标题：${a[i].title}</p><br>
+<div  style="display: inline-block;width:1000px">发布内容：${a[i].desc}</div>
+<div style="display: inline-block;"><img src="img/error.png" height="150" width="150"></div><br>
+<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
+</div>
 </a>`
-
+        }
+        else if (a[i].explain=="确实如此") {
+            str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
+<div class="text" id="${i}" style="display: inline-block;width=1000 ">
+<p style="display: inline-block">发布日期：${a[i].date}</p><br>
+<p style="display: inline-block">发布标题：${a[i].title}</p><br>
+<div  style="display: inline-block;width:1000px">发布内容：${a[i].desc}</div>
+<div style="display: inline-block;"><img src="img/correct.png" height="150" width="150"></div><br>
+<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
+</div>
+</a>`
+        }
+        else{
+            str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
+<div class="text" id="${i}" style="display: inline-block;width=1000 ">
+<p style="display: inline-block">发布日期：${a[i].date}</p><br>
+<p style="display: inline-block">发布标题：${a[i].title}</p><br>
+<div  style="display: inline-block;width:1000px">发布内容：${a[i].desc}</div>
+<div style="display: inline-block;"><img src="img/unknown.png" height="150" width="150"></div><br>
+<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
+</div>
+</a>`
+        }
     }
     console.log(str)
     document.getElementById('list-group1').innerHTML = str

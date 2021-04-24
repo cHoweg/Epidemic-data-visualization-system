@@ -2,63 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>疫情最新动态</title>
+    <title>各地疫情数据</title>
     <link rel="stylesheet" th:href="@{/bootstrap.css}">
-    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 
 </head>
 
-<body style="background-color:#a6e1ec;">
-
-
-<form name="chooseprovince" id="chooseprovince" style="width:200px">
-    <select id="select1" name="select2" onchange="a()">
-        <option id="38" class="choose" value=38   > 全国</option>
-        <option id="0" class="choose" value=0    > 香港</option>
-        <option id="1" class="choose" value=1    > 云南</option>
-        <option id="2" class="choose" value=2    > 上海</option>
-        <option id="3" class="choose" value=3    > 广东</option>
-        <option id="4" class="choose" value=4    > 台湾</option>
-        <option id="5" class="choose" value=5    > 福建</option>
-        <option id="6" class="choose" value=6    > 四川</option>
-        <option id="7" class="choose" value=7    > 陕西</option>
-        <option id="8" class="choose" value=8    > 北京</option>
-        <option id="9" class="choose" value=9    > 山西</option>
-        <option id="10" class="choose" value=10   >江苏</option>
-        <option id="11" class="choose" value=11   >山东</option>
-        <option id="12" class="choose" value=12   >浙江</option>
-        <option id="13" class="choose" value=13   >天津</option>
-        <option id="14" class="choose" value=14   >河南</option>
-        <option id="15" class="choose" value=15   >湖南</option>
-        <option id="16" class="choose" value=16   >广西</option>
-        <option id="17" class="choose" value=17   >湖北</option>
-        <option id="18" class="choose" value=18   >内蒙古</option>
-        <option id="19" class="choose" value=19   >辽宁</option>
-        <option id="20" class="choose" value=20   >广西</option>
-        <option id="21" class="choose" value=21   >湖北</option>
-        <option id="22" class="choose" value=22   >内蒙古</option>
-        <option id="23" class="choose" value=23   >辽宁</option>
-        <option id="24" class="choose" value=24   >甘肃</option>
-        <option id="25" class="choose" value=25   >澳门</option>
-        <option id="26" class="choose" value=26   >西藏</option>
-        <option id="27" class="choose" value=27   >贵州</option>
-        <option id="28" class="choose" value=28   >青海</option>
-        <option id="29" class="choose" value=29   >新疆</option>
-        <option id="30" class="choose" value=30   >江西</option>
-        <option id="31" class="choose" value=31   >海南</option>
-        <option id="32" class="choose" value=32   >黑龙江</option>
-        <option id="33" class="choose" value=33   >宁夏</option>
-        <option id="34" class="choose" value=34   >安徽</option>
-        <option id="35" class="choose" value=35   >重庆</option>
-        <option id="36" class="choose" value=36   >吉林</option>
+<body class="pvl">
+<form name="chooseProvince" style="width:1000px">
+    <select class="select1" id="select1" name="select2">
+        <option class="choose" >全国</option>
+        <option class="choose" value=0>香港</option>
+        <option class="choose" value=1>云南</option>
+        <option class="choose" value=2>上海</option>
+        <option class="choose" value=3>广东</option>
+        <option class="choose" value=4>台湾</option>
+        <option class="choose" value=5>福建</option>
+        <option class="choose" value=6>四川</option>
+        <option class="choose" value=7>陕西</option>
+        <option class="choose" value=8>北京</option>
+        <option class="choose" value=9>山西</option>
+        <option class="choose" value=10>江苏</option>
+        <option class="choose" value=11>山东</option>
+        <option class="choose" value=12>浙江</option>
+        <option class="choose" value=13>天津</option>
+        <option class="choose" value=14>河南</option>
+        <option class="choose" value=15>湖南</option>
+        <option class="choose" value=16>广西</option>
+        <option class="choose" value=17>湖北</option>
+        <option class="choose" value=18>内蒙古</option>
+        <option class="choose" value=19>辽宁</option>
+        <option class="choose" value=20>广西</option>
+        <option class="choose" value=21>湖北</option>
+        <option class="choose" value=22>内蒙古</option>
+        <option class="choose" value=23>辽宁</option>
+        <option class="choose" value=24>甘肃</option>
+        <option class="choose" value=25>澳门</option>
+        <option class="choose" value=26>西藏</option>
+        <option class="choose" value=27>贵州</option>
+        <option class="choose" value=28>青海</option>
+        <option class="choose" value=29>新疆</option>
+        <option class="choose" value=30>江西</option>
+        <option class="choose" value=31>海南</option>
+        <option class="choose" value=32>黑龙江</option>
+        <option class="choose" value=33>宁夏</option>
+        <option class="choose" value=34>安徽</option>
+        <option class="choose" value=35>重庆</option>
+        <option class="choose" value=36>吉林</option>
     </select>
-    <input type="submit" id="submit1" name="submit1">
+    <input type="submit" onclick="a()" class="input1">
 </form>
-<h1 id="H1"></h1>
 
 <script type="text/javascript">
-
     var a = function () {
         var id = $("#select1").val()
         $.ajax({
@@ -73,38 +70,31 @@
             error: function () {
             },
         })
-
-        var e = document.createEvent("MouseEvents");
-        e.initEvent("click", true, true);
-        document.getElementById("submit1").dispatchEvent(e);
-
     }
-
 </script>
 
 
-<table class="table table-hover">
+<table class="table table-hover table1">
     <thead>
     <tr>
-        <th><p>地市</p></th>
-        <th><p>现有确诊</p></th>
-        <th><p>累计确诊</p></th>
-        <th><p>治愈</p></th>
-        <th><p>死亡</p></th>
+        <th ><p class="list1">地市</p></th>
+        <th ><p class="list1">现有确诊</p></th>
+        <th ><p class="list1">累计确诊</p></th>
+        <th ><p class="list1">治愈</p></th>
+        <th ><p class="list1">死亡</p></th>
     </tr>
     </thead>
-    <tbody id="tbodyid">
-    <tr id="000" th:each="data:${cityDataById}">
-        <td id="001" th:text="${data.area}"></td>
-        <td id="002" th:text="${data.nowConfirm}"></td>
-        <td id="003" th:text="${data.confirm}"></td>
-        <td id="004" th:text="${data.heal}"></td>
-        <td id="005" th:text="${data.dead}"></td>
+    <tbody id="tbodyId">
+    <tr class="pvl" id="0" th:each="data:${cityDataById}">
+        <td class="list2" id="1" th:text="${data.area}"></td>
+        <td class="list2" id="2" th:text="${data.nowConfirm}"></td>
+        <td class="list2" id="3" th:text="${data.confirm}"></td>
+        <td class="list2" id="4" th:text="${data.heal}"></td>
+        <td class="list2" id="5" th:text="${data.dead}"></td>
     </tr>
-
     </tbody>
 </table>
-</div>
+
 
 </body>
 </html>

@@ -20,9 +20,7 @@ body {
 }
 
 /*设置滚动条样式*/
-::-webkit-scrollbar { 
-  width: 12px;
-}
+
 ::-webkit-scrollbar-thumb {
   background-color: rgb(190, 190, 190);
 }
@@ -172,4 +170,68 @@ ul{
 .form-body {
   flex: 1 1 auto;
   padding: 1rem 1rem
+}
+
+.btn1 {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 5px #eaeaea;
+}
+
+.btn2{
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 5px #eaeaea;
+}
+
+.select1{
+  height: 30px;
+  width: 120px;
+  border: solid 1px #5e5e5e;
+  margin-left: 500px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: lighter;
+  text-align: center;
+  text-align-last: center;
+  font-family: serif;
+}
+
+.input1{
+  height: 30px;
+  width: 80px;
+  margin-left: 20px;
+  font-size: 18px;
+  font-family: serif;
+}
+
+.table1{
+  width: 800px;
+  height:500px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.list1{
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+}
+
+.list2{
+  text-align: center;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.pvl::-webkit-scrollbar {
+  width: 0;
 }

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
 <!--    <script type="text/javascript" src="echarts/echarts.min.js"></script>-->
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript" src="echarts/china.js"></script>
@@ -11,8 +12,8 @@
 <body onload="a()">
 
 
-<button onclick="a()">现有确诊</button>
-<button onclick="b()">累计确诊</button>
+<button type="button" class="btn btn1" onclick="a()">现有确诊</button>
+<button type="button" class="btn btn2" onclick="b()">累计确诊</button>
 <div id="main" style="width: 950px;height:680px;margin:auto;"></div>
 
 <script th:inline="javascript">
@@ -48,7 +49,7 @@
                         position: 'center',
                         show: true,
                         textStyle: {
-                            color: 'rgba(0,0,0,0.4)'
+                            color: 'rgba(0,0,0,1)'
                         }
                     },
                     emphasis: {
@@ -93,7 +94,7 @@
                         position: 'center',
                         show: true,
                         textStyle: {
-                            color: 'rgba(0,0,0,0.4)'
+                            color: 'rgba(0,0,0,1)'
                         }
                     },
                     emphasis: {

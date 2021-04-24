@@ -2,18 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>疫情最新动态</title>
+    <title>各地疫情数据</title>
     <link rel="stylesheet" th:href="@{/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 
 </head>
 
-<body style="background-color:#a6e1ec;">
-
-
-<form name="chooseprovince" style="width:200px">
-    <select id="select1" name="select2">
+<body class="pvl">
+<form name="chooseProvince" style="width:1000px">
+    <select class="select1" id="select1" name="select2">
         <option class="choose" >全国</option>
         <option class="choose" value=0>香港</option>
         <option class="choose" value=1>云南</option>
@@ -53,9 +52,8 @@
         <option class="choose" value=35>重庆</option>
         <option class="choose" value=36>吉林</option>
     </select>
-    <input type="submit" onclick="a()">
+    <input type="submit" onclick="a()" class="input1">
 </form>
-
 
 <script type="text/javascript">
     var a = function () {
@@ -76,28 +74,27 @@
 </script>
 
 
-<table class="table table-hover">
+<table class="table table-hover table1">
     <thead>
     <tr>
-        <th><p>地市</p></th>
-        <th><p>现有确诊</p></th>
-        <th><p>累计确诊</p></th>
-        <th><p>治愈</p></th>
-        <th><p>死亡</p></th>
+        <th ><p class="list1">地市</p></th>
+        <th ><p class="list1">现有确诊</p></th>
+        <th ><p class="list1">累计确诊</p></th>
+        <th ><p class="list1">治愈</p></th>
+        <th ><p class="list1">死亡</p></th>
     </tr>
     </thead>
-    <tbody id="tbodyid">
-    <tr id="0" th:each="data:${cityDataById}">
-        <td id="1" th:text="${data.area}"></td>
-        <td id="2" th:text="${data.nowConfirm}"></td>
-        <td id="3" th:text="${data.confirm}"></td>
-        <td id="4" th:text="${data.heal}"></td>
-        <td id="5" th:text="${data.dead}"></td>
+    <tbody id="tbodyId">
+    <tr class="pvl" id="0" th:each="data:${cityDataById}">
+        <td class="list2" id="1" th:text="${data.area}"></td>
+        <td class="list2" id="2" th:text="${data.nowConfirm}"></td>
+        <td class="list2" id="3" th:text="${data.confirm}"></td>
+        <td class="list2" id="4" th:text="${data.heal}"></td>
+        <td class="list2" id="5" th:text="${data.dead}"></td>
     </tr>
-
     </tbody>
 </table>
-</div>
+
 
 </body>
 </html>

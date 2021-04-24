@@ -2,6 +2,7 @@ package com.zoll.vinfo.handller;
 
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.NewsBean;
+import com.zoll.vinfo.util.HttpClientUtil;
 import com.zoll.vinfo.util.newsUtil;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ public class NewsHandler {
 
     public static void main(String[] args) {
         getData();
+        String a = HttpClientUtil.doGet("http://apis.juhe.cn/springTravel/citys?key=2a045db4716657a67be6f8340405c6f8");
+        System.out.println(a);
     }
 
     public static List<NewsBean> getData() {

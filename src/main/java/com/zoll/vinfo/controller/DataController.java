@@ -37,6 +37,9 @@ public class DataController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private CityService CityService ;
+
     //首页显示所有相关数据
     @GetMapping("/")
     public String homePage(Model model) {
@@ -250,6 +253,24 @@ public class DataController {
         return modelAndView;
     }
 
+    @GetMapping("/vaccines")
+    public ModelAndView vaccines() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<VaccinesBean> VaccinesBeansList =VaccinesHandler.getData();
+        modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+        modelAndView.setViewName("vaccines");
+        return modelAndView;
+    }
+
+    @GetMapping("/travel")
+    public ModelAndView travel() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<TravelBean> TravelBeansList =TravelHandler.getData();
+        modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+        modelAndView.setViewName("travel");
+        return modelAndView;
+    }
+
     @GetMapping("/cityData")
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -268,6 +289,15 @@ public class DataController {
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
         modelAndView.addObject("worldBeansList", worldDataBeanList);
         return worldDataBeanList.toString();
+    }
+
+    @GetMapping("/citys")
+    @ResponseBody
+    public String cityData() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<CityBean> cityBeanList = CityService.list();
+        modelAndView.addObject("cityBeansList", cityBeanList);
+        return cityBeanList.toString();
     }
 
     @GetMapping("/worldDataDetail")

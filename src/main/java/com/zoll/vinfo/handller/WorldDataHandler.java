@@ -30,6 +30,7 @@ public class WorldDataHandler {
          * 分析json字符串对数据进行筛选和提取
          */
         String respJson = newsUtil.getRequest(urlStr);
+        System.out.println(respJson);
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);

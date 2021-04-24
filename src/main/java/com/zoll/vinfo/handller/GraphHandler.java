@@ -47,6 +47,7 @@ public class GraphHandler {
             double nowConfirm = (Double) tmp.get("nowConfirm");
             GraphBean graphBean = new GraphBean(date, (int) nowConfirm);
             result.add(graphBean);
+            System.out.println(result);
         }
 
         return result;

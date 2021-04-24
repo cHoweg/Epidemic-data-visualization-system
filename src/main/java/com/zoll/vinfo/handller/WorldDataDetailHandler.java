@@ -30,6 +30,8 @@ public class WorldDataDetailHandler {
          */
         String respJson = newsUtil.getRequest(urlStr);
 
+        System.out.println(respJson);
+
         //将数据转化成Map类型
 
         Gson gson = new Gson();

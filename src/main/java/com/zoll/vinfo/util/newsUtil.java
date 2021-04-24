@@ -20,7 +20,7 @@ import java.util.Map;
  * @DATE: 2021/4/17 上午11:45
  */
 
-//用友网API接口------统一调用的接口。
+//聚合数据API接口
 
 public class newsUtil {
 
@@ -50,7 +50,7 @@ public class newsUtil {
 
             try {
                 result = net(urlStr, params, headerParams, method, paramFormat);
-                // System.out.println(result);
+                //System.out.println(result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -215,7 +215,7 @@ public class newsUtil {
         }
 
         public static void main(String[] args) {
-            // getRequest();
+            //getRequest();
         }
 
 }

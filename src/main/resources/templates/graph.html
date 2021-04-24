@@ -5,7 +5,9 @@
     <title>全国现有确诊折现图</title>
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 </head>
-<body>
+<body onload="a()">
+<button onclick="a()">全国现有确诊趋势</button>
+<button onclick="b()">全球现有确诊趋势</button>
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
@@ -18,8 +20,11 @@
 
     var dateStr = [[${dateList}]];
     var nowConfirmStr = [[${nowConfirmList}]];
+
+    var worldDateList = [[${worldDateList}]];
+    var worldNowConfirmList = [[${worldNowConfirmList}]];
     // 指定图表的配置项和数据
-    var option = {
+    var chinaOption = {
         title: {  // 标题组件
             text: '全国现有确诊趋势',
             textStyle: {
@@ -57,9 +62,57 @@
             type: 'line'
         }]
     };
+    var worldOption = {
+        title: {  // 标题组件
+            text: '全球现有确诊趋势',
+            textStyle: {
+                color: "black", // 主标题文字的颜色。
+                fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+                fontWeight: "bolder", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'
+                fontFamily: "Serif", // 主标题文字的字体系列。
+                fontSize: 25, // 字体大小
+                lineHeight: "40", // 行高
+            },
+            x: 'center',
+        },
+        tooltip: {  // 提示框组件
+            trigger: 'axis'
+        },
+        legend: {  // 曲线含义说明
+            orient: 'horizontal',//可设置vertical,
+            x:'right',  //可设定图例在左、右、居中
+            y:'top',  //可设定图例在上、下、居中
+            padding:[30,100,0,0],
+            data: ['现有确诊']
+        },
+        xAxis: {
+            // 转化为json对象
+            data: JSON.parse(worldDateList)
+            // data: dateStr
+        },
+        yAxis: {
+            type: 'value',
+            min:30000000,
+            splitNumber:10
+        },
+        series: [{
+            name: '现有确诊',
+            data: JSON.parse(worldNowConfirmList),
+            // data: nowConfirmStr,
+            type: 'line'
+        }]
+    };
 
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+
+    myChart.setOption(chinaOption);
+    function a(){
+
+        myChart.setOption(chinaOption,true)
+    }
+    function b(){
+
+        myChart.setOption(worldOption,true)
+    }
 </script>
 
 </body>

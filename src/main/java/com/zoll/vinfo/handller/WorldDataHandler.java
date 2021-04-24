@@ -3,6 +3,7 @@ package com.zoll.vinfo.handller;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.RumorBean;
 import com.zoll.vinfo.bean.WorldDataBean;
+import com.zoll.vinfo.mapper.DataDetailMapper;
 import com.zoll.vinfo.util.newsUtil;
 
 import java.util.ArrayList;
@@ -29,12 +30,11 @@ public class WorldDataHandler {
          * 分析json字符串对数据进行筛选和提取
          */
         String respJson = newsUtil.getRequest(urlStr);
+        System.out.println(respJson);
 
         Gson gson = new Gson();
         Map map = gson.fromJson(respJson, Map.class);
-
         Map data = (Map) map.get("data");
-
         ArrayList continent = (ArrayList) data.get("continent");
         List<WorldDataBean> result = new ArrayList<>();
 

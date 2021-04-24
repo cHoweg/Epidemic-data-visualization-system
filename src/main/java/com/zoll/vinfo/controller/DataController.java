@@ -38,7 +38,7 @@ public class DataController {
     private NewsService newsService;
 
     @Autowired
-    private CityService CityService ;
+    private CityService cityService ;
 
     //首页显示所有相关数据
     @GetMapping("/")
@@ -254,18 +254,21 @@ public class DataController {
     }
 
     @GetMapping("/vaccines")
-    public ModelAndView vaccines() {
+    public ModelAndView vaccines(String name) {
         ModelAndView modelAndView = new ModelAndView();
-        List<VaccinesBean> VaccinesBeansList =VaccinesHandler.getData();
+        Integer id = cityService.findCityIdByName(name);
+        List<VaccinesBean> VaccinesBeansList =VaccinesHandler.getData(id);
         modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
         modelAndView.setViewName("vaccines");
         return modelAndView;
     }
 
     @GetMapping("/travel")
-    public ModelAndView travel() {
+    public ModelAndView travel(String from_name,String to_name) {
         ModelAndView modelAndView = new ModelAndView();
-        List<TravelBean> TravelBeansList =TravelHandler.getData();
+        Integer from_id = cityService.findCityIdByName(from_name);
+        Integer to_id = cityService.findCityIdByName(to_name);
+        List<TravelBean> TravelBeansList =TravelHandler.getData(from_id,to_id);
         modelAndView.addObject("vaccinesBeansList", TravelBeansList);
         modelAndView.setViewName("travel");
         return modelAndView;
@@ -283,7 +286,6 @@ public class DataController {
     }
 
     @GetMapping("/worldData")
-    @ResponseBody
     public String worldData() {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataBean> worldDataBeanList = worldDataService.list();
@@ -292,16 +294,14 @@ public class DataController {
     }
 
     @GetMapping("/citys")
-    @ResponseBody
     public String cityData() {
         ModelAndView modelAndView = new ModelAndView();
-        List<CityBean> cityBeanList = CityService.list();
+        List<CityBean> cityBeanList = cityService.list();
         modelAndView.addObject("cityBeansList", cityBeanList);
         return cityBeanList.toString();
     }
 
     @GetMapping("/worldDataDetail")
-    @ResponseBody
     public String worldDetailData(Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(id);

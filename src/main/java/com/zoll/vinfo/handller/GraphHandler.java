@@ -24,6 +24,8 @@ public class GraphHandler {
 
 
     public static void main(String[] args) {
+        Map worldNowData = getWorldNowData();
+        System.out.println(worldNowData);
     }
 
     public static String getData() {
@@ -39,14 +41,17 @@ public class GraphHandler {
         String str = HttpClientUtil.doGet(urlStrAll);
         Gson gson = new Gson();
         Map map = gson.fromJson(str, Map.class);
-        Map subMap = (Map) map.get("data");
+
+        // 此时增加了一层处理  而且data对应的数据格式是string
+        String subStr = (String) map.get("data");
+        Map subMap = gson.fromJson(subStr, Map.class);
+
         Map chinaTotal = (Map) subMap.get("chinaTotal");
         return chinaTotal;
     }
 
     public static Map getWorldNowData() {
         String worldStr = HttpClientUtil.doGet(worldUrlStr);
-        ArrayList<GraphAddBean> worldAdd = new ArrayList<>();
         Gson gson = new Gson();
         Map json = gson.fromJson(worldStr, Map.class);
         Map strMap = (Map) json.get("data");

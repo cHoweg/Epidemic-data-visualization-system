@@ -78,8 +78,6 @@ public class DataController {
         }
         modelAndView.addObject("dateList", new Gson().toJson(dateList));
         modelAndView.addObject("nowConfirmList", new Gson().toJson(nowConfirmList));
-        Map nowData = GraphHandler.getNowData();
-        modelAndView.addObject("todayChina", new JSONObject(nowData));
 
         dateList.clear();
         nowConfirmList.clear();
@@ -90,8 +88,6 @@ public class DataController {
         }
         modelAndView.addObject("worldDateList", new Gson().toJson(dateList));
         modelAndView.addObject("worldNowConfirmList", new Gson().toJson(nowConfirmList));
-        Map worldNowData = GraphHandler.getWorldNowData();
-        modelAndView.addObject("todayWorld", new JSONObject(worldNowData));
 
         return modelAndView;
     }
@@ -211,6 +207,10 @@ public class DataController {
 
         modelAndView.addObject("mapCountData", new Gson().toJson(count));
         modelAndView.addObject("mapData", new Gson().toJson(result));
+
+        Map nowData = GraphHandler. getNowData();
+        modelAndView.addObject("todayChina", new JSONObject(nowData));
+
         modelAndView.setViewName("map");
         return modelAndView;
     }
@@ -321,19 +321,18 @@ public class DataController {
     @GetMapping("/worldDataDetail")
     public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-
-        if (province_id == null) {
+        if (province_id == null||province_id==8) {
 
             List<WorldDataBean> worldDataBeanList = worldDataService.list();
-            modelAndView.addObject("worldDataBeanList", worldDataBeanList);
-
+            modelAndView.addObject("worldBeansList1", worldDataBeanList);
         } else {
 
             List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
             modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
-
         }
         modelAndView.setViewName("worldList");
+
+
         return modelAndView;
     }
 
@@ -342,6 +341,8 @@ public class DataController {
         ModelAndView modelAndView = new ModelAndView();
         List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();
         modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        Map worldNowData = GraphHandler.getWorldNowData();
+        modelAndView.addObject("todayWorld", new JSONObject(worldNowData));
         modelAndView.setViewName("worldMap");
         return modelAndView;
     }

@@ -8,15 +8,30 @@
     <script type="text/javascript" src="echarts/world.js"></script>
 </head>
 <body onload="a()">
+<div id="top" style="width: 1000px;height:100px;"></div>
 <button onclick="a()">累计确诊</button>
 <button onclick="b()">累计死亡</button>
+
 <div id="main" style="width: 1000px;height:700px;"></div>
+
 <script th:inline="javascript">
-    //var dataStr = [[${mapData}]];
+    var todayWorld=[[${todayWorld}]]
+    str =`
+<span>累计确诊人数:${todayWorld["confirm"]}</span>
+<span>累计死亡人数:${todayWorld["dead"]}</span>
+<span>累计治愈人数:${todayWorld["heal"]}</span>
+<span>目前确诊人数:${todayWorld["nowConfirm"]}</span>
+
+`
+    document.getElementById("top").innerHTML=str
+
+
+
+
+
+
+
     var dataStr=[[${worldBeansList}]]
-
-    console.log(dataStr)
-
     var AllCountData = [];
     var AllDeadData = [];
 

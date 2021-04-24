@@ -12,7 +12,9 @@
 <body style="background-color:#a6e1ec;">
 
 <form name="chooseprovince" style="width:200px">
-    <select  id="select1" name="select3">
+    <select  id="select1" name="select3" onchange="a()">
+        <option ></option>
+        <option value=8>全球</option>
         <option value=0>亚洲</option>
         <option value=1>欧洲</option>
         <option value=2>北美洲</option>
@@ -21,7 +23,7 @@
         <option value=5>大洋洲</option>
         <option value=6>其他</option>
     </select>
-    <input type="submit" onclick="a()">
+    <input type="submit" id="submit1" onclick="a()" style="display: none">
 </form>
 <script type="text/javascript" th:inline="javascript">
     var a=function(){
@@ -35,25 +37,33 @@
             success: function(data){ alert(data) },
             error: function () {},
         })
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("submit1").dispatchEvent(e);
+
     }
 </script>
 <table class="table table-hover">
     <thead>
     <tr>
-        <th><p>国家</p></th>
+        <th><p>国家/大洲</p></th>
         <th><p>现有确诊</p></th>
-        <th><p>累计确诊</p></th>
         <th><p>治愈</p></th>
         <th><p>死亡</p></th>
     </tr>
     </thead>
     <tbody id="tbody_list">
     <tr id="0" th:each="data:${worldBeansList}">
-        <td id="1" th:text="${data.provinceProvinceName}">name</td>
-        <td id="2" th:text="${data.provinceConfirmedCount}">nowConfirm</td>
-        <td id="3" th:text="${data.provinceProvinceName}">confirm</td>
-        <td id="4" th:text="${data.provinceCuredCount}">heal</td>
-        <td id="5" th:text="${data.provinceDeadCount}">dead</td>
+             <td id="1" th:text="${data.provinceProvinceName}">name</td>
+             <td id="2" th:text="${data.provinceConfirmedCount}">nowConfirm</td>
+             <td id="4" th:text="${data.provinceCuredCount}">heal</td>
+             <td id="5" th:text="${data.provinceDeadCount}">dead</td>
+    </tr>
+    <tr id="6" th:each="data:${worldBeansList1}">
+        <td id="7" th:text="${data.continentName}">name</td>
+        <td id="8" th:text="${data.confirmedCount}">nowConfirm</td>
+        <td id="9" th:text="${data.curedCount}">heal</td>
+        <td id="10" th:text="${data.deadCount}">dead</td>
     </tr>
     </tbody>
 </table>

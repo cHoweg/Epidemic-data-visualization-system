@@ -14,9 +14,27 @@
 
 <button type="button" class="btn btn1" onclick="a()">现有确诊</button>
 <button type="button" class="btn btn2" onclick="b()">累计确诊</button>
+<div id="top" style="width: 950px;height:100px;margin:auto;"></div>
 <div id="main" style="width: 950px;height:680px;margin:auto;"></div>
 
 <script th:inline="javascript">
+    var todayChina=[[${todayChina}]]
+    console.log(todayChina)
+    str =`
+<span>累计确诊人数:${todayChina["confirm"]}</span>
+<span>累计死亡人数:${todayChina["dead"]}</span>
+<span>累计治愈人数:${todayChina["heal"]}</span>
+<span>累计重症人数:${todayChina["importedCase"]}</span>
+<span>目前本土确诊人数:${todayChina["localConfirm"]}</span>
+<span>目前无症状感染人数:${todayChina["noInfect"]}</span>
+<span>目前确诊人数:${todayChina["nowConfirm"]}</span>
+<span>目前正在观察人数:${todayChina["nowSevere"]}</span>
+<span>目前疑似人数:${todayChina["suspect"]}</span>
+`
+    document.getElementById("top").innerHTML=str
+
+
+
     var nowconfirm = [[${mapData}]];
     var count = [[${mapCountData}]];
     var nowconfirm_option = {
@@ -106,8 +124,6 @@
             }
         ]
     }
-
-
 
 
 

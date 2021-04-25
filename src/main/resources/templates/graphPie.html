@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>全国确诊人数饼状图</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 </head>
 <body>
-
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
 <div id="main111" style="width: 950px;height:680px;margin:auto"></div>
@@ -21,7 +22,7 @@
     // 指定图表的配置项和数据
     var option = {
         title: {  // 标题组件
-            text: '全国现有确诊构成',
+            text: '国内现有确诊构成',
             textStyle: {
                 color: "black", // 主标题文字的颜色。
                 fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'

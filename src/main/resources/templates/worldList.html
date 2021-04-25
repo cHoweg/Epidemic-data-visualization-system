@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title >疫情最新动态</title>
-    <link rel="stylesheet" th:href="@{/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 
 </head>
 
-<body style="background-color:#a6e1ec;">
+<body style="background-color:#a6e1ec;" class="worldList">
 
 <form name="chooseprovince" style="width:200px">
     <select  id="select1" name="select3" onchange="a()">

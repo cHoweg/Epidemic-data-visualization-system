@@ -2,10 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>全国前十累计境外输入条形统计图</title>
+    <title>境外输入省市TOP10</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 </head>
-<body>
+<body class="graphColumnar">
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
@@ -41,6 +43,7 @@
             data: JSON.parse(nameStr)
         },
         yAxis: {
+            name: '境外输入人数',
             type: 'value'
         },
         series: [

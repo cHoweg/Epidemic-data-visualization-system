@@ -23,21 +23,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_2_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_2_02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_2_02.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_04__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/trans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/travelPolicy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/GraphHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/province.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/province.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rumors.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rumors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Rumors.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Rumors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphPie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homePage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/province.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/province.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/provincelist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/provincelist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/worldmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,12 +145,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="yiiguxing.plugin.translate" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test" />
-      <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.xbdx.lyboot.bean" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Epidemic-data-visualization-system\src\main\resources\static\echarts" />
@@ -144,29 +158,18 @@
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\static" />
       <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources\templates" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\REGINA\Documents\GitHub\Epidemic-data-visualization-system\src\main\resources\static\img" />
+      <recent name="$PROJECT_DIR$/src/test" />
+      <recent name="D:\Study\渡一教育\Boot疫情分析数据\lyboot\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zoll.vinfo.mapper" />
       <recent name="com.zoll.vinfo.service" />
       <recent name="com.zoll.vinfo.bean" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.xbdx.lyboot.bean" />
-    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApplication">
-    <configuration name="GraphHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.GraphHandler" />
-      <module name="Epidemic data visualization system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zoll.vinfo.handller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.travelPolicy.html">
     <configuration name="RumorHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.RumorHandler" />
       <module name="Epidemic data visualization system" />
@@ -193,6 +196,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JsoupHandler.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Epidemic data visualization system" />
       <extension name="coverage">
@@ -208,6 +224,9 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="travelPolicy.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Epidemic-data-visualization-system/Epidemic data visualization system/templates/travelPolicy.html" useBuiltInWebServerPort="true">
+      <method v="2" />
     </configuration>
     <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Epidemic data visualization system" />
@@ -226,20 +245,21 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.RumorHandler" />
+      <item itemvalue="Application.VaccinesHandler" />
       <item itemvalue="JUnit.JsoupHandler.test" />
       <item itemvalue="Spring Boot.MyApplication" />
-      <item itemvalue="应用程序.GraphHandler" />
-      <item itemvalue="应用程序.RumorHandler" />
-      <item itemvalue="应用程序.VaccinesHandler" />
+      <item itemvalue="JavaScript Debug.travelPolicy.html" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.travelPolicy.html" />
         <item itemvalue="Spring Boot.MyApplication" />
-        <item itemvalue="应用程序.GraphHandler" />
         <item itemvalue="JUnit.JsoupHandler.test" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -302,6 +322,8 @@
       <workItem from="1619147451758" duration="104000" />
       <workItem from="1619179490854" duration="285000" />
       <workItem from="1619275187512" duration="4895000" />
+      <workItem from="1619334251750" duration="464000" />
+      <workItem from="1619334740394" duration="17606000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -482,7 +504,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -550,56 +572,6 @@
     <MESSAGE value="day10完成疫情数据实时展示效果" />
     <MESSAGE value="Default Changelist" />
     <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="653" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1619284130224">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="653" y="247" key="#com.intellij.ide.util.MemberChooser/0.25.1680.1025@0.25.1680.1025" timestamp="1619284130224" />
-    <state width="1493" height="38" key="GridCell.Tab.0.bottom" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653702" />
-    <state width="1493" height="38" key="GridCell.Tab.0.center" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653702" />
-    <state width="1493" height="38" key="GridCell.Tab.0.left" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653701" />
-    <state width="1493" height="38" key="GridCell.Tab.0.right" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653702" />
-    <state width="1493" height="38" key="GridCell.Tab.1.bottom" timestamp="1619288988034">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619288988034" />
-    <state width="1638" height="296" key="GridCell.Tab.1.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653589" />
-    <state width="1493" height="38" key="GridCell.Tab.1.center" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.1.center/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653589" />
-    <state width="1493" height="38" key="GridCell.Tab.1.left" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.1.left/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653589" />
-    <state width="1493" height="38" key="GridCell.Tab.1.right" timestamp="1619288988033">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="38" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619288988033" />
-    <state width="1638" height="296" key="GridCell.Tab.1.right/0.25.1680.1025@0.25.1680.1025" timestamp="1619282653589" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1619277014012">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1619277014012" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

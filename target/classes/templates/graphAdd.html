@@ -2,12 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>全国新增和疑似折线图</title>
+    <title>疫情新增趋势</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 </head>
-<body onload="a()">
-<button onclick="a()">全国疫情新增趋势</button>
-<button onclick="b()">全球疫情新增趋势</button>
+<body onload="a()" class="graphAdd">
+<button type="button" class="btn btn3" onclick="a()" >全国疫情</br>新增趋势</button>
+<button type="button" class="btn btn4" onclick="b()" >全球疫情</br>新增趋势</button>
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
@@ -47,7 +49,7 @@
             orient: 'horizontal',//可设置vertical,
             x:'right',  //可设定图例在左、右、居中
             y:'top',  //可设定图例在上、下、居中
-            padding:[30,100,0,0],
+            padding:[30,130,0,0],
             data: ['新增确诊', '新增疑似']
         },
         xAxis: {
@@ -55,8 +57,10 @@
             data: JSON.parse(dateStr)
         },
         yAxis: [{
+            name: '新增确诊',
             type: 'value'
         },{
+            name: '新增疑似',
             type: 'value'
         }],
         series: [{
@@ -91,7 +95,7 @@
             orient: 'horizontal',//可设置vertical,
             x:'right',  //可设定图例在左、右、居中
             y:'top',  //可设定图例在上、下、居中
-            padding:[30,100,0,0],
+            padding:[30,130,0,0],
             data: ['新增确诊', '累计治愈']
         },
         xAxis: {
@@ -101,7 +105,7 @@
         yAxis: [
             {
                 name:"新增确诊数",
-            type: 'value'
+                type: 'value'
         },       {
                 name:"总治愈数",
                 type: 'value'

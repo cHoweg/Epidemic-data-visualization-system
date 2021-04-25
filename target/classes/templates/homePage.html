@@ -19,7 +19,7 @@
 </style>
 </head>
 
-<body>
+<body class="homePage">
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">疫情实时监控
             <span data-feather="globe"></span>
@@ -38,19 +38,19 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="http://localhost:8080/map" target="showmain">
                             <span data-feather="map-pin"></span>
-                            国内疫情地图
+                            国内疫情情况
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/graph" target="showmain">
                             <span data-feather="bar-chart-2"></span>
-                            国内现有确诊趋势
+                            现有确诊趋势
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/graphAdd" target="showmain">
                             <span data-feather="bar-chart"></span>
-                            国内疫情新增趋势
+                            疫情新增趋势
                         </a>
                     </li>
                     <li class="nav-item">
@@ -62,131 +62,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/graphColumnar" target="showmain">
                             <span data-feather="alert-triangle"></span>
-                            省市境外输入TOP10
+                            境外输入省市TOP10
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/cityData" target="showmain">
-                            <span data-feather="layers"></span>
+                            <span data-feather="map-pin"></span>
                             各省市疫情情况
                         </a>
                     </li>
-                   <!-- <li class="nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="nav-link">
-                            <span data-feather="layers"></span>
-                            各省市疫情情况
-                        </a>
-                        <div class="collapse" id="sidebarDashboards" >
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a class="nav-link-1" href="http://localhost:8080/cityData" target="showmain">北京</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">上海</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">天津</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">重庆</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">河北</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">山西</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">辽宁</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">吉林</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">黑龙江</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">江苏</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">浙江</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">安徽</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">福建</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">江西</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">山东</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">河南</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">湖北</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">湖南</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">广东</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">四川</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">贵州</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">云南</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">海南</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">陕西</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">甘肃</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">青海</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">广西</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">内蒙古</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">西藏</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">宁夏</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">新疆</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">香港</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">澳门</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-1" href="#" target="showmain">台湾</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/countryDetail" target="showmain">
                             <span data-feather="map-pin"></span>
-                            全球疫情地图
+                            全球疫情情况
                         </a>
                     </li>
                     <li class="nav-item">
@@ -205,6 +93,12 @@
                         <a class="nav-link" href="http://localhost:8080/rumors" target="showmain">
                             <span data-feather="layers"></span>
                             辟谣专区
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8080/travelPolicy" target="showmain">
+                            <span data-feather="layers"></span>
+                            出行政策
                         </a>
                     </li>
                 </ul>

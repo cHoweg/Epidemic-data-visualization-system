@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
     <script type="text/javascript" src="echarts/world.js"></script>
 </head>
-<body onload="a()">
-<div id="top" style="width: 1000px;height:100px;"></div>
-<button onclick="a()">累计确诊</button>
-<button onclick="b()">累计死亡</button>
-
-<div id="main" style="width: 1000px;height:700px;"></div>
+<body onload="a()" class="worldMap">
+<button type="button" class="btn btn5" onclick="a()">累计确诊</button>
+<button type="button" class="btn btn6" onclick="b()">累计死亡</button>
+<div id="top" style="width: 950px;height:100px;margin: auto;"></div>
+<div id="main" style="width: 1500px;height:850px;top:50px;left:-130px"></div>
 
 <script th:inline="javascript">
     var todayWorld=[[${todayWorld}]]
     str =`
-<span>累计确诊人数:${todayWorld["confirm"]}</span>
-<span>累计死亡人数:${todayWorld["dead"]}</span>
-<span>累计治愈人数:${todayWorld["heal"]}</span>
-<span>目前确诊人数:${todayWorld["nowConfirm"]}</span>
-
-`
+        <div class="div3">
+        <div class="span3" style="background-color:#fff4f4;"><span>累计确诊人数</br>${todayWorld["confirm"]}</span></div>
+        <div class="span3" style="background-color:#fff7f7;"><span>累计死亡人数</br>${todayWorld["dead"]}</span></div>
+        <div class="span3" style="background-color:#fffafa;"><span>累计治愈人数</br>${todayWorld["heal"]}</span></div>
+        <div class="span3" style="background-color:#fffcfc;"><span>目前确诊人数</br>${todayWorld["nowConfirm"]}</span></div>
+        </div>
+    `
     document.getElementById("top").innerHTML=str
-
-
-
-
-
-
 
     var dataStr=[[${worldBeansList}]]
     var AllCountData = [];
@@ -49,6 +44,14 @@
     var AllCountData_option = {
         title: {
             text: '世界疫情疫情累计确诊分布情况',
+            textStyle: {
+                color: "black", // 主标题文字的颜色。
+                fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+                fontWeight: "bolder", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'
+                fontFamily: "Serif", // 主标题文字的字体系列。
+                fontSize: 25, // 字体大小
+                lineHeight: "40", // 行高
+            },
             subtext: '仅供参考',
             x: 'center'
         },
@@ -61,21 +64,26 @@
                 name: '累计确诊',
                 type: 'map',
                 mapType: 'world',
-                roam: false,
+                //roam: false,
+                roam: true, //是否开启平游或缩放
+                scaleLimit: { //滚轮缩放的极限控制
+                    min: 1,
+                    max: 2
+                },
                 label: {
                     normal: {
                         // formatter: '{b}',
                         position: 'center',
                         show: false,
                         textStyle: {
-                            color: 'rgba(0,0,0,0.4)'
+                            color: 'rgba(0,0,0,1)'
                         }
                     },
                     emphasis: {
                         show: true,
-                        textStyle: {
+                        /**textStyle: {
                             color: 'rgb(252,19,0)'
-                        }
+                        }**/
                     }
                 },
                 data: AllCountData,
@@ -86,6 +94,14 @@
     var AllDeadData_option  = {
         title: {
             text: '世界疫情疫情累计死亡分布情况',
+            textStyle: {
+                color: "black", // 主标题文字的颜色。
+                fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+                fontWeight: "bolder", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'
+                fontFamily: "Serif", // 主标题文字的字体系列。
+                fontSize: 25, // 字体大小
+                lineHeight: "40", // 行高
+            },
             subtext: '仅供参考',
             x: 'center'
         },
@@ -98,21 +114,26 @@
                 name: '累计死亡',
                 type: 'map',
                 mapType: 'world',
-                roam: false,
+                //roam: false,
+                roam: true, //是否开启平游或缩放
+                scaleLimit: { //滚轮缩放的极限控制
+                    min: 1,
+                    max: 2
+                },
                 label: {
                     normal: {
                         // formatter: '{b}',
                         position: 'center',
                         show: false,
                         textStyle: {
-                            color: 'rgba(0,0,0,0.4)'
+                            color: 'rgba(0,0,0,1)'
                         }
                     },
                     emphasis: {
                         show: true,
-                        textStyle: {
+                        /*textStyle: {
                             color: 'rgb(255,10,10)'
-                        }
+                        }*/
                     }
                 },
                 data: AllDeadData,

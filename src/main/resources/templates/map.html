@@ -9,31 +9,31 @@
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript" src="echarts/china.js"></script>
 </head>
-<body onload="a()">
-
-
+<body onload="a()" class="map">
 <button type="button" class="btn btn1" onclick="a()">现有确诊</button>
 <button type="button" class="btn btn2" onclick="b()">累计确诊</button>
 <div id="top" style="width: 950px;height:100px;margin:auto;"></div>
-<div id="main" style="width: 950px;height:680px;margin:auto;"></div>
+<div id="main" style="width: 950px;height:680px;margin: auto;"></div>
 
 <script th:inline="javascript">
     var todayChina=[[${todayChina}]]
     console.log(todayChina)
     str =`
-<span>累计确诊人数:${todayChina["confirm"]}</span>
-<span>累计死亡人数:${todayChina["dead"]}</span>
-<span>累计治愈人数:${todayChina["heal"]}</span>
-<span>累计重症人数:${todayChina["importedCase"]}</span>
-<span>目前本土确诊人数:${todayChina["localConfirm"]}</span>
-<span>目前无症状感染人数:${todayChina["noInfect"]}</span>
-<span>目前确诊人数:${todayChina["nowConfirm"]}</span>
-<span>目前正在观察人数:${todayChina["nowSevere"]}</span>
-<span>目前疑似人数:${todayChina["suspect"]}</span>
+        <div class="div1">
+        <div class="span1" style="background-color:#fff4f4;"><span>累计确诊人数</br>${todayChina["confirm"]}</span></div>
+        <div class="span1" style="background-color:#fff7f7;"><span>累计死亡人数</br>${todayChina["dead"]}</span></div>
+        <div class="span1" style="background-color:#fffafa;"><span>累计治愈人数</br>${todayChina["heal"]}</span></div>
+        <div class="span1" style="background-color:#fffcfc;"><span>累计重症人数</br>${todayChina["importedCase"]}</span></div>
+        </div>
+        <div class="div2">
+        <div class="span2" style="background-color:#f1f5ff;"><span>目前本土确诊人数</br>${todayChina["localConfirm"]}</span></div>
+        <div class="span2" style="background-color:#f2f5fc;"><span>目前无症状感染人数</br>${todayChina["noInfect"]}</span></div>
+        <div class="span2" style="background-color:#f5f7fc;"><span>目前确诊人数</br>${todayChina["nowConfirm"]}</span></div>
+        <div class="span2" style="background-color:#f7f9fc;"><span>目前正在观察人数</br>${todayChina["nowSevere"]}</span></div>
+        <div class="span2" style="background-color:#fafbfc;"><span>目前疑似人数</br>${todayChina["suspect"]}</span></div>
+        </div>
 `
     document.getElementById("top").innerHTML=str
-
-
 
     var nowconfirm = [[${mapData}]];
     var count = [[${mapCountData}]];

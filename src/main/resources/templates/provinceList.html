@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>各地疫情数据</title>
-    <link rel="stylesheet" th:href="@{/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
     <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="echarts/echarts.min.js"></script>
 
 </head>
 
-<body class="pvl">
+<body class="provinceList">
 <form name="chooseProvince" style="width:1000px">
     <select class="select1" id="select1" name="select2" onchange="a()">
-        <option class="choose" ></option>
+        <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
         <option class="choose" value=38>全国</option>
         <option class="choose" value=0>香港</option>
         <option class="choose" value=1>云南</option>
@@ -53,7 +53,7 @@
         <option class="choose" value=35>重庆</option>
         <option class="choose" value=36>吉林</option>
     </select>
-    <input type="submit" id="submit1" onclick="a()" class="input1" style="display: none">
+    <input type="submit" id="submit1" onclick="a()" class="input1" >
 </form>
 
 <script type="text/javascript">

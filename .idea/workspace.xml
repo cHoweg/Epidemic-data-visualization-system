@@ -23,37 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/trans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/travelPolicy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_04__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_at_2021_4_19_20_05__Default_Changelist_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在检出之前未提交更改_at_2021_4_19_20_04_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在检出之前未提交更改_at_2021_4_19_20_05_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在检出之前未提交更改_at_2021_4_19_20_05_[Default_Changelist]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graph.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphAdd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphColumnar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/graphPie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/province.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/province.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rumors.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rumors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Rumors.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Rumors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphColumnar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphPie.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphPie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/province.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/province.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/provincelist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/provincelist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/worldmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +113,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JAVAIDEA/ECharts-nCoV-Map-main" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/item_BookShop" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -169,7 +150,7 @@
       <recent name="com.zoll.vinfo.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.travelPolicy.html">
+  <component name="RunManager" selected="Spring Boot.MyApplication">
     <configuration name="RumorHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zoll.vinfo.handller.RumorHandler" />
       <module name="Epidemic data visualization system" />
@@ -192,19 +173,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -247,14 +215,14 @@
     <list>
       <item itemvalue="Application.RumorHandler" />
       <item itemvalue="Application.VaccinesHandler" />
+      <item itemvalue="JavaScript Debug.travelPolicy.html" />
       <item itemvalue="JUnit.JsoupHandler.test" />
       <item itemvalue="Spring Boot.MyApplication" />
-      <item itemvalue="JavaScript Debug.travelPolicy.html" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.travelPolicy.html" />
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="JavaScript Debug.travelPolicy.html" />
         <item itemvalue="JUnit.JsoupHandler.test" />
       </list>
     </recent_temporary>
@@ -323,7 +291,11 @@
       <workItem from="1619179490854" duration="285000" />
       <workItem from="1619275187512" duration="4895000" />
       <workItem from="1619334251750" duration="464000" />
-      <workItem from="1619334740394" duration="17606000" />
+      <workItem from="1619334740394" duration="17929000" />
+      <workItem from="1619353250804" duration="808000" />
+      <workItem from="1619512432495" duration="14061000" />
+      <workItem from="1619528487178" duration="3584000" />
+      <workItem from="1619534703480" duration="3517000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -500,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619247589617</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Default Changelist">
+      <created>1619352910511</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1619352910511</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

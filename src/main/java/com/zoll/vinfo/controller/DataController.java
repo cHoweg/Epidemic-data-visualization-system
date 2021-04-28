@@ -217,25 +217,61 @@ public class DataController {
         return modelAndView;
     }
 
+
+
+
+//    @GetMapping("/vaccines")
+//    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id)
+//    {
+//        ModelAndView modelAndView = new ModelAndView();
+//        if (name == null && province_id == null) {
+//            List<CityBean> list = cityService.list();
+//            modelAndView.addObject("cityList", list);
+//        } else if (name == null && province_id != null) {
+//            List<String> cityList = cityService.findCityByProvinceId(province_id);
+//            modelAndView.addObject("cityList", cityList);
+//        } else {
+//            List<CityBean> list = cityService.list();
+//            modelAndView.addObject("provinceList", list);
+//            Integer id = cityService.findCityIdByName(name);
+//            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
+//            modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+//        }
+//        modelAndView.setViewName("vaccine");
+//        return modelAndView;
+//    }
     @GetMapping("/vaccines")
-    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id) {
+    public ModelAndView vaccines()
+    {
         ModelAndView modelAndView = new ModelAndView();
-        if (name == null && province_id == null) {
-            List<CityBean> list = cityService.list();
-            modelAndView.addObject("cityList", list);
-        } else if (name == null && province_id != null) {
-            List<String> cityList = cityService.findCityByProvinceId(province_id);
-            modelAndView.addObject("cityList", cityList);
-        } else {
-            List<CityBean> list = cityService.list();
-            modelAndView.addObject("provinceList", list);
-            Integer id = cityService.findCityIdByName(name);
-            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
-            modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
-        }
-        modelAndView.setViewName("vaccine");
-        return modelAndView;
+            List<CityBean> provinceList = cityService.list();
+            modelAndView.addObject("provinceList", provinceList);
+
+            modelAndView.setViewName("vaccine");
+            return modelAndView;
     }
+
+    @RequestMapping("/vaccinesCity")
+    @ResponseBody
+    public List vaccinesCity(Integer id)
+    {
+        List<String> cityList = cityService.findCityByProvinceId(id);
+        return cityList;
+    }
+
+    @RequestMapping("/vaccinesDetail")
+    @ResponseBody
+    public List vaccinesDetail(String name)
+    {
+        int cityid = cityService.findCityIdByName(name);
+        List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(cityid);
+        return VaccinesBeansList;
+    }
+
+
+
+
+
 
 
     @GetMapping("/travel")
@@ -288,6 +324,7 @@ public class DataController {
     }
 
     @GetMapping("/cityData")
+    @ResponseBody
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         List<DataBean> dataList = dataService.list();
@@ -309,6 +346,8 @@ public class DataController {
     }
 
 
+
+
     @GetMapping("/chinaData")
     public ModelAndView chinaData() {
         ModelAndView modelAndView = new ModelAndView();
@@ -317,31 +356,35 @@ public class DataController {
     }
 
 
+
     @GetMapping("/worldDataDetail")
-    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id)
+    {
         ModelAndView modelAndView = new ModelAndView();
 
-        List<WorldDataBean> worldDataBeanList = worldDataService.list();
-        modelAndView.addObject("worldBeansList1", worldDataBeanList);
-        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
-        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+            List<WorldDataBean> worldDataBeanList = worldDataService.list();
+            modelAndView.addObject("worldBeansList1", worldDataBeanList);
+            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+            modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
         modelAndView.setViewName("worldList");
 
         return modelAndView;
     }
-
-
     @RequestMapping("/worldDetail")
     @ResponseBody
-    public List worldData(String id) {
-        if (id == null || id.equals("8")) {
+    public List worldData(String id)
+    {
+        if (id == null||id.equals("8")) {
             List<WorldDataBean> worldDataBeanList = worldDataService.list();
             return worldDataBeanList;
         } else {
             List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(Integer.parseInt(id));
             return worldDataDetailBeanBeanList;
+
         }
     }
+
+
 
 
     @GetMapping("/countryDetail")

@@ -9,93 +9,50 @@
 
 </head>
 <body class="news">
-<script type="text/javascript">
-    var province = function () {
-        var e = document.createEvent("MouseEvents");
-        e.initEvent("click", true, true);
-        document.getElementById("pushprovince").dispatchEvent(e);
-    }
-    // var city = function () {
-    //     var e = document.createEvent("MouseEvents");
-    //     e.initEvent("click", true, true);
-    //     document.getElementById("submit2").dispatchEvent(e);
-    // }
 
-    //     //     <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
-    //     // <option class="choose" value=38>全国</option>
-    //     // <option class="choose" value=0>香港</option>
-    //     // <option class="choose" value=1>云南</option>
-    //     // <option class="choose" value=2>上海</option>
-    //     // <option class="choose" value=3>广东</option>
-    //     // <option class="choose" value=4>台湾</option>
-    //     // <option class="choose" value=5>福建</option>
-    //     // <option class="choose" value=6>四川</option>
-    //     // <option class="choose" value=7>陕西</option>
-    //     // <option class="choose" value=8>北京</option>
-    //     // <option class="choose" value=9>山西</option>
-    //     // <option class="choose" value=10>江苏</option>
-    //     // <option class="choose" value=11>山东</option>
-    //     // <option class="choose" value=12>浙江</option>
-    //     // <option class="choose" value=13>天津</option>
-    //     // <option class="choose" value=14>河南</option>
-    //     // <option class="choose" value=15>湖南</option>
-    //     // <option class="choose" value=16>广西</option>
-    //     // <option class="choose" value=17>湖北</option>
-    //     // <option class="choose" value=18>内蒙古</option>
-    //     // <option class="choose" value=19>辽宁</option>
-    //     // <option class="choose" value=20>广西</option>
-    //     // <option class="choose" value=21>湖北</option>
-    //     // <option class="choose" value=22>内蒙古</option>
-    //     // <option class="choose" value=23>辽宁</option>
-    //     // <option class="choose" value=24>甘肃</option>
-    //     // <option class="choose" value=25>澳门</option>
-    //     // <option class="choose" value=26>西藏</option>
-    //     // <option class="choose" value=27>贵州</option>
-    //     // <option class="choose" value=28>青海</option>
-    //     // <option class="choose" value=29>新疆</option>
-    //     // <option class="choose" value=30>江西</option>
-    //     // <option class="choose" value=31>海南</option>
-    //     // <option class="choose" value=32>黑龙江</option>
-    //     // <option class="choose" value=33>宁夏</option>
-    //     // <option class="choose" value=34>安徽</option>
-    //     // <option class="choose" value=35>重庆</option>
-    //     // <option class="choose" value=36>吉林</option>
+    选择省份：<select id="selectprovince" name="selectprovince" onchange="cityid()"></select>
+<script type="text/javascript" th:inline="javascript">
+    //获得省名
+        var provinceList=[[${provinceList}]]
+        var getprovincename=[];
+        for (var i = 0; i < provinceList.length; i++) {
+            getprovincename.push(provinceList[i]["province"]);
 
-        $("#selectprovince").click(console.log($("#selectprovince").val()))
+        }
+        var hash=[];
+        for (var i = 0; i < getprovincename.length; i++) {
+            if(getprovincename.indexOf(getprovincename[i])==i){
+                hash.push(getprovincename[i]);
+            }
+        }
+        var str=`<option></option>`
+        for(var i=0;i<hash.length;i++)
+        {
+            str+=`<option value="${i+1}">${hash[i]}</option>`
+        }
+        document.getElementById("selectprovince").innerHTML=str
 </script>
 
-
-<script type="text/javascript">
-    var a = function () {
+    选择城市：<select id="selectcity" name="selectcity" onchange="detail()"></select>
+<script type="text/javascript" th:inline="javascript">
+    //城市ajax
+    var cityid = function () {
         var id = $("#selectprovince").val()
         $.post({
-            url: "/cityDataDetail",
+            url: "/vaccinesCity",
             data: {"id":id},
             success: function (data) {
-                console.log(data)
-                var str=``
+                var str=`<option></option>`
                 for(var i=0;i<data.length;i++)
                 {
-
+                    str+=`<option value="${data[i]}">${data[i]}</option>`
                 }
-                document.getElementById("tbodyId").innerHTML=str;
+                document.getElementById("selectcity").innerHTML=str
             },
             error: function () {
             },
         })}
 </script>
-
-
-    选择省份：<select id="selectprovince" name="selectprovince" >
-
-    </select>
-
-
-
-    选择城市：<select id="select2" name="selectcity">
-    </select>
-
-
 
 
 
@@ -115,43 +72,39 @@
         </div>
     </div>
 </div>
-</body>
-
-<script type="text/javascript" th:inline="javascript">
-
-    // var A=[[${vaccinesBeansList}]]
-    // console.log(A)
-    // var str=``;
-    // for(var i=0;i<A.length;i++)
-    // {
-    //     str+=`<a class="list-group-item list-group-item-action">
-    //                             <span  class="text" id="1">
-    //                             <p>新闻标题：${A[i]}</p>
-    //                             <p>新闻来源：${A[i]}</p>
-    //                             <p>发布时间：${A[i]}</p>
-    //                             <p>主要内容：${A[i]}</p>
-    //                             </span>
-    //                         </a>`
-
-    // }
-    // document.getElementById('list-group1').innerHTML = str
-
-
-    var A=[[${cityList}]]
-    console.log(A)
-    var str=``;
-    for(var i=0;i<A.length;i++)
-    {
-        str+=`<a class="list-group-item list-group-item-action">
-                                <span  class="text" id="1">
-                                <p>新闻标题：${A[i]}</p>
-                                <p>新闻来源：${A[i]}</p>
-                                <p>发布时间：${A[i]}</p>
-                                <p>主要内容：${A[i]}</p>
+    <script type="text/javascript" th:inline="javascript">
+      //接种地址ajax
+      var detail=
+          function()
+          {
+              var name=$("#selectcity").val()
+              $.post({
+                  url: "/vaccinesDetail",
+                  data: {"name":name},
+                  success: function (data) {
+                      console.log(data)
+                      var str=``
+                      for(var i=0;i<data.length;i++)
+                      {
+                          str+=`<a class="list-group-item list-group-item-action">
+                                <span class="text">
+                                <p>机构名称：${data[i].name}</p>
+                                <p>机构地址：${data[i].address}</p>
+                                <p>联系方式：${data[i].phone}</p>
                                 </span>
                             </a>`
+                      }
+                      document.getElementById("list-group1").innerHTML=str
+                  },
+                  error: function () {
+                  },
+              })
+          }
+    </script>
 
-    }
-    document.getElementById('list-group1').innerHTML = str
-</script>
+
+</body>
+
+
+
 </html>

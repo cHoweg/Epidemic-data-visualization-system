@@ -9,8 +9,9 @@
     <script type="text/javascript" src="echarts/world.js"></script>
 </head>
 <body onload="a()" class="worldMap">
-<button type="button" class="btn btn5" onclick="a()">累计确诊</button>
+<button type="button" class="btn btn5" onclick="a()">现存确诊</button>
 <button type="button" class="btn btn6" onclick="b()">累计死亡</button>
+
 <div id="top" style="width: 950px;height:100px;margin: auto;"></div>
 <div id="main" style="width: 1500px;height:850px;top:50px;left:-130px"></div>
 
@@ -29,7 +30,7 @@
     var dataStr=[[${worldBeansList}]]
     var AllCountData = [];
     var AllDeadData = [];
-
+    var NowCountData=[];
     for(var i=0;i<dataStr.length;i++)
     {
         AllCountData.push({   name:dataStr[i].provinceProvinceName,
@@ -39,11 +40,13 @@
             name:dataStr[i].provinceProvinceName,
             value:dataStr[i].provinceDeadCount
         })
+
+
     }
 
     var AllCountData_option = {
         title: {
-            text: '世界疫情疫情累计确诊分布情况',
+            text: '世界疫情疫情现存确诊分布情况',
             textStyle: {
                 color: "black", // 主标题文字的颜色。
                 fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
@@ -61,7 +64,7 @@
 
         series: [
             {
-                name: '累计确诊',
+                name: '现存确诊',
                 type: 'map',
                 mapType: 'world',
                 //roam: false,
@@ -147,6 +150,7 @@
 
     function a(){chart.setOption(AllCountData_option,true)}
     function b(){chart.setOption(AllDeadData_option,true)}
+
 </script>
 
 </body>

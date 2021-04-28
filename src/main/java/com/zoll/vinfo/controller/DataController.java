@@ -12,7 +12,9 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.Console;
@@ -293,6 +295,7 @@ public class DataController {
     }
 
     @GetMapping("/cityData")
+    @ResponseBody
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -310,6 +313,23 @@ public class DataController {
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
+
+    @RequestMapping("/cityDataDetail")
+    @ResponseBody
+    public List cityDataDetail(String id) {
+        if (id == null || id.equals("38")) {
+            List<DataBean> dataList = dataService.list();
+            System.out.println("++++++"+id+dataList);
+            return dataList;
+        } else {
+            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(Integer.parseInt(id));
+            System.out.println("++++++"+id+cityDataById);
+            return cityDataById;
+        }
+    }
+
+
+
 
     @GetMapping("/chinaData")
     public ModelAndView chinaData() {

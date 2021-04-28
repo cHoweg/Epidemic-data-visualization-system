@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body class="news">
+<script type="text/javascript">
+    var province = function () {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("pushprovince").dispatchEvent(e);
+    }
+    // var city = function () {
+    //     var e = document.createEvent("MouseEvents");
+    //     e.initEvent("click", true, true);
+    //     document.getElementById("submit2").dispatchEvent(e);
+    // }
+
+    //     //     <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+    //     // <option class="choose" value=38>全国</option>
+    //     // <option class="choose" value=0>香港</option>
+    //     // <option class="choose" value=1>云南</option>
+    //     // <option class="choose" value=2>上海</option>
+    //     // <option class="choose" value=3>广东</option>
+    //     // <option class="choose" value=4>台湾</option>
+    //     // <option class="choose" value=5>福建</option>
+    //     // <option class="choose" value=6>四川</option>
+    //     // <option class="choose" value=7>陕西</option>
+    //     // <option class="choose" value=8>北京</option>
+    //     // <option class="choose" value=9>山西</option>
+    //     // <option class="choose" value=10>江苏</option>
+    //     // <option class="choose" value=11>山东</option>
+    //     // <option class="choose" value=12>浙江</option>
+    //     // <option class="choose" value=13>天津</option>
+    //     // <option class="choose" value=14>河南</option>
+    //     // <option class="choose" value=15>湖南</option>
+    //     // <option class="choose" value=16>广西</option>
+    //     // <option class="choose" value=17>湖北</option>
+    //     // <option class="choose" value=18>内蒙古</option>
+    //     // <option class="choose" value=19>辽宁</option>
+    //     // <option class="choose" value=20>广西</option>
+    //     // <option class="choose" value=21>湖北</option>
+    //     // <option class="choose" value=22>内蒙古</option>
+    //     // <option class="choose" value=23>辽宁</option>
+    //     // <option class="choose" value=24>甘肃</option>
+    //     // <option class="choose" value=25>澳门</option>
+    //     // <option class="choose" value=26>西藏</option>
+    //     // <option class="choose" value=27>贵州</option>
+    //     // <option class="choose" value=28>青海</option>
+    //     // <option class="choose" value=29>新疆</option>
+    //     // <option class="choose" value=30>江西</option>
+    //     // <option class="choose" value=31>海南</option>
+    //     // <option class="choose" value=32>黑龙江</option>
+    //     // <option class="choose" value=33>宁夏</option>
+    //     // <option class="choose" value=34>安徽</option>
+    //     // <option class="choose" value=35>重庆</option>
+    //     // <option class="choose" value=36>吉林</option>
+
+        $("#selectprovince").click(console.log($("#selectprovince").val()))
+</script>
+
+
+<script type="text/javascript">
+    // var provincelist=[[${provincelist}]]
+    // var str=``
+    // for(var i=0;i<provincelist.length;i++)
+    // {
+    //     if(provincelist[i].province != provincelist[i+1].province)
+    //     {
+    //         str+=`<option th:text="${provincelist[i].province}"></option>`
+    //     }
+    //     document.getElementById("selectprovince").innerHTML=str
+    // }
+</script>
+<form name="chooseProvince" style="width:1000px">
+    选择省份：<select id="selectprovince" name="selectprovince" >
+    </select>
+    <input type="submit" id="pushprovince" class="pushprovince" style="display: inline">
+</form>
+
+    <form name="choosecity" style="width:1000px">
+    选择城市：<select id="select2" name="selectcity">
+    </select>
+    <input type="submit" id="submit2" class="input1" value="a" style="display: inline">
+</form>
+
+
+
+
+<div class="box">
+    <div class="box2">
+        <div class="size">
+            <div class="form">
+                <div class="form-header">疫苗接种地址</div>
+                <div class="form-body">
+                    <div>
+                        <div class="list-group" id="list-group1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" th:inline="javascript">
+
+    // var A=[[${vaccinesBeansList}]]
+    // console.log(A)
+    // var str=``;
+    // for(var i=0;i<A.length;i++)
+    // {
+    //     str+=`<a class="list-group-item list-group-item-action">
+    //                             <span  class="text" id="1">
+    //                             <p>新闻标题：${A[i]}</p>
+    //                             <p>新闻来源：${A[i]}</p>
+    //                             <p>发布时间：${A[i]}</p>
+    //                             <p>主要内容：${A[i]}</p>
+    //                             </span>
+    //                         </a>`
+
+    // }
+    // document.getElementById('list-group1').innerHTML = str
+
+
+    var A=[[${cityList}]]
+    console.log(A)
+    var str=``;
+    for(var i=0;i<A.length;i++)
+    {
+        str+=`<a class="list-group-item list-group-item-action">
+                                <span  class="text" id="1">
+                                <p>新闻标题：${A[i]}</p>
+                                <p>新闻来源：${A[i]}</p>
+                                <p>发布时间：${A[i]}</p>
+                                <p>主要内容：${A[i]}</p>
+                                </span>
+                            </a>`
+
+    }
+    document.getElementById('list-group1').innerHTML = str
+</script>
+</html>

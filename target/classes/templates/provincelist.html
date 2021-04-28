@@ -11,7 +11,7 @@
 </head>
 
 <body class="provinceList">
-<form name="chooseProvince" style="width:1000px">
+<!--<form name="chooseProvince" style="width:1000px">-->
     <select class="select1" id="select1" name="select2" onchange="a()">
         <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
         <option class="choose" value=38>全国</option>
@@ -53,27 +53,36 @@
         <option class="choose" value=35>重庆</option>
         <option class="choose" value=36>吉林</option>
     </select>
-    <input type="submit" id="submit1" onclick="a()" class="input1" >
-</form>
+<!--    <input type="submit" id="submit1" onclick="a()" class="input1" >-->
+<!--</form>-->
 
 <script type="text/javascript">
     var a = function () {
         var id = $("#select1").val()
-        $.ajax({
-            url: "/cityData",
-            type: 'post',
-            data: JSON.stringify({id: id}),
-            dataType: 'text',
-            contentType: 'text/xml',
+        $.post({
+            url: "/cityDataDetail",
+            data: {"id":id},
             success: function (data) {
-                alert(data)
+                console.log(data)
+                var str=``
+                for(var i=0;i<data.length;i++)
+                {
+                    str+=`<tr class="pvl" id="0">
+        <td class="list2" id="1">${data[i].area}</td>
+        <td class="list2" id="2">${data[i].nowConfirm}</td>
+        <td class="list2" id="3">${data[i].confirm}</td>
+        <td class="list2" id="4">${data[i].heal}</td>
+        <td class="list2" id="5">${data[i].dead}</td>
+    </tr>`
+                }
+                document.getElementById("tbodyId").innerHTML=str;
             },
             error: function () {
             },
         })
-        var e = document.createEvent("MouseEvents");
-        e.initEvent("click", true, true);
-        document.getElementById("submit1").dispatchEvent(e);
+        // var e = document.createEvent("MouseEvents");
+        // e.initEvent("click", true, true);
+        // document.getElementById("submit1").dispatchEvent(e);
 
     }
 </script>

@@ -66,28 +66,35 @@
 
 
 <script type="text/javascript">
-    // var provincelist=[[${provincelist}]]
-    // var str=``
-    // for(var i=0;i<provincelist.length;i++)
-    // {
-    //     if(provincelist[i].province != provincelist[i+1].province)
-    //     {
-    //         str+=`<option th:text="${provincelist[i].province}"></option>`
-    //     }
-    //     document.getElementById("selectprovince").innerHTML=str
-    // }
-</script>
-<form name="chooseProvince" style="width:1000px">
-    选择省份：<select id="selectprovince" name="selectprovince" >
-    </select>
-    <input type="submit" id="pushprovince" class="pushprovince" style="display: inline">
-</form>
+    var a = function () {
+        var id = $("#selectprovince").val()
+        $.post({
+            url: "/cityDataDetail",
+            data: {"id":id},
+            success: function (data) {
+                console.log(data)
+                var str=``
+                for(var i=0;i<data.length;i++)
+                {
 
-    <form name="choosecity" style="width:1000px">
+                }
+                document.getElementById("tbodyId").innerHTML=str;
+            },
+            error: function () {
+            },
+        })}
+</script>
+
+
+    选择省份：<select id="selectprovince" name="selectprovince" >
+
+    </select>
+
+
+
     选择城市：<select id="select2" name="selectcity">
     </select>
-    <input type="submit" id="submit2" class="input1" value="a" style="display: inline">
-</form>
+
 
 
 

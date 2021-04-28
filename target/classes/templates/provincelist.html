@@ -12,49 +12,56 @@
 
 <body class="provinceList">
 <!--<form name="chooseProvince" style="width:1000px">-->
-    <select class="select1" id="select1" name="select2" onchange="a()">
-        <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
-        <option class="choose" value=38>全国</option>
-        <option class="choose" value=0>香港</option>
-        <option class="choose" value=1>云南</option>
-        <option class="choose" value=2>上海</option>
-        <option class="choose" value=3>广东</option>
-        <option class="choose" value=4>台湾</option>
-        <option class="choose" value=5>福建</option>
-        <option class="choose" value=6>四川</option>
-        <option class="choose" value=7>陕西</option>
-        <option class="choose" value=8>北京</option>
-        <option class="choose" value=9>山西</option>
-        <option class="choose" value=10>江苏</option>
-        <option class="choose" value=11>山东</option>
-        <option class="choose" value=12>浙江</option>
-        <option class="choose" value=13>天津</option>
-        <option class="choose" value=14>河南</option>
-        <option class="choose" value=15>湖南</option>
-        <option class="choose" value=16>广西</option>
-        <option class="choose" value=17>湖北</option>
-        <option class="choose" value=18>内蒙古</option>
-        <option class="choose" value=19>辽宁</option>
-        <option class="choose" value=20>广西</option>
-        <option class="choose" value=21>湖北</option>
-        <option class="choose" value=22>内蒙古</option>
-        <option class="choose" value=23>辽宁</option>
-        <option class="choose" value=24>甘肃</option>
-        <option class="choose" value=25>澳门</option>
-        <option class="choose" value=26>西藏</option>
-        <option class="choose" value=27>贵州</option>
-        <option class="choose" value=28>青海</option>
-        <option class="choose" value=29>新疆</option>
-        <option class="choose" value=30>江西</option>
-        <option class="choose" value=31>海南</option>
-        <option class="choose" value=32>黑龙江</option>
-        <option class="choose" value=33>宁夏</option>
-        <option class="choose" value=34>安徽</option>
-        <option class="choose" value=35>重庆</option>
-        <option class="choose" value=36>吉林</option>
-    </select>
+<!--    <select class="select1" id="select1" name="select2" onchange="a()">-->
+<!--        <option selected="selected" disabled="disabled"  style='display: none' value=''></option>-->
+<!--        <option class="choose" value=38>全国</option>-->
+<!--        <option class="choose" value=0>香港</option>-->
+<!--        <option class="choose" value=1>云南</option>-->
+<!--        <option class="choose" value=2>上海</option>-->
+<!--        <option class="choose" value=3>广东</option>-->
+<!--        <option class="choose" value=4>台湾</option>-->
+<!--        <option class="choose" value=5>福建</option>-->
+<!--        <option class="choose" value=6>四川</option>-->
+<!--        <option class="choose" value=7>陕西</option>-->
+<!--        <option class="choose" value=8>北京</option>-->
+<!--        <option class="choose" value=9>山西</option>-->
+<!--        <option class="choose" value=10>江苏</option>-->
+<!--        <option class="choose" value=11>山东</option>-->
+<!--        <option class="choose" value=12>浙江</option>-->
+<!--        <option class="choose" value=13>天津</option>-->
+<!--        <option class="choose" value=14>河南</option>-->
+<!--        <option class="choose" value=15>湖南</option>-->
+<!--        <option class="choose" value=16>广西</option>-->
+<!--        <option class="choose" value=17>湖北</option>-->
+<!--        <option class="choose" value=18>内蒙古</option>-->
+<!--        <option class="choose" value=19>辽宁</option>-->
+<!--        <option class="choose" value=20>广西</option>-->
+<!--        <option class="choose" value=21>湖北</option>-->
+<!--        <option class="choose" value=22>内蒙古</option>-->
+<!--        <option class="choose" value=23>辽宁</option>-->
+<!--        <option class="choose" value=24>甘肃</option>-->
+<!--        <option class="choose" value=25>澳门</option>-->
+<!--        <option class="choose" value=26>西藏</option>-->
+<!--        <option class="choose" value=27>贵州</option>-->
+<!--        <option class="choose" value=28>青海</option>-->
+<!--        <option class="choose" value=29>新疆</option>-->
+<!--        <option class="choose" value=30>江西</option>-->
+<!--        <option class="choose" value=31>海南</option>-->
+<!--        <option class="choose" value=32>黑龙江</option>-->
+<!--        <option class="choose" value=33>宁夏</option>-->
+<!--        <option class="choose" value=34>安徽</option>-->
+<!--        <option class="choose" value=35>重庆</option>-->
+<!--        <option class="choose" value=36>吉林</option>-->
+<!--    </select>-->
 <!--    <input type="submit" id="submit1" onclick="a()" class="input1" >-->
 <!--</form>-->
+
+
+
+<select class="select1" id="select1" name="select2" onchange="a()">
+    <option value="38">全国</option>
+    <option th:each="data:${cityDataById}"  th:value="${dataStat.index}" th:text="${data.area}"></option>
+</select>
 
 <script type="text/javascript">
     var a = function () {
@@ -68,11 +75,11 @@
                 for(var i=0;i<data.length;i++)
                 {
                     str+=`<tr class="pvl" id="0">
-        <td class="list2" id="1">${data[i].area}</td>
-        <td class="list2" id="2">${data[i].nowConfirm}</td>
-        <td class="list2" id="3">${data[i].confirm}</td>
-        <td class="list2" id="4">${data[i].heal}</td>
-        <td class="list2" id="5">${data[i].dead}</td>
+        <td class="list2" >${data[i].area}</td>
+        <td class="list2" >${data[i].nowConfirm}</td>
+        <td class="list2" >${data[i].confirm}</td>
+        <td class="list2" >${data[i].heal}</td>
+        <td class="list2" >${data[i].dead}</td>
     </tr>`
                 }
                 document.getElementById("tbodyId").innerHTML=str;
@@ -85,6 +92,7 @@
         // document.getElementById("submit1").dispatchEvent(e);
 
     }
+
 </script>
 
 
@@ -100,11 +108,11 @@
     </thead>
     <tbody id="tbodyId">
     <tr class="pvl" id="0" th:each="data:${cityDataById}">
-        <td class="list2" id="1" th:text="${data.area}"></td>
-        <td class="list2" id="2" th:text="${data.nowConfirm}"></td>
-        <td class="list2" id="3" th:text="${data.confirm}"></td>
-        <td class="list2" id="4" th:text="${data.heal}"></td>
-        <td class="list2" id="5" th:text="${data.dead}"></td>
+        <td class="list2" id="111" th:text="${data.area}"></td>
+        <td class="list2" id="222" th:text="${data.nowConfirm}"></td>
+        <td class="list2" id="333" th:text="${data.confirm}"></td>
+        <td class="list2" id="444" th:text="${data.heal}"></td>
+        <td class="list2" id="555" th:text="${data.dead}"></td>
     </tr>
     </tbody>
 </table>

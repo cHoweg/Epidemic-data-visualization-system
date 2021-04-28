@@ -12,36 +12,47 @@
 
 <body style="background-color:#a6e1ec;" class="worldList">
 
-<form name="chooseprovince" style="width:200px">
+
     <select  id="select1" name="select3" onchange="a()">
-        <option ></option>
         <option value=8>全球</option>
-        <option value=0>亚洲</option>
-        <option value=1>欧洲</option>
-        <option value=2>北美洲</option>
-        <option value=3>南美洲</option>
-        <option value=4>非洲</option>
-        <option value=5>大洋洲</option>
-        <option value=6>其他</option>
+        <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
     </select>
-    <input type="submit" id="submit1" onclick="a()" style="display: none">
-</form>
+
 <script type="text/javascript" th:inline="javascript">
     var a=function(){
         var id=$("#select1").val()
-        $.ajax({
-            url: "/worldDataDetail",
-            type: 'post',
-            data: JSON.stringify({id:id}),
-            dataType:'text',
-            contentType: 'text/xml',
-            success: function(data){ alert(data) },
+        $.post({
+            url: "/worldDetail",
+            data: {"id":id},
+            success: function(data)
+            {
+                var str=``
+                console.log(data)
+                for(var i=0;i<data.length;i++)
+                {
+                    if(id!=8){
+                    str+=`
+ <tr>
+        <td >${data[i].provinceProvinceName}</td>
+        <td >${data[i].provinceConfirmedCount}</td>
+        <td >${data[i].provinceCuredCount}</td>
+        <td >${data[i].provinceDeadCount}</td>
+        </tr>
+`}
+                    else{
+                        str+=`
+ <tr>
+        <td >${data[i].continentName}</td>
+        <td >${data[i].confirmedCount}</td>
+        <td >${data[i].curedCount}</td>
+        <td >${data[i].deadCount}</td>
+        </tr>
+`}
+                }
+                document.getElementById("tbody_list").innerHTML=str
+            },
             error: function () {},
         })
-        var e = document.createEvent("MouseEvents");
-        e.initEvent("click", true, true);
-        document.getElementById("submit1").dispatchEvent(e);
-
     }
 </script>
 <table class="table table-hover">
@@ -54,12 +65,6 @@
     </tr>
     </thead>
     <tbody id="tbody_list">
-    <tr id="0" th:each="data:${worldBeansList}">
-             <td id="1" th:text="${data.provinceProvinceName}">name</td>
-             <td id="2" th:text="${data.provinceConfirmedCount}">nowConfirm</td>
-             <td id="4" th:text="${data.provinceCuredCount}">heal</td>
-             <td id="5" th:text="${data.provinceDeadCount}">dead</td>
-    </tr>
     <tr id="6" th:each="data:${worldBeansList1}">
         <td id="7" th:text="${data.continentName}">name</td>
         <td id="8" th:text="${data.confirmedCount}">nowConfirm</td>

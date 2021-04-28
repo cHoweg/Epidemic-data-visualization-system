@@ -10,60 +10,66 @@
 
 </head>
 
-<body class="worldList">
-<form name="chooseProvince" style="width:1000px">
-    <select class="select1"  id="select1" name="select3" onchange="a()">
-        <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+<body style="background-color:#a6e1ec;" class="worldList">
+
+
+    <select  id="select1" name="select3" onchange="a()">
         <option value=8>全球</option>
-        <option value=0>亚洲</option>
-        <option value=1>欧洲</option>
-        <option value=2>北美洲</option>
-        <option value=3>南美洲</option>
-        <option value=4>非洲</option>
-        <option value=5>大洋洲</option>
-        <option value=6>其他</option>
+        <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
     </select>
-    <input type="submit" id="submit1" onclick="a()" class="input1">
-</form>
+
 <script type="text/javascript" th:inline="javascript">
     var a=function(){
         var id=$("#select1").val()
-        $.ajax({
-            url: "/worldDataDetail",
-            type: 'post',
-            data: JSON.stringify({id:id}),
-            dataType:'text',
-            contentType: 'text/xml',
-            success: function(data){ alert(data) },
+        $.post({
+            url: "/worldDetail",
+            data: {"id":id},
+            success: function(data)
+            {
+                var str=``
+                console.log(data)
+                for(var i=0;i<data.length;i++)
+                {
+                    if(id!=8){
+                    str+=`
+ <tr>
+        <td >${data[i].provinceProvinceName}</td>
+        <td >${data[i].provinceConfirmedCount}</td>
+        <td >${data[i].provinceCuredCount}</td>
+        <td >${data[i].provinceDeadCount}</td>
+        </tr>
+`}
+                    else{
+                        str+=`
+ <tr>
+        <td >${data[i].continentName}</td>
+        <td >${data[i].confirmedCount}</td>
+        <td >${data[i].curedCount}</td>
+        <td >${data[i].deadCount}</td>
+        </tr>
+`}
+                }
+                document.getElementById("tbody_list").innerHTML=str
+            },
             error: function () {},
         })
-        var e = document.createEvent("MouseEvents");
-        e.initEvent("click", true, true);
-        document.getElementById("submit1").dispatchEvent(e);
-
     }
 </script>
-<table class="table table-hover table1">
+<table class="table table-hover">
     <thead>
     <tr>
-        <th><p class="list1">国家/大洲</p></th>
-        <th><p class="list1">现有确诊</p></th>
-        <th><p class="list1">治愈</p></th>
-        <th><p class="list1">死亡</p></th>
+        <th><p>国家/大洲</p></th>
+        <th><p>现有确诊</p></th>
+        <th><p>治愈</p></th>
+        <th><p>死亡</p></th>
     </tr>
     </thead>
     <tbody id="tbody_list">
-    <tr class="pvl" id="0" th:each="data:${worldBeansList}">
-         <td class="list2" id="1" th:text="${data.provinceProvinceName}">name</td>
-         <td class="list2" id="2" th:text="${data.provinceConfirmedCount}">nowConfirm</td>
-         <td class="list2" id="4" th:text="${data.provinceCuredCount}">heal</td>
-         <td class="list2" id="5" th:text="${data.provinceDeadCount}">dead</td>
-    </tr>
-    <tr class="pvl" id="6" th:each="data:${worldBeansList1}">
-        <td class="list2" id="7" th:text="${data.continentName}">name</td>
-        <td class="list2" id="8" th:text="${data.confirmedCount}">nowConfirm</td>
-        <td class="list2" id="9" th:text="${data.curedCount}">heal</td>
-        <td class="list2" id="10" th:text="${data.deadCount}">dead</td>
+    <tr id="6" th:each="data:${worldBeansList1}">
+        <td id="7" th:text="${data.continentName}">name</td>
+        <td id="8" th:text="${data.confirmedCount}">nowConfirm</td>
+        <td id="9" th:text="${data.curedCount}">heal</td>
+        <td id="10" th:text="${data.deadCount}">dead</td>
     </tr>
     </tbody>
 </table>

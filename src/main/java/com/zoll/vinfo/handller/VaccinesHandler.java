@@ -15,17 +15,17 @@ import java.util.Map;
  * @DATE: 2021/4/17 上午11:57
  */
 public class VaccinesHandler {
-    public static String urlStr = "http://apis.juhe.cn/springTravel/hsjg?key=2a045db4716657a67be6f8340405c6f8&city_id=";
     //public static String key="2a045db4716657a67be6f8340405c6f8";
     //public static int city_id=xxxxxx;
 
     public static void main(String[] args) {
-
+        List<VaccinesBean> data = getData(10034);
+        System.out.println(data);
     }
 
 
     public static List<VaccinesBean> getData(Integer id) {
-
+        String urlStr = "http://apis.juhe.cn/springTravel/hsjg?key=2a045db4716657a67be6f8340405c6f8&city_id=";
         /**
          * 分析json字符串对数据进行筛选和提取
          */

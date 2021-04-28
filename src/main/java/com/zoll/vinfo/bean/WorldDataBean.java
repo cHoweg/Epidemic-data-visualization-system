@@ -14,7 +14,7 @@ public class WorldDataBean implements Serializable {
 
     //大洲疫情地区id
     private int countryId ;
-     //大洲疫情地区
+    //大洲疫情地区
     private String continentName;
     //大洲现存确诊人数
     private int confirmedCount;

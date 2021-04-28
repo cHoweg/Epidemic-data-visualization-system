@@ -10,11 +10,11 @@
 </head>
 <body class="rumors">
 
-<div class="box1">
+<div class="box">
     <div class="box2">
         <div class="size">
             <div class="form">
-                <div class="form-header">辟谣专区</div>
+                <div class="form-header text2">辟谣专区</div>
                 <div class="form-body">
                     <div>
                         <div class="list-group" id="list-group1">
@@ -49,36 +49,36 @@
     {
         if(a[i].explain=="谣言") {
             str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
-<div class="text" id="${i}" style="display: inline-block;width=1000 ">
-<p style="display: inline-block">发布日期：${a[i].date}</p><br>
-<p style="display: inline-block">发布标题：${a[i].title}</p><br>
-<div  style="display: inline-block;width:800px">发布内容：${a[i].desc}</div>
-<div style="display: inline-block;padding: 0 0 0 180px"><img src="img/error.png" height="150" width="150" ></div><br>
-<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
-</div>
-</a>`
+            <div class="text" id="${i}" style="display: inline-block;width=100% ">
+            <p style="display: inline-block"> <span class="text1">发布日期：</span>${a[i].date}</p><br>
+            <p style="display: inline-block"> <span class="text1">发布标题：</span>${a[i].title}</p><br>
+            <div  style="display: inline-block;width:650px"> <span class="text1">发布内容：</span> </br> &emsp;&emsp;${a[i].desc}</div>
+            <div class="img1"><img class="img2" src="img/error.png"></div>
+            <br><br><p style="display: inline-block"> <span class="text1">是否谣言：</span>${a[i].explain}</p><br>
+            </div>
+            </a>`
         }
         else if (a[i].explain=="确实如此") {
-            str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
-<div class="text" id="${i}" style="display: inline-block;width=1000 ">
-<p style="display: inline-block">发布日期：${a[i].date}</p><br>
-<p style="display: inline-block">发布标题：${a[i].title}</p><br>
-<div  style="display: inline-block;width:800px">发布内容：${a[i].desc}</div>
-<div style="display: inline-block;padding: 0 0 0 180px"><img src="img/correct.png" height="150" width="150"></div><br>
-<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
-</div>
-</a>`
+            str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank" xmlns="http://www.w3.org/1999/html">
+            <div class="text" id="${i}" style="display: inline-block;width=100% ">
+            <p style="display: inline-block"> <span class="text1">发布日期：</span>${a[i].date}</p><br>
+            <p style="display: inline-block"> <span class="text1">发布标题：</span>${a[i].title}</p><br>
+            <div  style="display: inline-block;width:650px"> <span class="text1">发布内容：</span></br> &emsp;&emsp; ${a[i].desc}</div>
+            <div class="img1"><img class="img2" src="img/correct.png"></div>
+            <br><br><p style="display: inline-block"> <span class="text1">是否谣言：</span>${a[i].explain}</p><br>
+            </div>
+            </a>`
         }
         else{
             str+=`<a class="list-group-item list-group-item-action" href="${a[i].url}" target="_blank">
-<div class="text" id="${i}" style="display: inline-block;width=1000 ">
-<p style="display: inline-block">发布日期：${a[i].date}</p><br>
-<p style="display: inline-block">发布标题：${a[i].title}</p><br>
-<div  style="display: inline-block;width:800px">发布内容：${a[i].desc}</div>
-<div style="display: inline-block;padding: 0 0 0 180px"><img src="img/unknown.png" height="150" width="150"></div><br>
-<p style="display: inline-block">是否谣言：${a[i].explain}</p><br>
-</div>
-</a>`
+            <div class="text" id="${i}" style="display: inline-block;width=100% ">
+            <p style="display: inline-block"><span class="text1">发布日期：</span>${a[i].date}</p><br>
+            <p style="display: inline-block"> <span class="text1">发布标题：</span>${a[i].title}</p><br>
+            <div  style="display: inline-block;width:650px"><span class="text1">发布内容：</span></br> &emsp;&emsp;${a[i].desc}</div>
+            <div class="img1"><img class="img2" src="img/unknown.png"></div>
+            <br><br><p style="display: inline-block"> <span class="text1">是否谣言：</span>${a[i].explain}</p><br>
+            </div>
+            </a>`
         }
     }
     console.log(str)

@@ -270,40 +270,84 @@ public class DataController {
 
 
 
-
-
-
-
+//    @GetMapping("/travel")
+//    public ModelAndView travel(String from_name,Integer from_province_id,String to_name,Integer to_province_id)
+//    {
+//        ModelAndView modelAndView = new ModelAndView();
+//        if (from_name == null || to_name == null) {
+//
+//            List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);
+//            modelAndView.addObject("from_cityList", from_cityList);
+//
+//            List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);
+//            modelAndView.addObject("to_cityList", to_cityList);
+//
+//        } else if (from_name != null && to_name != null) {
+//
+//            Integer from_id = cityService.findCityIdByName(from_name);
+//            Integer to_id = cityService.findCityIdByName(to_name);
+//            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+//            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+//
+//        } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
+//
+//        modelAndView.setViewName("travel");
+//
+//        List<List<Map>> lists = TravelHandler.riskArea();
+//        List<Map> high_maps = lists.get(0);
+//        List<Map> middle_maps = lists.get(1);
+//        modelAndView.addObject("high_maps", new JSONArray(high_maps));
+//        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
+//
+//        return modelAndView;
+//    }
     @GetMapping("/travel")
-    public ModelAndView travel(@RequestParam(value = "lzy写", required = false) String from_name, @RequestParam(value = "lzy", required = false) Integer from_province_id, @RequestParam(value = "lzy写", required = false) String to_name, @RequestParam(value = "lzy", required = false) Integer to_province_id) {
+    public ModelAndView travel()
+    {
         ModelAndView modelAndView = new ModelAndView();
-        if (from_name == null || to_name == null) {
 
-            List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);
-            modelAndView.addObject("from_cityList", from_cityList);
+        List<CityBean> provinceList = cityService.list();
+        modelAndView.addObject("provinceList", provinceList);//省份
 
-            List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);
-            modelAndView.addObject("to_cityList", to_cityList);
-
-        } else if (from_name != null && to_name != null) {
-
-            Integer from_id = cityService.findCityIdByName(from_name);
-            Integer to_id = cityService.findCityIdByName(to_name);
-            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
-            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
-
-        } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
-
-        modelAndView.setViewName("travel");
-
-        List<List<Map>> lists = TravelHandler.riskArea();
-        List<Map> high_maps = lists.get(0);
-        List<Map> middle_maps = lists.get(1);
-        modelAndView.addObject("high_maps", new JSONArray(high_maps));
-        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
-
+//
+//            Integer from_id = cityService.findCityIdByName(from_name);
+//            Integer to_id = cityService.findCityIdByName(to_name);
+//            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+//            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
+//        List<List<Map>> lists = TravelHandler.riskArea();
+//        List<Map> high_maps = lists.get(0);
+//        List<Map> middle_maps = lists.get(1);
+//        modelAndView.addObject("high_maps", new JSONArray(high_maps));
+//        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
+        modelAndView.setViewName("travelPolicy");
         return modelAndView;
     }
+
+    @RequestMapping("/TravelCity")
+    @ResponseBody
+    public List fromTravelCity(Integer id)
+    {
+        List<String> cityList = cityService.findCityByProvinceId(id);
+        return cityList;
+    }
+
+    @RequestMapping("/travelDetail")
+    @ResponseBody
+    public List travelDetail(String from_name,String to_name)
+    {
+            Integer from_id = cityService.findCityIdByName(from_name);
+            Integer to_id = cityService.findCityIdByName(to_name);
+        System.out.println(from_id+"++++"+to_id);
+            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+            return TravelBeansList;
+    }
+
+
+
+
+
+
+
 
 
     @GetMapping("/news")
@@ -370,6 +414,9 @@ public class DataController {
 
         return modelAndView;
     }
+
+
+
     @RequestMapping("/worldDetail")
     @ResponseBody
     public List worldData(String id)

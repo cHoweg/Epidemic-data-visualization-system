@@ -34,9 +34,10 @@
                     str+=`
  <tr>
         <td >${data[i].provinceProvinceName}</td>
-        <td >${data[i].provinceConfirmedCount}</td>
+        <td >${data[i].provinceCurrentConfirmedCount}</td>
         <td >${data[i].provinceCuredCount}</td>
         <td >${data[i].provinceDeadCount}</td>
+        <td >${data[i].provinceConfirmedCount}</td>
         </tr>
 `}
                     else{
@@ -62,6 +63,7 @@
         <th><p>现有确诊</p></th>
         <th><p>治愈</p></th>
         <th><p>死亡</p></th>
+        <th><p>累计确诊</p></th>
     </tr>
     </thead>
     <tbody id="tbody_list">

@@ -14,92 +14,129 @@
         <div class="size">
             <div class="form1">
                 <div class="container1">
-                    <select class="selectBox" name="" id="select3">
-                        <option selected="selected" disabled="disabled"  style='display: none' value=''>请选择城市</option>
-                        <option class="choose" value=0>香港</option>
-                        <option class="choose" value=1>云南</option>
-                        <option class="choose" value=2>上海</option>
-                        <option class="choose" value=3>广东</option>
-                        <option class="choose" value=4>台湾</option>
-                        <option class="choose" value=5>福建</option>
-                        <option class="choose" value=6>四川</option>
-                        <option class="choose" value=7>陕西</option>
-                        <option class="choose" value=8>北京</option>
-                        <option class="choose" value=9>山西</option>
-                        <option class="choose" value=10>江苏</option>
-                        <option class="choose" value=11>山东</option>
-                        <option class="choose" value=12>浙江</option>
-                        <option class="choose" value=13>天津</option>
-                        <option class="choose" value=14>河南</option>
-                        <option class="choose" value=15>湖南</option>
-                        <option class="choose" value=16>广西</option>
-                        <option class="choose" value=17>湖北</option>
-                        <option class="choose" value=18>内蒙古</option>
-                        <option class="choose" value=19>辽宁</option>
-                        <option class="choose" value=20>广西</option>
-                        <option class="choose" value=21>湖北</option>
-                        <option class="choose" value=22>内蒙古</option>
-                        <option class="choose" value=23>辽宁</option>
-                        <option class="choose" value=24>甘肃</option>
-                        <option class="choose" value=25>澳门</option>
-                        <option class="choose" value=26>西藏</option>
-                        <option class="choose" value=27>贵州</option>
-                        <option class="choose" value=28>青海</option>
-                        <option class="choose" value=29>新疆</option>
-                        <option class="choose" value=30>江西</option>
-                        <option class="choose" value=31>海南</option>
-                        <option class="choose" value=32>黑龙江</option>
-                        <option class="choose" value=33>宁夏</option>
-                        <option class="choose" value=34>安徽</option>
-                        <option class="choose" value=35>重庆</option>
-                        <option class="choose" value=36>吉林</option>
-                    </select>
+                    <select class="selectBox" name="" id="fromprovince" onchange="fromcityid()"></select>
+
+                    <select class="selectBox" name="" id="fromcity"></select>
+
                         <div class="icon"><img src="img/trans.png" height="50" width="50"></div>
-                    <select class="selectBox" name="" id="select4" style="left: 50px">
-                        <option selected="selected" disabled="disabled"  style='display: none' value=''>请选择城市</option>
-                        <option class="choose" value=0>香港</option>
-                        <option class="choose" value=1>云南</option>
-                        <option class="choose" value=2>上海</option>
-                        <option class="choose" value=3>广东</option>
-                        <option class="choose" value=4>台湾</option>
-                        <option class="choose" value=5>福建</option>
-                        <option class="choose" value=6>四川</option>
-                        <option class="choose" value=7>陕西</option>
-                        <option class="choose" value=8>北京</option>
-                        <option class="choose" value=9>山西</option>
-                        <option class="choose" value=10>江苏</option>
-                        <option class="choose" value=11>山东</option>
-                        <option class="choose" value=12>浙江</option>
-                        <option class="choose" value=13>天津</option>
-                        <option class="choose" value=14>河南</option>
-                        <option class="choose" value=15>湖南</option>
-                        <option class="choose" value=16>广西</option>
-                        <option class="choose" value=17>湖北</option>
-                        <option class="choose" value=18>内蒙古</option>
-                        <option class="choose" value=19>辽宁</option>
-                        <option class="choose" value=20>广西</option>
-                        <option class="choose" value=21>湖北</option>
-                        <option class="choose" value=22>内蒙古</option>
-                        <option class="choose" value=23>辽宁</option>
-                        <option class="choose" value=24>甘肃</option>
-                        <option class="choose" value=25>澳门</option>
-                        <option class="choose" value=26>西藏</option>
-                        <option class="choose" value=27>贵州</option>
-                        <option class="choose" value=28>青海</option>
-                        <option class="choose" value=29>新疆</option>
-                        <option class="choose" value=30>江西</option>
-                        <option class="choose" value=31>海南</option>
-                        <option class="choose" value=32>黑龙江</option>
-                        <option class="choose" value=33>宁夏</option>
-                        <option class="choose" value=34>安徽</option>
-                        <option class="choose" value=35>重庆</option>
-                        <option class="choose" value=36>吉林</option>
-                    </select>
+
+                    <select class="selectBox" name="" id="toprovince" style="left: 50px" onchange="tocityid()"></select>
+
+                    <select class="selectBox" name="" id="tocity" style="left: 50px"></select>
+                    <button onclick="detail()">提交</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div id="fromCityDetail"></div>
+<div id="toCityDetail"></div>
+
+
+<!--选择省份-->
+<script type="text/javascript" th:inline="javascript">
+    var provinceList=[[${provinceList}]]
+    var getprovincename=[];
+    for (var i = 0; i < provinceList.length; i++) {
+        getprovincename.push(provinceList[i]["province"]);
+
+    }
+    var hash=[];
+    for (var i = 0; i < getprovincename.length; i++) {
+        if(getprovincename.indexOf(getprovincename[i])==i){
+            hash.push(getprovincename[i]);
+        }
+    }
+    var str=`<option></option>`
+    for(var i=0;i<hash.length;i++)
+    {
+        str+=`<option value="${i+1}">${hash[i]}</option>`
+    }
+    document.getElementById("fromprovince").innerHTML=str
+    document.getElementById("toprovince").innerHTML=str
+</script>
+<!--选择城市-->
+<script type="text/javascript" th:inline="javascript">
+    //城市ajax
+    var fromcityid = function () {
+        var id = $("#fromprovince").val()
+        $.post({
+            url: "/TravelCity",
+            data: {"id":id},
+            success: function (data) {
+                var str=`<option></option>`
+                for(var i=0;i<data.length;i++)
+                {
+                    str+=`<option value="${data[i]}">${data[i]}</option>`
+                }
+                document.getElementById("fromcity").innerHTML=str
+            },
+            error: function () {
+            },
+        })}
+    var tocityid = function () {
+        var id = $("#toprovince").val()
+        $.post({
+            url: "/TravelCity",
+            data: {"id":id},
+            success: function (data) {
+                var str=`<option></option>`
+                for(var i=0;i<data.length;i++)
+                {
+                    str+=`<option value="${data[i]}">${data[i]}</option>`
+                }
+                document.getElementById("tocity").innerHTML=str
+            },
+            error: function () {
+            },
+        })}
+</script>
+
+<!--提交并获得-->
+<script type="text/javascript" th:inline="javascript">
+    //接种地址ajax
+    var detail=
+        function()
+        {
+            var from_name=$("#fromcity").val()
+             var to_name=$("#tocity").val()
+            $.post({
+                url: "/travelDetail",
+                data: {"from_name":from_name,"to_name":to_name},
+                success: function (data) {
+                    var from_str=
+                        `
+                        <span>来自省份：${data[0].fromProvinceName}</span>
+                       <span>来自城市：${data[0].fromCityName}</span>
+                        <span>检验方式：${data[0].fromHealthCodeName}</span>
+                        <span>扫码教程：${data[0].fromHealthCodeGid}</span>
+                        <span>对来自中高风险人群的建议：${data[0].fromHighInDesc}</span>
+                        <span>对来自低风险人群的建议：${data[0].fromLowInDesc}</span>
+                        <span>对出省的人群的建议：${data[0].fromOutDesc}</span>
+                        `
+                    document.getElementById("fromCityDetail").innerHTML=from_str
+
+                    var to_str=
+                        `
+                        <span>去往省份：${data[0].toProvinceName}</span>
+                       <span>去往城市：${data[0].toCityName}</span>
+                        <span>检验方式：${data[0].toHealthCodeName}</span>
+                        <span>扫码教程：${data[0].toHealthCodeGid}</span>
+                        <span>对来自中高风险人群的建议：${data[0].toHighInDesc}</span>
+                        <span>对来自低风险人群的建议：${data[0].toLowInDesc}</span>
+                        <span>对出省的人群的建议：${data[0].toOutDesc}</span>
+                        `
+
+                    document.getElementById("toCityDetail").innerHTML=to_str
+                },
+                error: function () {
+                },
+            })
+        }
+</script>
+
+
+
 
 
 

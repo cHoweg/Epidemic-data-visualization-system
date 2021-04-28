@@ -414,6 +414,61 @@ ul{
   background-clip: border-box;
 }
 
+.selectProvince{
+  margin-left: 200px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: lighter;
+  /*text-align: center;*/
+  /*text-align-last: center;*/
+  font-family: serif;
+}
+.select3{
+  height: 30px;
+  width: 120px;
+  border: solid 1px #5e5e5e;
+  margin-top: 20px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: lighter;
+  text-align: center;
+  text-align-last: center;
+  font-family: serif;
+}
+.selectCity{
+  margin-left: 50px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: lighter;
+  /*text-align: center;*/
+  /*text-align-last: center;*/
+  font-family: serif;
+}
+.text1{
+  font-size: 16px;
+  font-style: normal;
+  font-weight: lighter;
+  font-family: serif;
+}
+.text2{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-family: serif;
+}
+
+.img1{
+  display: inline-flex;
+  /*padding: 0 0 20px 20px;*/
+  line-height: 100%;
+  align-items: center;
+  margin-left: 20px;
+}
+.img2{
+  height: 150px;
+  width: 150px;
+  align-items: center;
+}
 
 
 

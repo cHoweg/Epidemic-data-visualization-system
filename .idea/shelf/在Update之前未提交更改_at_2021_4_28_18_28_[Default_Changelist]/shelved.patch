@@ -1,0 +1,612 @@
+Index: src/main/java/com/zoll/vinfo/controller/DataController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.zoll.vinfo.controller;\r\n\r\nimport com.alibaba.fastjson.JSONObject;\r\nimport com.google.gson.Gson;\r\nimport com.zoll.vinfo.bean.*;\r\nimport com.zoll.vinfo.handller.GraphHandler;\r\nimport com.zoll.vinfo.handller.RumorHandler;\r\nimport com.zoll.vinfo.handller.TravelHandler;\r\nimport com.zoll.vinfo.handller.VaccinesHandler;\r\nimport com.zoll.vinfo.service.*;\r\nimport org.json.JSONArray;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\nimport org.springframework.web.bind.annotation.ResponseBody;\r\nimport org.springframework.web.servlet.ModelAndView;\r\n\r\nimport java.io.Console;\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n/**\r\n * 处理获取对应的相关数据信息封装到相应的bean对象里并且返回给前端\r\n */\r\n@Controller\r\npublic class DataController {\r\n\r\n    @Autowired\r\n    private DataService dataService;\r\n\r\n    @Autowired\r\n    private DataDetailService dataDetailService;\r\n\r\n    @Autowired\r\n    private WorldDataService worldDataService;\r\n\r\n    @Autowired\r\n    private WorldDataDetailService worldDataDetailService;\r\n\r\n    @Autowired\r\n    private NewsService newsService;\r\n\r\n    @Autowired\r\n    private CityService cityService;\r\n\r\n    //首页显示所有相关数据\r\n    @GetMapping(\"/\")\r\n    public String homePage() {\r\n\r\n        return \"homePage\";\r\n    }\r\n\r\n\r\n    /**\r\n     * 单个折线图显示现存确诊人数\r\n     *\r\n     * @param\r\n     * @return\r\n     */\r\n    @GetMapping(\"/graph\")\r\n    public ModelAndView graph() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<List<GraphBean>> list = GraphHandler.getGraphData();\r\n        List<GraphBean> worldGraphBeans = list.get(0);\r\n        List<GraphBean> graphBeans = list.get(1);\r\n        //  进一步改造数据格式\r\n        //  因为前端需要的数据是  x轴所有数据的数组和y轴所有数据的数组\r\n\r\n        ArrayList<String> dateList = new ArrayList<>();\r\n        ArrayList<Integer> nowConfirmList = new ArrayList<>();\r\n\r\n        for (int i = 0; i < graphBeans.size(); i++) {\r\n            GraphBean graphBean = graphBeans.get(i);\r\n            dateList.add(graphBean.getDate());\r\n            nowConfirmList.add(graphBean.getNowConfirm());\r\n        }\r\n        modelAndView.addObject(\"dateList\", new Gson().toJson(dateList));\r\n        modelAndView.addObject(\"nowConfirmList\", new Gson().toJson(nowConfirmList));\r\n\r\n        dateList.clear();\r\n        nowConfirmList.clear();\r\n        for (int i = 0; i < worldGraphBeans.size(); i++) {\r\n            GraphBean graphBean = worldGraphBeans.get(i);\r\n            dateList.add(graphBean.getDate());\r\n            nowConfirmList.add(graphBean.getNowConfirm());\r\n        }\r\n        modelAndView.addObject(\"worldDateList\", new Gson().toJson(dateList));\r\n        modelAndView.addObject(\"worldNowConfirmList\", new Gson().toJson(nowConfirmList));\r\n\r\n        return modelAndView;\r\n    }\r\n\r\n    /**\r\n     * 双重折线图显示新增确诊人数和疑似确诊人数\r\n     *\r\n     * @param\r\n     * @return\r\n     */\r\n    @GetMapping(\"/graphAdd\")\r\n    public ModelAndView graphAdd() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List list = GraphHandler.getGraphAddData();\r\n        List<GraphAddBean> chinaAdd = (ArrayList) list.get(0);\r\n        List<GraphAddBean> worldAdd = (ArrayList) list.get(1);\r\n\r\n        ArrayList<String> dateList = new ArrayList<>();\r\n        ArrayList<Integer> addConfirmList = new ArrayList<>();\r\n        ArrayList<Integer> addSuspectList = new ArrayList<>();\r\n\r\n        for (int i = 0; i < chinaAdd.size(); i++) {\r\n            GraphAddBean graphAddBean = chinaAdd.get(i);\r\n            dateList.add(graphAddBean.getDate());\r\n            addConfirmList.add(graphAddBean.getAddConfirm());\r\n            addSuspectList.add(graphAddBean.getAddSuspect());\r\n        }\r\n\r\n        modelAndView.addObject(\"dateList\", new Gson().toJson(dateList));\r\n        modelAndView.addObject(\"addConfirmList\", new Gson().toJson(addConfirmList));\r\n        modelAndView.addObject(\"addSuspectList\", new Gson().toJson(addSuspectList));\r\n\r\n        dateList.clear();\r\n        addConfirmList.clear();\r\n        addSuspectList.clear();\r\n\r\n        for (int i = 0; i < worldAdd.size(); i++) {\r\n            GraphAddBean graphAddBean = worldAdd.get(i);\r\n            dateList.add(graphAddBean.getDate());\r\n            addConfirmList.add(graphAddBean.getAddConfirm());\r\n            addSuspectList.add(graphAddBean.getAddSuspect());\r\n        }\r\n        modelAndView.addObject(\"worldDateList\", new Gson().toJson(dateList));\r\n        modelAndView.addObject(\"worldAddConfirmList\", new Gson().toJson(addConfirmList));\r\n        modelAndView.addObject(\"worldAddHealList\", new Gson().toJson(addSuspectList));\r\n\r\n        return modelAndView;\r\n    }\r\n\r\n    /**\r\n     * 显示全国排名前十的境外输入人数的条形统计图\r\n     *\r\n     * @param\r\n     * @return\r\n     */\r\n    @GetMapping(\"/graphColumnar\")\r\n    public ModelAndView graphColumnar() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<GraphColumnarBean> list = GraphHandler.getGraphColumnarData();\r\n        Collections.sort(list);\r\n\r\n        ArrayList<String> nameList = new ArrayList<>();\r\n        ArrayList<Integer> fromAbroadList = new ArrayList<>();\r\n\r\n        for (int i = 0; i < 10; i++) {\r\n            GraphColumnarBean bean = list.get(i);\r\n            nameList.add(bean.getArea());\r\n            fromAbroadList.add(bean.getFromAbroad());\r\n        }\r\n\r\n        modelAndView.addObject(\"nameList\", new Gson().toJson(nameList));\r\n        modelAndView.addObject(\"fromAbroadList\", new Gson().toJson(fromAbroadList));\r\n        return modelAndView;\r\n    }\r\n\r\n\r\n    /**\r\n     * 饼状图\r\n     *\r\n     * @param\r\n     * @return\r\n     */\r\n    @GetMapping(\"/graphPie\")\r\n    public ModelAndView graphPie() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<GraphPieBean> list = GraphHandler.getGraphPieData();\r\n        Collections.sort(list);\r\n        modelAndView.addObject(\"list\", new Gson().toJson(list));\r\n        return modelAndView;\r\n    }\r\n\r\n\r\n    /**\r\n     * 根据地区名和确诊人数绘制中国地图\r\n     *\r\n     * @param\r\n     * @return\r\n     */\r\n    @GetMapping(\"/map\")\r\n    public ModelAndView map() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<DataBean> list = dataService.list();\r\n\r\n        List<MapBean> result = new ArrayList<>();\r\n        for (int i = 0; i < list.size(); i++) {\r\n            DataBean dataBean = list.get(i);\r\n            MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getNowConfirm());\r\n            result.add(mapBean);\r\n        }\r\n\r\n        List<MapBean> count = new ArrayList<>();\r\n        for (int i = 0; i < list.size(); i++) {\r\n            DataBean dataBean = list.get(i);\r\n            MapBean mapBean = new MapBean(dataBean.getArea(), dataBean.getConfirm());\r\n            count.add(mapBean);\r\n        }\r\n\r\n        modelAndView.addObject(\"mapCountData\", new Gson().toJson(count));\r\n        modelAndView.addObject(\"mapData\", new Gson().toJson(result));\r\n\r\n        Map nowData = GraphHandler. getNowData();\r\n        modelAndView.addObject(\"todayChina\", new JSONObject(nowData));\r\n\r\n        modelAndView.setViewName(\"map\");\r\n        return modelAndView;\r\n    }\r\n\r\n    @GetMapping(\"/vaccines\")\r\n    public ModelAndView vaccines(@RequestParam(value = \"lzy写\", required = false) String name, @RequestParam(value = \"lzy\", required = false) Integer province_id)\r\n    {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        if (name == null && province_id == null) {\r\n            List<CityBean> list = cityService.list();\r\n            modelAndView.addObject(\"cityList\", list);\r\n        } else if (name == null && province_id != null) {\r\n            List<String> cityList = cityService.findCityByProvinceId(province_id);\r\n            modelAndView.addObject(\"cityList\", cityList);\r\n        } else {\r\n            List<CityBean> list = cityService.list();\r\n            modelAndView.addObject(\"provinceList\", list);\r\n            Integer id = cityService.findCityIdByName(name);\r\n            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);\r\n            modelAndView.addObject(\"vaccinesBeansList\", VaccinesBeansList);\r\n        }\r\n        modelAndView.setViewName(\"vaccine\");\r\n        return modelAndView;\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    @GetMapping(\"/travel\")\r\n    public ModelAndView travel(@RequestParam(value = \"lzy写\", required = false) String from_name, @RequestParam(value = \"lzy\", required = false) Integer from_province_id, @RequestParam(value = \"lzy写\", required = false) String to_name, @RequestParam(value = \"lzy\", required = false) Integer to_province_id) {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        if (from_name == null || to_name == null) {\r\n\r\n            List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);\r\n            modelAndView.addObject(\"from_cityList\", from_cityList);\r\n\r\n            List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);\r\n            modelAndView.addObject(\"to_cityList\", to_cityList);\r\n\r\n        } else if (from_name != null && to_name != null) {\r\n\r\n            Integer from_id = cityService.findCityIdByName(from_name);\r\n            Integer to_id = cityService.findCityIdByName(to_name);\r\n            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);\r\n            modelAndView.addObject(\"vaccinesBeansList\", TravelBeansList);\r\n\r\n        } else System.out.println(from_name + \"--\" + from_province_id + \"\\t\" + to_name + \"--\" + to_province_id);\r\n\r\n        modelAndView.setViewName(\"travel\");\r\n\r\n        List<List<Map>> lists = TravelHandler.riskArea();\r\n        List<Map> high_maps = lists.get(0);\r\n        List<Map> middle_maps = lists.get(1);\r\n        modelAndView.addObject(\"high_maps\", new JSONArray(high_maps));\r\n        modelAndView.addObject(\"middle_maps\", new JSONArray(middle_maps));\r\n\r\n        return modelAndView;\r\n    }\r\n\r\n\r\n    @GetMapping(\"/news\")\r\n    public ModelAndView news() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<NewsBean> newsBeanList = newsService.list();\r\n        modelAndView.addObject(\"newBeanList\", newsBeanList);\r\n        return modelAndView;\r\n    }\r\n\r\n    @GetMapping(\"/rumors\")\r\n    public ModelAndView rumors() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<RumorBean> RumorBeansList = RumorHandler.getData();\r\n        modelAndView.addObject(\"rumorBeansList\", RumorBeansList);\r\n        modelAndView.setViewName(\"rumors\");\r\n        return modelAndView;\r\n    }\r\n\r\n    @GetMapping(\"/cityData\")\r\n    @ResponseBody\r\n    public ModelAndView cityData(@RequestParam(value = \"select2\", required = false) Integer province_id) {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n//        if (province_id == null || province_id == 38) {\r\n            List<DataBean> dataList = dataService.list();\r\n            modelAndView.addObject(\"cityDataById\", dataList);\r\n//        }\r\n//        else {\r\n//            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);\r\n//            modelAndView.addObject(\"cityDataById\", cityDataById);\r\n//        }\r\n\r\n\r\n        modelAndView.setViewName(\"provinceList\");\r\n        return modelAndView;\r\n    }\r\n\r\n    @RequestMapping(\"/cityDataDetail\")\r\n    @ResponseBody\r\n    public List cityDataDetail(String id) {\r\n        if (id == null || id.equals(\"38\")) {\r\n            List<DataBean> dataList = dataService.list();\r\n            return dataList;\r\n        } else {\r\n            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(Integer.parseInt(id));\r\n            return cityDataById;\r\n        }\r\n    }\r\n\r\n\r\n\r\n\r\n    @GetMapping(\"/chinaData\")\r\n    public ModelAndView chinaData() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        modelAndView.setViewName(\"provinceList\");\r\n        return modelAndView;\r\n    }\r\n\r\n\r\n\r\n    @GetMapping(\"/worldDataDetail\")\r\n    public ModelAndView worldDetailData(@RequestParam(value = \"select3\", required = false) Integer province_id)\r\n    {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n\r\n            List<WorldDataBean> worldDataBeanList = worldDataService.list();\r\n            modelAndView.addObject(\"worldBeansList1\", worldDataBeanList);\r\n            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);\r\n            modelAndView.addObject(\"worldBeansList\", worldDataDetailBeanBeanList);\r\n        modelAndView.setViewName(\"worldList\");\r\n\r\n        return modelAndView;\r\n    }\r\n    @RequestMapping(\"/worldDetail\")\r\n    @ResponseBody\r\n    public List worldData(String id)\r\n    {\r\n        if (id == null||id.equals(\"8\")) {\r\n            List<WorldDataBean> worldDataBeanList = worldDataService.list();\r\n            return worldDataBeanList;\r\n        } else {\r\n            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(Integer.parseInt(id));\r\n            return worldDataDetailBeanBeanList;\r\n\r\n        }\r\n    }\r\n\r\n\r\n\r\n\r\n    @GetMapping(\"/countryDetail\")\r\n    public ModelAndView countryData() {\r\n        ModelAndView modelAndView = new ModelAndView();\r\n        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.list();\r\n        modelAndView.addObject(\"worldBeansList\", worldDataDetailBeanBeanList);\r\n        Map worldNowData = GraphHandler.getWorldNowData();\r\n        modelAndView.addObject(\"todayWorld\", new JSONObject(worldNowData));\r\n        modelAndView.setViewName(\"worldMap\");\r\n        return modelAndView;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/zoll/vinfo/controller/DataController.java	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ src/main/java/com/zoll/vinfo/controller/DataController.java	(date 1619605462973)
+@@ -16,6 +16,7 @@
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.ResponseBody;
+ import org.springframework.web.servlet.ModelAndView;
++import sun.security.util.Length;
+ 
+ import java.io.Console;
+ import java.util.ArrayList;
+@@ -217,27 +218,59 @@
+         return modelAndView;
+     }
+ 
++
++
++
++//    @GetMapping("/vaccines")
++//    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id)
++//    {
++//        ModelAndView modelAndView = new ModelAndView();
++//        if (name == null && province_id == null) {
++//            List<CityBean> list = cityService.list();
++//            modelAndView.addObject("cityList", list);
++//        } else if (name == null && province_id != null) {
++//            List<String> cityList = cityService.findCityByProvinceId(province_id);
++//            modelAndView.addObject("cityList", cityList);
++//        } else {
++//            List<CityBean> list = cityService.list();
++//            modelAndView.addObject("provinceList", list);
++//            Integer id = cityService.findCityIdByName(name);
++//            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
++//            modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
++//        }
++//        modelAndView.setViewName("vaccine");
++//        return modelAndView;
++//    }
+     @GetMapping("/vaccines")
+-    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id)
++    public ModelAndView vaccines()
+     {
+         ModelAndView modelAndView = new ModelAndView();
+-        if (name == null && province_id == null) {
+-            List<CityBean> list = cityService.list();
+-            modelAndView.addObject("cityList", list);
+-        } else if (name == null && province_id != null) {
+-            List<String> cityList = cityService.findCityByProvinceId(province_id);
+-            modelAndView.addObject("cityList", cityList);
+-        } else {
+-            List<CityBean> list = cityService.list();
+-            modelAndView.addObject("provinceList", list);
+-            Integer id = cityService.findCityIdByName(name);
+-            List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(id);
+-            modelAndView.addObject("vaccinesBeansList", VaccinesBeansList);
+-        }
+-        modelAndView.setViewName("vaccine");
+-        return modelAndView;
++            List<CityBean> provinceList = cityService.list();
++            modelAndView.addObject("provinceList", provinceList);
++
++            modelAndView.setViewName("vaccine");
++            return modelAndView;
+     }
+ 
++    @RequestMapping("/vaccinesCity")
++    @ResponseBody
++    public List vaccinesCity(Integer id)
++    {
++        List<String> cityList = cityService.findCityByProvinceId(id);
++        return cityList;
++    }
++
++    @RequestMapping("/vaccinesDetail")
++    @ResponseBody
++    public List vaccinesDetail(String name)
++    {
++        System.out.println(name+"WESDSA ");
++        int cityid = cityService.findCityIdByName(name);
++        System.out.println(cityid);
++        List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(cityid);
++        System.out.println(VaccinesBeansList);
++        return VaccinesBeansList;
++    }
+ 
+ 
+ 
+Index: src/main/resources/templates/vaccine.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html xmlns:th=\"http://www.thymeleaf.org\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>News</title>\r\n    <link  rel=\"stylesheet\" href=\"../static/css/bootstrap.css\" th:href=\"@{/css/bootstrap.css}\">\r\n    <link  rel=\"stylesheet\" href=\"../static/css/dashboard.css\" th:href=\"@{/css/dashboard.css}\">\r\n    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\r\n\r\n</head>\r\n<body class=\"news\">\r\n<script type=\"text/javascript\">\r\n    var province = function () {\r\n        var e = document.createEvent(\"MouseEvents\");\r\n        e.initEvent(\"click\", true, true);\r\n        document.getElementById(\"pushprovince\").dispatchEvent(e);\r\n    }\r\n    // var city = function () {\r\n    //     var e = document.createEvent(\"MouseEvents\");\r\n    //     e.initEvent(\"click\", true, true);\r\n    //     document.getElementById(\"submit2\").dispatchEvent(e);\r\n    // }\r\n\r\n    //     //     <option selected=\"selected\" disabled=\"disabled\"  style='display: none' value=''></option>\r\n    //     // <option class=\"choose\" value=38>全国</option>\r\n    //     // <option class=\"choose\" value=0>香港</option>\r\n    //     // <option class=\"choose\" value=1>云南</option>\r\n    //     // <option class=\"choose\" value=2>上海</option>\r\n    //     // <option class=\"choose\" value=3>广东</option>\r\n    //     // <option class=\"choose\" value=4>台湾</option>\r\n    //     // <option class=\"choose\" value=5>福建</option>\r\n    //     // <option class=\"choose\" value=6>四川</option>\r\n    //     // <option class=\"choose\" value=7>陕西</option>\r\n    //     // <option class=\"choose\" value=8>北京</option>\r\n    //     // <option class=\"choose\" value=9>山西</option>\r\n    //     // <option class=\"choose\" value=10>江苏</option>\r\n    //     // <option class=\"choose\" value=11>山东</option>\r\n    //     // <option class=\"choose\" value=12>浙江</option>\r\n    //     // <option class=\"choose\" value=13>天津</option>\r\n    //     // <option class=\"choose\" value=14>河南</option>\r\n    //     // <option class=\"choose\" value=15>湖南</option>\r\n    //     // <option class=\"choose\" value=16>广西</option>\r\n    //     // <option class=\"choose\" value=17>湖北</option>\r\n    //     // <option class=\"choose\" value=18>内蒙古</option>\r\n    //     // <option class=\"choose\" value=19>辽宁</option>\r\n    //     // <option class=\"choose\" value=20>广西</option>\r\n    //     // <option class=\"choose\" value=21>湖北</option>\r\n    //     // <option class=\"choose\" value=22>内蒙古</option>\r\n    //     // <option class=\"choose\" value=23>辽宁</option>\r\n    //     // <option class=\"choose\" value=24>甘肃</option>\r\n    //     // <option class=\"choose\" value=25>澳门</option>\r\n    //     // <option class=\"choose\" value=26>西藏</option>\r\n    //     // <option class=\"choose\" value=27>贵州</option>\r\n    //     // <option class=\"choose\" value=28>青海</option>\r\n    //     // <option class=\"choose\" value=29>新疆</option>\r\n    //     // <option class=\"choose\" value=30>江西</option>\r\n    //     // <option class=\"choose\" value=31>海南</option>\r\n    //     // <option class=\"choose\" value=32>黑龙江</option>\r\n    //     // <option class=\"choose\" value=33>宁夏</option>\r\n    //     // <option class=\"choose\" value=34>安徽</option>\r\n    //     // <option class=\"choose\" value=35>重庆</option>\r\n    //     // <option class=\"choose\" value=36>吉林</option>\r\n\r\n        $(\"#selectprovince\").click(console.log($(\"#selectprovince\").val()))\r\n</script>\r\n\r\n\r\n<script type=\"text/javascript\">\r\n    var a = function () {\r\n        var id = $(\"#selectprovince\").val()\r\n        $.post({\r\n            url: \"/cityDataDetail\",\r\n            data: {\"id\":id},\r\n            success: function (data) {\r\n                console.log(data)\r\n                var str=``\r\n                for(var i=0;i<data.length;i++)\r\n                {\r\n\r\n                }\r\n                document.getElementById(\"tbodyId\").innerHTML=str;\r\n            },\r\n            error: function () {\r\n            },\r\n        })}\r\n</script>\r\n\r\n\r\n    选择省份：<select id=\"selectprovince\" name=\"selectprovince\" >\r\n\r\n    </select>\r\n\r\n\r\n\r\n    选择城市：<select id=\"select2\" name=\"selectcity\">\r\n    </select>\r\n\r\n\r\n\r\n\r\n\r\n<div class=\"box\">\r\n    <div class=\"box2\">\r\n        <div class=\"size\">\r\n            <div class=\"form\">\r\n                <div class=\"form-header\">疫苗接种地址</div>\r\n                <div class=\"form-body\">\r\n                    <div>\r\n                        <div class=\"list-group\" id=\"list-group1\">\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n</body>\r\n\r\n<script type=\"text/javascript\" th:inline=\"javascript\">\r\n\r\n    // var A=[[${vaccinesBeansList}]]\r\n    // console.log(A)\r\n    // var str=``;\r\n    // for(var i=0;i<A.length;i++)\r\n    // {\r\n    //     str+=`<a class=\"list-group-item list-group-item-action\">\r\n    //                             <span  class=\"text\" id=\"1\">\r\n    //                             <p>新闻标题：${A[i]}</p>\r\n    //                             <p>新闻来源：${A[i]}</p>\r\n    //                             <p>发布时间：${A[i]}</p>\r\n    //                             <p>主要内容：${A[i]}</p>\r\n    //                             </span>\r\n    //                         </a>`\r\n\r\n    // }\r\n    // document.getElementById('list-group1').innerHTML = str\r\n\r\n\r\n    var A=[[${cityList}]]\r\n    console.log(A)\r\n    var str=``;\r\n    for(var i=0;i<A.length;i++)\r\n    {\r\n        str+=`<a class=\"list-group-item list-group-item-action\">\r\n                                <span  class=\"text\" id=\"1\">\r\n                                <p>新闻标题：${A[i]}</p>\r\n                                <p>新闻来源：${A[i]}</p>\r\n                                <p>发布时间：${A[i]}</p>\r\n                                <p>主要内容：${A[i]}</p>\r\n                                </span>\r\n                            </a>`\r\n\r\n    }\r\n    document.getElementById('list-group1').innerHTML = str\r\n</script>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/templates/vaccine.html	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ src/main/resources/templates/vaccine.html	(date 1619604830152)
+@@ -9,76 +9,45 @@
+ 
+ </head>
+ <body class="news">
+-<script type="text/javascript">
+-    var province = function () {
+-        var e = document.createEvent("MouseEvents");
+-        e.initEvent("click", true, true);
+-        document.getElementById("pushprovince").dispatchEvent(e);
+-    }
+-    // var city = function () {
+-    //     var e = document.createEvent("MouseEvents");
+-    //     e.initEvent("click", true, true);
+-    //     document.getElementById("submit2").dispatchEvent(e);
+-    // }
+ 
+-    //     //     <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+-    //     // <option class="choose" value=38>全国</option>
+-    //     // <option class="choose" value=0>香港</option>
+-    //     // <option class="choose" value=1>云南</option>
+-    //     // <option class="choose" value=2>上海</option>
+-    //     // <option class="choose" value=3>广东</option>
+-    //     // <option class="choose" value=4>台湾</option>
+-    //     // <option class="choose" value=5>福建</option>
+-    //     // <option class="choose" value=6>四川</option>
+-    //     // <option class="choose" value=7>陕西</option>
+-    //     // <option class="choose" value=8>北京</option>
+-    //     // <option class="choose" value=9>山西</option>
+-    //     // <option class="choose" value=10>江苏</option>
+-    //     // <option class="choose" value=11>山东</option>
+-    //     // <option class="choose" value=12>浙江</option>
+-    //     // <option class="choose" value=13>天津</option>
+-    //     // <option class="choose" value=14>河南</option>
+-    //     // <option class="choose" value=15>湖南</option>
+-    //     // <option class="choose" value=16>广西</option>
+-    //     // <option class="choose" value=17>湖北</option>
+-    //     // <option class="choose" value=18>内蒙古</option>
+-    //     // <option class="choose" value=19>辽宁</option>
+-    //     // <option class="choose" value=20>广西</option>
+-    //     // <option class="choose" value=21>湖北</option>
+-    //     // <option class="choose" value=22>内蒙古</option>
+-    //     // <option class="choose" value=23>辽宁</option>
+-    //     // <option class="choose" value=24>甘肃</option>
+-    //     // <option class="choose" value=25>澳门</option>
+-    //     // <option class="choose" value=26>西藏</option>
+-    //     // <option class="choose" value=27>贵州</option>
+-    //     // <option class="choose" value=28>青海</option>
+-    //     // <option class="choose" value=29>新疆</option>
+-    //     // <option class="choose" value=30>江西</option>
+-    //     // <option class="choose" value=31>海南</option>
+-    //     // <option class="choose" value=32>黑龙江</option>
+-    //     // <option class="choose" value=33>宁夏</option>
+-    //     // <option class="choose" value=34>安徽</option>
+-    //     // <option class="choose" value=35>重庆</option>
+-    //     // <option class="choose" value=36>吉林</option>
++    选择省份：<select id="selectprovince" name="selectprovince" onchange="cityid()"></select>
++<script type="text/javascript" th:inline="javascript">
++    //获得省名
++        var provinceList=[[${provinceList}]]
++        var getprovincename=[];
++        for (var i = 0; i < provinceList.length; i++) {
++            getprovincename.push(provinceList[i]["province"]);
+ 
+-        $("#selectprovince").click(console.log($("#selectprovince").val()))
++        }
++        var hash=[];
++        for (var i = 0; i < getprovincename.length; i++) {
++            if(getprovincename.indexOf(getprovincename[i])==i){
++                hash.push(getprovincename[i]);
++            }
++        }
++        var str=``
++        for(var i=0;i<hash.length;i++)
++        {
++            str+=`<option value="${i+1}">${hash[i]}</option>`
++        }
++        document.getElementById("selectprovince").innerHTML=str
+ </script>
+ 
+-
+-<script type="text/javascript">
+-    var a = function () {
++    选择城市：<select id="selectcity" name="selectcity" onchange="detail()"></select>
++<script type="text/javascript" th:inline="javascript">
++    //城市ajax
++    var cityid = function () {
+         var id = $("#selectprovince").val()
+         $.post({
+-            url: "/cityDataDetail",
++            url: "/vaccinesCity",
+             data: {"id":id},
+             success: function (data) {
+-                console.log(data)
+                 var str=``
+                 for(var i=0;i<data.length;i++)
+                 {
+-
++                    str+=`<option value="${data[i]}">${data[i]}</option>`
+                 }
+-                document.getElementById("tbodyId").innerHTML=str;
++                document.getElementById("selectcity").innerHTML=str
+             },
+             error: function () {
+             },
+@@ -86,18 +55,6 @@
+ </script>
+ 
+ 
+-    选择省份：<select id="selectprovince" name="selectprovince" >
+-
+-    </select>
+-
+-
+-
+-    选择城市：<select id="select2" name="selectcity">
+-    </select>
+-
+-
+-
+-
+ 
+ <div class="box">
+     <div class="box2">
+@@ -115,43 +72,33 @@
+         </div>
+     </div>
+ </div>
+-</body>
+-
+-<script type="text/javascript" th:inline="javascript">
+-
+-    // var A=[[${vaccinesBeansList}]]
+-    // console.log(A)
+-    // var str=``;
+-    // for(var i=0;i<A.length;i++)
+-    // {
+-    //     str+=`<a class="list-group-item list-group-item-action">
+-    //                             <span  class="text" id="1">
+-    //                             <p>新闻标题：${A[i]}</p>
+-    //                             <p>新闻来源：${A[i]}</p>
+-    //                             <p>发布时间：${A[i]}</p>
+-    //                             <p>主要内容：${A[i]}</p>
+-    //                             </span>
+-    //                         </a>`
+-
+-    // }
+-    // document.getElementById('list-group1').innerHTML = str
+-
+-
+-    var A=[[${cityList}]]
+-    console.log(A)
+-    var str=``;
+-    for(var i=0;i<A.length;i++)
+-    {
+-        str+=`<a class="list-group-item list-group-item-action">
+-                                <span  class="text" id="1">
+-                                <p>新闻标题：${A[i]}</p>
+-                                <p>新闻来源：${A[i]}</p>
+-                                <p>发布时间：${A[i]}</p>
+-                                <p>主要内容：${A[i]}</p>
+-                                </span>
+-                            </a>`
+-
+-    }
+-    document.getElementById('list-group1').innerHTML = str
+-</script>
++    <script type="text/javascript" th:inline="javascript">
++      //接种地址ajax
++      var detail=
++          function()
++          {
++              var name=$("#selectcity").val()
++              $.post({
++                  url: "/vaccinesDetail",
++                  data: {"name":name},
++                  success: function (data) {
++                      console.log(data)
++                      var str=``
++                      for(var i=0;i<data.length;i++)
++                      {
++                          str+=`<option value="${data[i]}">${data[i]}</option>`
++                      }
++                      //document.getElementById("selectcity").innerHTML=str
++                  },
++                  error: function () {
++                  },
++              })
++          }
++    </script>
++
++
++</body>
++
++
++
+ </html>
+\ No newline at end of file
+Index: src/main/java/com/zoll/vinfo/handller/VaccinesHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.zoll.vinfo.handller;\r\n\r\nimport com.google.gson.Gson;\r\nimport com.zoll.vinfo.bean.VaccinesBean;\r\nimport com.zoll.vinfo.util.HttpClientUtil;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n/**\r\n * @PROJECT_NAME: Epidemic data visualization system\r\n * @DESCRIPTION:\r\n * @USER: eugenechow\r\n * @DATE: 2021/4/17 上午11:57\r\n */\r\npublic class VaccinesHandler {\r\n    public static String urlStr = \"http://apis.juhe.cn/springTravel/hsjg?key=2a045db4716657a67be6f8340405c6f8&city_id=\";\r\n    //public static String key=\"2a045db4716657a67be6f8340405c6f8\";\r\n    //public static int city_id=xxxxxx;\r\n\r\n    public static void main(String[] args) {\r\n\r\n    }\r\n\r\n\r\n    public static List<VaccinesBean> getData(Integer id) {\r\n\r\n        /**\r\n         * 分析json字符串对数据进行筛选和提取\r\n         */\r\n        urlStr += id.toString();\r\n        String respJson = HttpClientUtil.doGet(urlStr);\r\n\r\n        Gson gson = new Gson();\r\n        Map map = gson.fromJson(respJson, Map.class);\r\n        Map mapNext = (Map) map.get(\"result\");\r\n        ArrayList arrayList = (ArrayList) mapNext.get(\"data\");\r\n        List<VaccinesBean> result = new ArrayList<>();\r\n\r\n        if (arrayList != null) {\r\n            for (int i = 0; i < arrayList.size(); i++) {\r\n                Map tmp = (Map) arrayList.get(i);\r\n                String city_id = (String) tmp.get(\"city_id\");\r\n                String name = (String) tmp.get(\"name\");\r\n                String province = (String) tmp.get(\"province\");\r\n                String city = (String) tmp.get(\"city\");\r\n                String phone = (String) tmp.get(\"phone\");\r\n                String address = (String) tmp.get(\"address\");\r\n                VaccinesBean vaccinesBean = new VaccinesBean(city_id, city, province, name, phone, address);\r\n                result.add(vaccinesBean);\r\n            }\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/zoll/vinfo/handller/VaccinesHandler.java	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ src/main/java/com/zoll/vinfo/handller/VaccinesHandler.java	(date 1619605627696)
+@@ -15,17 +15,17 @@
+  * @DATE: 2021/4/17 上午11:57
+  */
+ public class VaccinesHandler {
+-    public static String urlStr = "http://apis.juhe.cn/springTravel/hsjg?key=2a045db4716657a67be6f8340405c6f8&city_id=";
+     //public static String key="2a045db4716657a67be6f8340405c6f8";
+     //public static int city_id=xxxxxx;
+ 
+     public static void main(String[] args) {
+-
++        List<VaccinesBean> data = getData(10034);
++        System.out.println(data);
+     }
+ 
+ 
+     public static List<VaccinesBean> getData(Integer id) {
+-
++        String urlStr = "http://apis.juhe.cn/springTravel/hsjg?key=2a045db4716657a67be6f8340405c6f8&city_id=";
+         /**
+          * 分析json字符串对数据进行筛选和提取
+          */
+Index: target/classes/static/css/dashboard.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>body {\r\n  font-size: .875rem;\r\n}\r\n\r\n.feather {\r\n  width: 16px;\r\n  height: 16px;\r\n  vertical-align: text-bottom;\r\n}\r\n\r\n.sidebar {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 100; /* Behind the navbar */\r\n  padding: 60px 0 0; /* Height of navbar */\r\n  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);\r\n  overflow: auto;\r\n}\r\n\r\n/*设置滚动条样式*/\r\n\r\n.homePage::-webkit-scrollbar-thumb {\r\n  background-color: rgb(190, 190, 190);\r\n}\r\n.homePage::-webkit-scrollbar-thumb:window-inactive {\r\n  background:  rgb(190, 190, 190);\r\n}\r\n.homePage::-webkit-scrollbar {\r\n  width: 6px;\r\n}\r\n\r\n@media (max-width: 768px) {\r\n  .sidebar {\r\n    top: 5rem;\r\n  }\r\n}\r\n\r\n.sidebar-sticky {\r\n  position: relative;\r\n  top: 0;\r\n  height: calc(100vh - 48px);\r\n  padding-top: .5rem;\r\n  overflow-x: hidden;\r\n  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\r\n}\r\n\r\n.sidebar .nav-link {\r\n  font-weight: 500;\r\n  color: #333;\r\n}\r\n\r\n.sidebar .nav-link .feather {\r\n  margin-right: 4px;\r\n  color: #727272;\r\n}\r\n\r\n.sidebar .nav-link.active {\r\n  color: #333;\r\n}\r\n\r\n.sidebar .nav-link:hover .feather,\r\n.sidebar .nav-link.active .feather {\r\n  color: inherit;\r\n}\r\n\r\n.sidebar-heading {\r\n  font-size: .75rem;\r\n  text-transform: uppercase;\r\n}\r\n\r\n/*\r\n * Navbar\r\n */\r\n\r\n.navbar-brand {\r\n  padding-top: .75rem;\r\n  padding-bottom: .75rem;\r\n  font-size: 1.5rem;\r\n  background-color: rgba(0, 0, 0, .25);\r\n  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);\r\n}\r\n\r\n.navbar .navbar-toggler {\r\n  top: .25rem;\r\n  right: 1rem;\r\n}\r\n\r\n.navbar .form-control {\r\n  padding: .75rem 1rem;\r\n  border-width: 0;\r\n  border-radius: 0;\r\n}\r\n\r\n.form-control-dark {\r\n  color: #fff;\r\n  background-color: rgba(255, 255, 255, .1);\r\n  border-color: rgba(255, 255, 255, .1);\r\n}\r\n\r\n.form-control-dark:focus {\r\n  border-color: transparent;\r\n  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);\r\n}\r\n\r\n.h2{\r\n  padding: 0 0 1rem 0.5rem !important;\r\n}\r\n\r\n.nav-link-1 {\r\n  display: block;\r\n  padding: 0.2rem 0.5rem;\r\n  text-decoration: none;\r\n  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;\r\n  font-size: 15px;\r\n  color: #333;\r\n  margin-left: 1rem;\r\n}\r\n\r\nul{\r\n  list-style: none!important;\r\n}\r\n\r\n@media (min-width:700px) {\r\n  .box {\r\n    max-width: 85%\r\n  }\r\n}\r\n\r\n.box{\r\n  width: 950px;\r\n  margin-right: auto;\r\n  margin-left: auto\r\n}\r\n\r\n.box2 {\r\n  display: flex;\r\n  flex-wrap: wrap;/*拆行*/\r\n  margin: 1rem;\r\n}\r\n\r\n.size {\r\n  flex: 0 0 auto;\r\n  width: 100%;\r\n}\r\n\r\n.form {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-width: 0;\r\n  word-wrap: break-word;/*换行*/\r\n  background-clip: border-box;\r\n  border: 1px solid rgba(0, 0, 0, 0.125);\r\n  border-radius: .25rem/*圆角*/\r\n}\r\n\r\n.form-header {\r\n  padding: .5rem 1rem;\r\n  margin-bottom: 0;\r\n  background-color: rgba(0,0,0,.03);\r\n  border-bottom: 1px solid rgba(0,0,0,.125)\r\n}\r\n\r\n.form-header:first-child {\r\n  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0\r\n}\r\n\r\n.form-body {\r\n  flex: 1 1 auto;\r\n  padding: 1rem 1rem\r\n}\r\n\r\n.btn1 {\r\n  position: absolute;\r\n  top: 300px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn2{\r\n  position: absolute;\r\n  top: 350px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n.btn3{\r\n  height: 60px;\r\n  position: absolute;\r\n  top: 50px;\r\n  left: 80px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn4{\r\n  height: 60px;\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 80px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n.btn5 {\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn6{\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 200px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.select1{\r\n  height: 30px;\r\n  width: 120px;\r\n  border: solid 1px #5e5e5e;\r\n  margin-left: 250px;\r\n  margin-top: 20px;\r\n  margin-bottom: 10px;\r\n  font-size: 18px;\r\n  font-style: normal;\r\n  font-weight: lighter;\r\n  text-align: center;\r\n  text-align-last: center;\r\n  font-family: serif;\r\n}\r\n\r\n.input1{\r\n  height: 30px;\r\n  width: 80px;\r\n  margin-left: 20px;\r\n  font-size: 18px;\r\n  font-family: serif;\r\n  display: none;\r\n}\r\n\r\n.table1{\r\n  width: 800px;\r\n  height:500px;\r\n  margin: auto;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n.list1{\r\n  text-align: center;\r\n  margin: 0;\r\n  font-size: 20px;\r\n}\r\n\r\n.list2{\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n}\r\n\r\n.provinceList::-webkit-scrollbar {\r\n  width: 0;\r\n}\r\n.graph::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphAdd::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphColumnar::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphPie::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.map::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.news::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.province::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.provinceList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.rumors::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.worldList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.worldMap::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.provinceList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n\r\n.span1{\r\n  height: 50px;\r\n  width: 120px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin:40px auto;\r\n  margin-left: 50px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.span2{\r\n  height: 50px;\r\n  width: 180px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin: 40px auto;\r\n  margin-top: 0;\r\n  margin-left: 10px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.span3{\r\n  height: 50px;\r\n  width: 120px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin:40px auto;\r\n  margin-left: 100px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.div1:after{\r\n  content: \"\";\r\n  display: block;\r\n  height: 0;\r\n  clear:both;\r\n  visibility: hidden;\r\n}\r\n.div2:after{\r\n  content: \"\";\r\n  display: block;\r\n  height: 0;\r\n  clear:both;\r\n  visibility: hidden;\r\n}\r\n.div1{\r\n  width: 80%;\r\n  margin: 0 auto;\r\n}\r\n.div2{\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n.di3{\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n.container1{\r\n  display: inline-block;\r\n  margin: 0 auto;\r\n}\r\n\r\n@media (min-width: 1400px){\r\n  .container1{\r\n    max-width: fit-content;\r\n  }\r\n}\r\n\r\n.selectBox{\r\n  height: 50px;\r\n  width: 200px;\r\n  font-size: 20px;\r\n  color: black;\r\n  border-top:hidden;\r\n  border-left: hidden;\r\n  border-right: hidden;\r\n  border-bottom: 1px solid black;\r\n  position: relative;\r\n  outline: none;\r\n  display: inline-block;\r\n  margin: 50px;\r\n  margin-left: 0;\r\n}\r\n\r\n.icon{\r\n  height: 50px;\r\n  width: 50px;\r\n  display: inline-block;\r\n}\r\n\r\n.form1 {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-width: 0;\r\n  word-wrap: break-word; /*换行*/\r\n  background-clip: border-box;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/static/css/dashboard.css	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ target/classes/static/css/dashboard.css	(date 1619598593605)
+@@ -226,6 +226,8 @@
+   box-shadow: 0 0 5px #eaeaea;
+ }
+ 
++
++
+ .select1{
+   height: 30px;
+   width: 120px;
+Index: src/main/resources/static/css/dashboard.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>body {\r\n  font-size: .875rem;\r\n}\r\n\r\n.feather {\r\n  width: 16px;\r\n  height: 16px;\r\n  vertical-align: text-bottom;\r\n}\r\n\r\n.sidebar {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 100; /* Behind the navbar */\r\n  padding: 60px 0 0; /* Height of navbar */\r\n  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);\r\n  overflow: auto;\r\n}\r\n\r\n/*设置滚动条样式*/\r\n\r\n.homePage::-webkit-scrollbar-thumb {\r\n  background-color: rgb(190, 190, 190);\r\n}\r\n.homePage::-webkit-scrollbar-thumb:window-inactive {\r\n  background:  rgb(190, 190, 190);\r\n}\r\n.homePage::-webkit-scrollbar {\r\n  width: 6px;\r\n}\r\n\r\n@media (max-width: 768px) {\r\n  .sidebar {\r\n    top: 5rem;\r\n  }\r\n}\r\n\r\n.sidebar-sticky {\r\n  position: relative;\r\n  top: 0;\r\n  height: calc(100vh - 48px);\r\n  padding-top: .5rem;\r\n  overflow-x: hidden;\r\n  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\r\n}\r\n\r\n.sidebar .nav-link {\r\n  font-weight: 500;\r\n  color: #333;\r\n}\r\n\r\n.sidebar .nav-link .feather {\r\n  margin-right: 4px;\r\n  color: #727272;\r\n}\r\n\r\n.sidebar .nav-link.active {\r\n  color: #333;\r\n}\r\n\r\n.sidebar .nav-link:hover .feather,\r\n.sidebar .nav-link.active .feather {\r\n  color: inherit;\r\n}\r\n\r\n.sidebar-heading {\r\n  font-size: .75rem;\r\n  text-transform: uppercase;\r\n}\r\n\r\n/*\r\n * Navbar\r\n */\r\n\r\n.navbar-brand {\r\n  padding-top: .75rem;\r\n  padding-bottom: .75rem;\r\n  font-size: 1.5rem;\r\n  background-color: rgba(0, 0, 0, .25);\r\n  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);\r\n}\r\n\r\n.navbar .navbar-toggler {\r\n  top: .25rem;\r\n  right: 1rem;\r\n}\r\n\r\n.navbar .form-control {\r\n  padding: .75rem 1rem;\r\n  border-width: 0;\r\n  border-radius: 0;\r\n}\r\n\r\n.form-control-dark {\r\n  color: #fff;\r\n  background-color: rgba(255, 255, 255, .1);\r\n  border-color: rgba(255, 255, 255, .1);\r\n}\r\n\r\n.form-control-dark:focus {\r\n  border-color: transparent;\r\n  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);\r\n}\r\n\r\n.h2{\r\n  padding: 0 0 1rem 0.5rem !important;\r\n}\r\n\r\n.nav-link-1 {\r\n  display: block;\r\n  padding: 0.2rem 0.5rem;\r\n  text-decoration: none;\r\n  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;\r\n  font-size: 15px;\r\n  color: #333;\r\n  margin-left: 1rem;\r\n}\r\n\r\nul{\r\n  list-style: none!important;\r\n}\r\n\r\n@media (min-width:700px) {\r\n  .box {\r\n    max-width: 85%\r\n  }\r\n}\r\n\r\n.box{\r\n  width: 950px;\r\n  margin-right: auto;\r\n  margin-left: auto\r\n}\r\n\r\n.box2 {\r\n  display: flex;\r\n  flex-wrap: wrap;/*拆行*/\r\n  margin: 1rem;\r\n}\r\n\r\n.size {\r\n  flex: 0 0 auto;\r\n  width: 100%;\r\n}\r\n\r\n.form {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-width: 0;\r\n  word-wrap: break-word;/*换行*/\r\n  background-clip: border-box;\r\n  border: 1px solid rgba(0, 0, 0, 0.125);\r\n  border-radius: .25rem/*圆角*/\r\n}\r\n\r\n.form-header {\r\n  padding: .5rem 1rem;\r\n  margin-bottom: 0;\r\n  background-color: rgba(0,0,0,.03);\r\n  border-bottom: 1px solid rgba(0,0,0,.125)\r\n}\r\n\r\n.form-header:first-child {\r\n  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0\r\n}\r\n\r\n.form-body {\r\n  flex: 1 1 auto;\r\n  padding: 1rem 1rem\r\n}\r\n\r\n.btn1 {\r\n  position: absolute;\r\n  top: 300px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn2{\r\n  position: absolute;\r\n  top: 350px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n.btn3{\r\n  height: 60px;\r\n  position: absolute;\r\n  top: 50px;\r\n  left: 80px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn4{\r\n  height: 60px;\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 80px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n.btn5 {\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 100px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.btn6{\r\n  position: absolute;\r\n  top: 120px;\r\n  left: 200px;\r\n  background-color: #f7f7f7;\r\n  border: 1px solid #eaeaea;\r\n  box-shadow: 0 0 5px #eaeaea;\r\n}\r\n\r\n.select1{\r\n  height: 30px;\r\n  width: 120px;\r\n  border: solid 1px #5e5e5e;\r\n  margin-left: 250px;\r\n  margin-top: 20px;\r\n  margin-bottom: 10px;\r\n  font-size: 18px;\r\n  font-style: normal;\r\n  font-weight: lighter;\r\n  text-align: center;\r\n  text-align-last: center;\r\n  font-family: serif;\r\n}\r\n\r\n.input1{\r\n  height: 30px;\r\n  width: 80px;\r\n  margin-left: 20px;\r\n  font-size: 18px;\r\n  font-family: serif;\r\n  display: none;\r\n}\r\n\r\n.table1{\r\n  width: 800px;\r\n  height:500px;\r\n  margin: auto;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n.list1{\r\n  text-align: center;\r\n  margin: 0;\r\n  font-size: 20px;\r\n}\r\n\r\n.list2{\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n}\r\n\r\n.provinceList::-webkit-scrollbar {\r\n  width: 0;\r\n}\r\n.graph::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphAdd::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphColumnar::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.graphPie::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.map::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.news::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.province::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.provinceList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.rumors::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.worldList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.worldMap::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n.provinceList::-webkit-scrollbar{\r\n  width: 0;\r\n}\r\n\r\n.span1{\r\n  height: 50px;\r\n  width: 120px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin:40px auto;\r\n  margin-left: 50px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.span2{\r\n  height: 50px;\r\n  width: 180px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin: 40px auto;\r\n  margin-top: 0;\r\n  margin-left: 10px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.span3{\r\n  height: 50px;\r\n  width: 120px;\r\n  text-align: center;\r\n  font-size: 18px;\r\n  font-weight: lighter;\r\n  margin:40px auto;\r\n  margin-left: 100px;\r\n  display: block;\r\n  float: left;\r\n}\r\n.div1:after{\r\n  content: \"\";\r\n  display: block;\r\n  height: 0;\r\n  clear:both;\r\n  visibility: hidden;\r\n}\r\n.div2:after{\r\n  content: \"\";\r\n  display: block;\r\n  height: 0;\r\n  clear:both;\r\n  visibility: hidden;\r\n}\r\n.div1{\r\n  width: 80%;\r\n  margin: 0 auto;\r\n}\r\n.div2{\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n.di3{\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n.container1{\r\n  display: inline-block;\r\n  margin: 0 auto;\r\n}\r\n\r\n@media (min-width: 1400px){\r\n  .container1{\r\n    max-width: fit-content;\r\n  }\r\n}\r\n\r\n.selectBox{\r\n  height: 50px;\r\n  width: 200px;\r\n  font-size: 20px;\r\n  color: black;\r\n  border-top:hidden;\r\n  border-left: hidden;\r\n  border-right: hidden;\r\n  border-bottom: 1px solid black;\r\n  position: relative;\r\n  outline: none;\r\n  display: inline-block;\r\n  margin: 50px;\r\n  margin-left: 0;\r\n}\r\n\r\n.icon{\r\n  height: 50px;\r\n  width: 50px;\r\n  display: inline-block;\r\n}\r\n\r\n.form1 {\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-width: 0;\r\n  word-wrap: break-word; /*换行*/\r\n  background-clip: border-box;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/static/css/dashboard.css	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ src/main/resources/static/css/dashboard.css	(date 1619598593605)
+@@ -226,6 +226,8 @@
+   box-shadow: 0 0 5px #eaeaea;
+ }
+ 
++
++
+ .select1{
+   height: 30px;
+   width: 120px;
+Index: src/main/resources/templates/worldMap.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html xmlns:th=\"http://www.thymeleaf.org\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Title</title>\r\n    <link  rel=\"stylesheet\" href=\"../static/css/bootstrap.css\" th:href=\"@{/css/bootstrap.css}\">\r\n    <link  rel=\"stylesheet\" href=\"../static/css/dashboard.css\" th:href=\"@{/css/dashboard.css}\">\r\n    <script type=\"text/javascript\" src=\"echarts/echarts.min.js\"></script>\r\n    <script type=\"text/javascript\" src=\"echarts/world.js\"></script>\r\n</head>\r\n<body onload=\"a()\" class=\"worldMap\">\r\n<button type=\"button\" class=\"btn btn5\" onclick=\"a()\">累计确诊</button>\r\n<button type=\"button\" class=\"btn btn6\" onclick=\"b()\">累计死亡</button>\r\n<div id=\"top\" style=\"width: 950px;height:100px;margin: auto;\"></div>\r\n<div id=\"main\" style=\"width: 1500px;height:850px;top:50px;left:-130px\"></div>\r\n\r\n<script th:inline=\"javascript\">\r\n    var todayWorld=[[${todayWorld}]]\r\n    str =`\r\n        <div class=\"div3\">\r\n        <div class=\"span3\" style=\"background-color:#fff4f4;\"><span>累计确诊人数</br>${todayWorld[\"confirm\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fff7f7;\"><span>累计死亡人数</br>${todayWorld[\"dead\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fffafa;\"><span>累计治愈人数</br>${todayWorld[\"heal\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fffcfc;\"><span>目前确诊人数</br>${todayWorld[\"nowConfirm\"]}</span></div>\r\n        </div>\r\n    `\r\n    document.getElementById(\"top\").innerHTML=str\r\n\r\n    var dataStr=[[${worldBeansList}]]\r\n    var AllCountData = [];\r\n    var AllDeadData = [];\r\n\r\n    for(var i=0;i<dataStr.length;i++)\r\n    {\r\n        AllCountData.push({   name:dataStr[i].provinceProvinceName,\r\n                value:dataStr[i].provinceConfirmedCount\r\n            })\r\n        AllDeadData.push({\r\n            name:dataStr[i].provinceProvinceName,\r\n            value:dataStr[i].provinceDeadCount\r\n        })\r\n    }\r\n\r\n    var AllCountData_option = {\r\n        title: {\r\n            text: '世界疫情疫情累计确诊分布情况',\r\n            textStyle: {\r\n                color: \"black\", // 主标题文字的颜色。\r\n                fontStyle: \"normal\", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'\r\n                fontWeight: \"bolder\", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'\r\n                fontFamily: \"Serif\", // 主标题文字的字体系列。\r\n                fontSize: 25, // 字体大小\r\n                lineHeight: \"40\", // 行高\r\n            },\r\n            subtext: '仅供参考',\r\n            x: 'center'\r\n        },\r\n        tooltip: {\r\n            trigger: 'item'\r\n        },\r\n\r\n        series: [\r\n            {\r\n                name: '累计确诊',\r\n                type: 'map',\r\n                mapType: 'world',\r\n                //roam: false,\r\n                roam: true, //是否开启平游或缩放\r\n                scaleLimit: { //滚轮缩放的极限控制\r\n                    min: 1,\r\n                    max: 2\r\n                },\r\n                label: {\r\n                    normal: {\r\n                        // formatter: '{b}',\r\n                        position: 'center',\r\n                        show: false,\r\n                        textStyle: {\r\n                            color: 'rgba(0,0,0,1)'\r\n                        }\r\n                    },\r\n                    emphasis: {\r\n                        show: true,\r\n                        /**textStyle: {\r\n                            color: 'rgb(252,19,0)'\r\n                        }**/\r\n                    }\r\n                },\r\n                data: AllCountData,\r\n            },\r\n        ]\r\n\r\n    };\r\n    var AllDeadData_option  = {\r\n        title: {\r\n            text: '世界疫情疫情累计死亡分布情况',\r\n            textStyle: {\r\n                color: \"black\", // 主标题文字的颜色。\r\n                fontStyle: \"normal\", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'\r\n                fontWeight: \"bolder\", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'\r\n                fontFamily: \"Serif\", // 主标题文字的字体系列。\r\n                fontSize: 25, // 字体大小\r\n                lineHeight: \"40\", // 行高\r\n            },\r\n            subtext: '仅供参考',\r\n            x: 'center'\r\n        },\r\n        tooltip: {\r\n            trigger: 'item'\r\n        },\r\n\r\n        series: [\r\n            {\r\n                name: '累计死亡',\r\n                type: 'map',\r\n                mapType: 'world',\r\n                //roam: false,\r\n                roam: true, //是否开启平游或缩放\r\n                scaleLimit: { //滚轮缩放的极限控制\r\n                    min: 1,\r\n                    max: 2\r\n                },\r\n                label: {\r\n                    normal: {\r\n                        // formatter: '{b}',\r\n                        position: 'center',\r\n                        show: false,\r\n                        textStyle: {\r\n                            color: 'rgba(0,0,0,1)'\r\n                        }\r\n                    },\r\n                    emphasis: {\r\n                        show: true,\r\n                        /*textStyle: {\r\n                            color: 'rgb(255,10,10)'\r\n                        }*/\r\n                    }\r\n                },\r\n                data: AllDeadData,\r\n            },\r\n        ]\r\n\r\n    };\r\n\r\n\r\n    var chart = echarts.init(document.getElementById(\"main\"))\r\n\r\n    function a(){chart.setOption(AllCountData_option,true)}\r\n    function b(){chart.setOption(AllDeadData_option,true)}\r\n</script>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/templates/worldMap.html	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ src/main/resources/templates/worldMap.html	(date 1619598593616)
+@@ -9,8 +9,9 @@
+     <script type="text/javascript" src="echarts/world.js"></script>
+ </head>
+ <body onload="a()" class="worldMap">
+-<button type="button" class="btn btn5" onclick="a()">累计确诊</button>
++<button type="button" class="btn btn5" onclick="a()">现存确诊</button>
+ <button type="button" class="btn btn6" onclick="b()">累计死亡</button>
++
+ <div id="top" style="width: 950px;height:100px;margin: auto;"></div>
+ <div id="main" style="width: 1500px;height:850px;top:50px;left:-130px"></div>
+ 
+@@ -29,7 +30,7 @@
+     var dataStr=[[${worldBeansList}]]
+     var AllCountData = [];
+     var AllDeadData = [];
+-
++    var NowCountData=[];
+     for(var i=0;i<dataStr.length;i++)
+     {
+         AllCountData.push({   name:dataStr[i].provinceProvinceName,
+@@ -39,11 +40,13 @@
+             name:dataStr[i].provinceProvinceName,
+             value:dataStr[i].provinceDeadCount
+         })
++
++
+     }
+ 
+     var AllCountData_option = {
+         title: {
+-            text: '世界疫情疫情累计确诊分布情况',
++            text: '世界疫情疫情现存确诊分布情况',
+             textStyle: {
+                 color: "black", // 主标题文字的颜色。
+                 fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+@@ -61,7 +64,7 @@
+ 
+         series: [
+             {
+-                name: '累计确诊',
++                name: '现存确诊',
+                 type: 'map',
+                 mapType: 'world',
+                 //roam: false,
+@@ -147,6 +150,7 @@
+ 
+     function a(){chart.setOption(AllCountData_option,true)}
+     function b(){chart.setOption(AllDeadData_option,true)}
++
+ </script>
+ 
+ </body>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"72ede185-93ba-4c84-aefc-aba484a4a88f\" name=\"Default Changelist\" comment=\"Default Changelist\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/templates/provinceList.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/templates/provinceList.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/templates/vaccine.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/templates/vaccine.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/templates/worldList.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/templates/worldList.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/templates/provincelist.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/templates/provincelist.html\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"DefaultGradleProjectSettings\">\r\n    <option name=\"isMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Tag Library Descriptor\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"eugenechow &lt;574128041@qq.com&gt;\" />\r\n        <option value=\"zoll\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"bEgg\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"JsFlowSettings\">\r\n    <service-enabled>true</service-enabled>\r\n    <exe-path />\r\n    <other-services-enabled>true</other-services-enabled>\r\n    <auto-save>true</auto-save>\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"alwaysUpdateSnapshots\" value=\"true\" />\r\n        <option name=\"printErrorStackTraces\" value=\"true\" />\r\n        <option name=\"usePluginRegistry\" value=\"true\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n    <option name=\"importingSettings\">\r\n      <MavenImportingSettings>\r\n        <option name=\"createModuleGroups\" value=\"true\" />\r\n        <option name=\"vmOptionsForImporter\" value=\"-Xmx768m\" />\r\n      </MavenImportingSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qv3rSydzHjZCQl4tHAJfIOL5nK\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\r\n    <property name=\"RequestMappingsPanelOrder0\" value=\"0\" />\r\n    <property name=\"RequestMappingsPanelOrder1\" value=\"1\" />\r\n    <property name=\"RequestMappingsPanelWidth0\" value=\"75\" />\r\n    <property name=\"RequestMappingsPanelWidth1\" value=\"75\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$USER_HOME$/Desktop/item_BookShop/item_BookShop\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_interpreter_path.stuck_in_default_project\" value=\"undefined stuck path\" />\r\n    <property name=\"nodejs_npm_path_reset_for_default_project\" value=\"true\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"模块\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"File.Encoding\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\REGINA\\Documents\\GitHub\\Epidemic-data-visualization-system\\src\\main\\resources\\static\\img\" />\r\n      <recent name=\"$PROJECT_DIR$/src/test\" />\r\n      <recent name=\"D:\\Study\\渡一教育\\Boot疫情分析数据\\lyboot\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Epidemic-data-visualization-system\\src\\main\\resources\\templates\" />\r\n      <recent name=\"D:\\Epidemic-data-visualization-system\\src\\main\\resources\\static\\echarts\" />\r\n      <recent name=\"$PROJECT_DIR$/src/main/java/com/zoll/vinfo/service\" />\r\n      <recent name=\"D:\\Study\\渡一教育\\Boot疫情分析数据\\lyboot\" />\r\n      <recent name=\"D:\\Study\\渡一教育\\Boot疫情分析数据\\lyboot\\src\\main\\resources\\static\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.zoll.vinfo.mapper\" />\r\n      <recent name=\"com.zoll.vinfo.service\" />\r\n      <recent name=\"com.zoll.vinfo.bean\" />\r\n    </key>\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"com.xbdx.lyboot.bean\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.MyApplication\">\r\n    <configuration name=\"RumorHandler\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.zoll.vinfo.handller.RumorHandler\" />\r\n      <module name=\"Epidemic data visualization system\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.zoll.vinfo.handller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"VaccinesHandler\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.zoll.vinfo.handller.VaccinesHandler\" />\r\n      <module name=\"Epidemic data visualization system\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.zoll.vinfo.handller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"JsoupHandler.test\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Epidemic data visualization system\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.zoll.vinfo.handller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.zoll.vinfo.handller\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.zoll.vinfo.handller.JsoupHandler\" />\r\n      <option name=\"METHOD_NAME\" value=\"test\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"travelPolicy.html\" type=\"JavascriptDebugType\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/Epidemic-data-visualization-system/Epidemic data visualization system/templates/travelPolicy.html\" useBuiltInWebServerPort=\"true\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"MyApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Epidemic data visualization system\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.zoll.vinfo.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.zoll.vinfo.MyApplication\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <option name=\"UPDATE_ACTION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"JavaScript Debug.travelPolicy.html\" />\r\n      <item itemvalue=\"JUnit.JsoupHandler.test\" />\r\n      <item itemvalue=\"Spring Boot.MyApplication\" />\r\n      <item itemvalue=\"应用程序.RumorHandler\" />\r\n      <item itemvalue=\"应用程序.VaccinesHandler\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Spring Boot.MyApplication\" />\r\n        <item itemvalue=\"JavaScript Debug.travelPolicy.html\" />\r\n        <item itemvalue=\"JUnit.JsoupHandler.test\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" BundledDictionaries=\"0\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" Dictionaries=\"0\" CorrectionsLimit=\"5\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"72ede185-93ba-4c84-aefc-aba484a4a88f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1589372880489</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1589372880489</updated>\r\n      <workItem from=\"1589372894183\" duration=\"1109000\" />\r\n      <workItem from=\"1589433296706\" duration=\"6413000\" />\r\n      <workItem from=\"1589522853232\" duration=\"1274000\" />\r\n      <workItem from=\"1589529317144\" duration=\"88000\" />\r\n      <workItem from=\"1589529771507\" duration=\"237000\" />\r\n      <workItem from=\"1589539693241\" duration=\"3553000\" />\r\n      <workItem from=\"1589846722880\" duration=\"11317000\" />\r\n      <workItem from=\"1589897261907\" duration=\"1084000\" />\r\n      <workItem from=\"1589899093048\" duration=\"48000\" />\r\n      <workItem from=\"1589899190095\" duration=\"21000\" />\r\n      <workItem from=\"1589954245414\" duration=\"6051000\" />\r\n      <workItem from=\"1590161038947\" duration=\"1536000\" />\r\n      <workItem from=\"1590165940194\" duration=\"82000\" />\r\n      <workItem from=\"1590166417240\" duration=\"17000\" />\r\n      <workItem from=\"1590169141281\" duration=\"148000\" />\r\n      <workItem from=\"1590194168657\" duration=\"3200000\" />\r\n      <workItem from=\"1592223437237\" duration=\"296000\" />\r\n      <workItem from=\"1592268778340\" duration=\"6848000\" />\r\n      <workItem from=\"1592276068456\" duration=\"864000\" />\r\n      <workItem from=\"1617946438129\" duration=\"162000\" />\r\n      <workItem from=\"1617946632758\" duration=\"2547000\" />\r\n      <workItem from=\"1618204248199\" duration=\"1015000\" />\r\n      <workItem from=\"1618206733242\" duration=\"157000\" />\r\n      <workItem from=\"1618206964017\" duration=\"2755000\" />\r\n      <workItem from=\"1618214231170\" duration=\"396000\" />\r\n      <workItem from=\"1618314529586\" duration=\"1826000\" />\r\n      <workItem from=\"1618375004614\" duration=\"17118000\" />\r\n      <workItem from=\"1618461461075\" duration=\"19748000\" />\r\n      <workItem from=\"1618496204204\" duration=\"824000\" />\r\n      <workItem from=\"1618499383632\" duration=\"7572000\" />\r\n      <workItem from=\"1618508958433\" duration=\"302000\" />\r\n      <workItem from=\"1618567984461\" duration=\"2583000\" />\r\n      <workItem from=\"1618575572679\" duration=\"3000\" />\r\n      <workItem from=\"1618630650966\" duration=\"9145000\" />\r\n      <workItem from=\"1618665643697\" duration=\"16000\" />\r\n      <workItem from=\"1618735589089\" duration=\"258000\" />\r\n      <workItem from=\"1618764215331\" duration=\"3594000\" />\r\n      <workItem from=\"1618841385016\" duration=\"2928000\" />\r\n      <workItem from=\"1618886523361\" duration=\"905000\" />\r\n      <workItem from=\"1618889362888\" duration=\"4037000\" />\r\n      <workItem from=\"1618893550331\" duration=\"13416000\" />\r\n      <workItem from=\"1618923282029\" duration=\"5696000\" />\r\n      <workItem from=\"1618931862987\" duration=\"444000\" />\r\n      <workItem from=\"1618937157418\" duration=\"291000\" />\r\n      <workItem from=\"1618986652525\" duration=\"5840000\" />\r\n      <workItem from=\"1619010546170\" duration=\"1033000\" />\r\n      <workItem from=\"1619017170659\" duration=\"1127000\" />\r\n      <workItem from=\"1619053139074\" duration=\"3109000\" />\r\n      <workItem from=\"1619056391838\" duration=\"8368000\" />\r\n      <workItem from=\"1619147451758\" duration=\"104000\" />\r\n      <workItem from=\"1619179490854\" duration=\"285000\" />\r\n      <workItem from=\"1619275187512\" duration=\"4895000\" />\r\n      <workItem from=\"1619334251750\" duration=\"464000\" />\r\n      <workItem from=\"1619334740394\" duration=\"17606000\" />\r\n      <workItem from=\"1619419904010\" duration=\"14711000\" />\r\n      <workItem from=\"1619448122078\" duration=\"962000\" />\r\n      <workItem from=\"1619449116417\" duration=\"30000\" />\r\n      <workItem from=\"1619450800299\" duration=\"1789000\" />\r\n      <workItem from=\"1619493334333\" duration=\"6996000\" />\r\n      <workItem from=\"1619503554453\" duration=\"8238000\" />\r\n      <workItem from=\"1619579091018\" duration=\"9290000\" />\r\n      <workItem from=\"1619591747936\" duration=\"4243000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"从网上获取数据存储到数据库每分钟更新查询\">\r\n      <created>1589373964263</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589373964263</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"day5使用echarts渲染数据折线图\">\r\n      <created>1589441493095</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589441493095</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"day6使用echarts渲染条形和饼状图\">\r\n      <created>1589543235620</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589543235620</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"day10完成疫情数据实时展示效果\">\r\n      <created>1590196285796</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1590196285796</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Default Changelist\">\r\n      <created>1618208883024</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618208883025</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Default Changelist\">\r\n      <created>1618387487254</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618387487254</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Default Changelist\">\r\n      <created>1618387498499</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618387498499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Default Changelist\">\r\n      <created>1618394124703</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618394124703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Default Changelist\">\r\n      <created>1618394176636</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618394176636</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Default Changelist\">\r\n      <created>1618394182703</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618394182703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Default Changelist\">\r\n      <created>1618463616276</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618463616276</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Default Changelist\">\r\n      <created>1618465082545</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618465082545</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Default Changelist\">\r\n      <created>1618474224872</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618474224872</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Default Changelist\">\r\n      <created>1618493052605</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618493052605</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Default Changelist\">\r\n      <created>1618736718164</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618736718164</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Default Changelist\">\r\n      <created>1618741810058</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618741810058</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Default Changelist\">\r\n      <created>1618812711104</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618812711104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Default Changelist\">\r\n      <created>1618814834768</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618814834768</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Default Changelist\">\r\n      <created>1618816841193</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618816841193</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Default Changelist\">\r\n      <created>1618817280284</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618817280284</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Default Changelist\">\r\n      <created>1618931938469</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618931938469</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Default Changelist\">\r\n      <created>1619060736921</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619060736922</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Default Changelist\">\r\n      <created>1619185221526</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619185221526</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Default Changelist\">\r\n      <created>1619243807762</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619243807762</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Default Changelist\">\r\n      <created>1619247589617</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619247589617</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Default Changelist\">\r\n      <created>1619583222536</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619583222536</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Default Changelist\">\r\n      <created>1619587139682</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619587139682</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"28\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ORDER\">\r\n      <list>\r\n        <option value=\"0\" />\r\n        <option value=\"2\" />\r\n        <option value=\"3\" />\r\n        <option value=\"1\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/bEgg\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Branch\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"origin/bEgg\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"User\">\r\n          <value>\r\n            <list />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT\" value=\"false\" />\r\n    <option name=\"CHECK_NEW_TODO\" value=\"false\" />\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"从网上获取数据存储到数据库每分钟更新查询\" />\r\n    <MESSAGE value=\"day5使用echarts渲染数据折线图\" />\r\n    <MESSAGE value=\"day6使用echarts渲染条形和饼状图\" />\r\n    <MESSAGE value=\"day10完成疫情数据实时展示效果\" />\r\n    <MESSAGE value=\"Default Changelist\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Default Changelist\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"617\" y=\"386\" key=\"#com.intellij.javaee.module.view.web.EditWebRootDialog\" timestamp=\"1619493913057\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"617\" y=\"386\" key=\"#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1619493913057\" />\r\n    <state x=\"147\" y=\"65\" key=\"DiffContextDialog\" timestamp=\"1619583289140\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"147\" y=\"65\" key=\"DiffContextDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1619583289140\" />\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl\" timestamp=\"1619502836591\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" timestamp=\"1619502836591\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.center\" timestamp=\"1619595347853\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347853\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.left\" timestamp=\"1619595347853\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347853\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.right\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.center\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.left\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.right\" timestamp=\"1619595347854\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"221\" key=\"GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1619595347854\" />\r\n    <state x=\"267\" y=\"0\" key=\"SettingsEditor\" timestamp=\"1619493914446\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"267\" y=\"0\" key=\"SettingsEditor/0.0.1536.824@0.0.1536.824\" timestamp=\"1619493914446\" />\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1619587212157\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1619587212157\" />\r\n    <state x=\"564\" y=\"325\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1619508214145\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"564\" y=\"325\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1619508214145\" />\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1619458053044\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1619458053044\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"lyboot\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n        <item name=\"lyboot\" type=\"462c0819:PsiDirectoryNode\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ .idea/workspace.xml	(date 1619605642676)
+@@ -25,11 +25,13 @@
+     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/provinceList.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/VaccinesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/VaccinesHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vaccine.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vaccine.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldList.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/templates/provincelist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/provincelist.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/templates/worldmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -219,6 +221,7 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Spring Boot.MyApplication" />
++        <item itemvalue="应用程序.VaccinesHandler" />
+         <item itemvalue="JavaScript Debug.travelPolicy.html" />
+         <item itemvalue="JUnit.JsoupHandler.test" />
+       </list>
+@@ -296,7 +299,8 @@
+       <workItem from="1619493334333" duration="6996000" />
+       <workItem from="1619503554453" duration="8238000" />
+       <workItem from="1619579091018" duration="9290000" />
+-      <workItem from="1619591747936" duration="4243000" />
++      <workItem from="1619591747936" duration="7861000" />
++      <workItem from="1619600770191" duration="4647000" />
+     </task>
+     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
+       <created>1589373964263</created>
+@@ -487,7 +491,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1619587139682</updated>
+     </task>
+-    <option name="localTasksCounter" value="28" />
++    <task id="LOCAL-00028" summary="Default Changelist">
++      <created>1619596036794</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1619596036794</updated>
++    </task>
++    <option name="localTasksCounter" value="29" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -573,46 +584,46 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1619502836591" />
+-    <state width="1493" height="221" key="GridCell.Tab.0.bottom" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.0.bottom" timestamp="1619605290769">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
+-    <state width="1493" height="221" key="GridCell.Tab.0.center" timestamp="1619595347853">
++    <state width="1493" height="326" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619605290769" />
++    <state width="1493" height="326" key="GridCell.Tab.0.center" timestamp="1619605290769">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619595347853" />
+-    <state width="1493" height="221" key="GridCell.Tab.0.left" timestamp="1619595347853">
++    <state width="1493" height="326" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619605290769" />
++    <state width="1493" height="326" key="GridCell.Tab.0.left" timestamp="1619605290769">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619595347853" />
+-    <state width="1493" height="221" key="GridCell.Tab.0.right" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619605290769" />
++    <state width="1493" height="326" key="GridCell.Tab.0.right" timestamp="1619605290769">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
+-    <state width="1493" height="221" key="GridCell.Tab.1.bottom" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619605290769" />
++    <state width="1493" height="326" key="GridCell.Tab.1.bottom" timestamp="1619605290770">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
+-    <state width="1493" height="221" key="GridCell.Tab.1.center" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619605290770" />
++    <state width="1493" height="326" key="GridCell.Tab.1.center" timestamp="1619605290770">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
+-    <state width="1493" height="221" key="GridCell.Tab.1.left" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619605290770" />
++    <state width="1493" height="326" key="GridCell.Tab.1.left" timestamp="1619605290770">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
+-    <state width="1493" height="221" key="GridCell.Tab.1.right" timestamp="1619595347854">
++    <state width="1493" height="326" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619605290770" />
++    <state width="1493" height="326" key="GridCell.Tab.1.right" timestamp="1619605290770">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="221" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619595347854" />
++    <state width="1493" height="326" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619605290770" />
+     <state x="267" y="0" key="SettingsEditor" timestamp="1619493914446">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="267" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1619493914446" />
+-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619587212157">
++    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619596055874">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619587212157" />
++    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619596055874" />
+     <state x="564" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619508214145">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+Index: target/classes/templates/worldmap.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html xmlns:th=\"http://www.thymeleaf.org\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Title</title>\r\n    <link  rel=\"stylesheet\" href=\"../static/css/bootstrap.css\" th:href=\"@{/css/bootstrap.css}\">\r\n    <link  rel=\"stylesheet\" href=\"../static/css/dashboard.css\" th:href=\"@{/css/dashboard.css}\">\r\n    <script type=\"text/javascript\" src=\"echarts/echarts.min.js\"></script>\r\n    <script type=\"text/javascript\" src=\"echarts/world.js\"></script>\r\n</head>\r\n<body onload=\"a()\" class=\"worldMap\">\r\n<button type=\"button\" class=\"btn btn5\" onclick=\"a()\">累计确诊</button>\r\n<button type=\"button\" class=\"btn btn6\" onclick=\"b()\">累计死亡</button>\r\n<div id=\"top\" style=\"width: 950px;height:100px;margin: auto;\"></div>\r\n<div id=\"main\" style=\"width: 1500px;height:850px;top:50px;left:-130px\"></div>\r\n\r\n<script th:inline=\"javascript\">\r\n    var todayWorld=[[${todayWorld}]]\r\n    str =`\r\n        <div class=\"div3\">\r\n        <div class=\"span3\" style=\"background-color:#fff4f4;\"><span>累计确诊人数</br>${todayWorld[\"confirm\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fff7f7;\"><span>累计死亡人数</br>${todayWorld[\"dead\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fffafa;\"><span>累计治愈人数</br>${todayWorld[\"heal\"]}</span></div>\r\n        <div class=\"span3\" style=\"background-color:#fffcfc;\"><span>目前确诊人数</br>${todayWorld[\"nowConfirm\"]}</span></div>\r\n        </div>\r\n    `\r\n    document.getElementById(\"top\").innerHTML=str\r\n\r\n    var dataStr=[[${worldBeansList}]]\r\n    var AllCountData = [];\r\n    var AllDeadData = [];\r\n\r\n    for(var i=0;i<dataStr.length;i++)\r\n    {\r\n        AllCountData.push({   name:dataStr[i].provinceProvinceName,\r\n                value:dataStr[i].provinceConfirmedCount\r\n            })\r\n        AllDeadData.push({\r\n            name:dataStr[i].provinceProvinceName,\r\n            value:dataStr[i].provinceDeadCount\r\n        })\r\n    }\r\n\r\n    var AllCountData_option = {\r\n        title: {\r\n            text: '世界疫情疫情累计确诊分布情况',\r\n            textStyle: {\r\n                color: \"black\", // 主标题文字的颜色。\r\n                fontStyle: \"normal\", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'\r\n                fontWeight: \"bolder\", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'\r\n                fontFamily: \"Serif\", // 主标题文字的字体系列。\r\n                fontSize: 25, // 字体大小\r\n                lineHeight: \"40\", // 行高\r\n            },\r\n            subtext: '仅供参考',\r\n            x: 'center'\r\n        },\r\n        tooltip: {\r\n            trigger: 'item'\r\n        },\r\n\r\n        series: [\r\n            {\r\n                name: '累计确诊',\r\n                type: 'map',\r\n                mapType: 'world',\r\n                //roam: false,\r\n                roam: true, //是否开启平游或缩放\r\n                scaleLimit: { //滚轮缩放的极限控制\r\n                    min: 1,\r\n                    max: 2\r\n                },\r\n                label: {\r\n                    normal: {\r\n                        // formatter: '{b}',\r\n                        position: 'center',\r\n                        show: false,\r\n                        textStyle: {\r\n                            color: 'rgba(0,0,0,1)'\r\n                        }\r\n                    },\r\n                    emphasis: {\r\n                        show: true,\r\n                        /**textStyle: {\r\n                            color: 'rgb(252,19,0)'\r\n                        }**/\r\n                    }\r\n                },\r\n                data: AllCountData,\r\n            },\r\n        ]\r\n\r\n    };\r\n    var AllDeadData_option  = {\r\n        title: {\r\n            text: '世界疫情疫情累计死亡分布情况',\r\n            textStyle: {\r\n                color: \"black\", // 主标题文字的颜色。\r\n                fontStyle: \"normal\", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'\r\n                fontWeight: \"bolder\", // 主标题文字字体的粗细。 'normal' 'bold'  'bolder'  'lighter'\r\n                fontFamily: \"Serif\", // 主标题文字的字体系列。\r\n                fontSize: 25, // 字体大小\r\n                lineHeight: \"40\", // 行高\r\n            },\r\n            subtext: '仅供参考',\r\n            x: 'center'\r\n        },\r\n        tooltip: {\r\n            trigger: 'item'\r\n        },\r\n\r\n        series: [\r\n            {\r\n                name: '累计死亡',\r\n                type: 'map',\r\n                mapType: 'world',\r\n                //roam: false,\r\n                roam: true, //是否开启平游或缩放\r\n                scaleLimit: { //滚轮缩放的极限控制\r\n                    min: 1,\r\n                    max: 2\r\n                },\r\n                label: {\r\n                    normal: {\r\n                        // formatter: '{b}',\r\n                        position: 'center',\r\n                        show: false,\r\n                        textStyle: {\r\n                            color: 'rgba(0,0,0,1)'\r\n                        }\r\n                    },\r\n                    emphasis: {\r\n                        show: true,\r\n                        /*textStyle: {\r\n                            color: 'rgb(255,10,10)'\r\n                        }*/\r\n                    }\r\n                },\r\n                data: AllDeadData,\r\n            },\r\n        ]\r\n\r\n    };\r\n\r\n\r\n    var chart = echarts.init(document.getElementById(\"main\"))\r\n\r\n    function a(){chart.setOption(AllCountData_option,true)}\r\n    function b(){chart.setOption(AllDeadData_option,true)}\r\n</script>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/templates/worldmap.html	(revision 0025182d0cc70a263b9c8ac1e16cb52770d07ee8)
++++ target/classes/templates/worldmap.html	(date 1619598593616)
+@@ -9,8 +9,9 @@
+     <script type="text/javascript" src="echarts/world.js"></script>
+ </head>
+ <body onload="a()" class="worldMap">
+-<button type="button" class="btn btn5" onclick="a()">累计确诊</button>
++<button type="button" class="btn btn5" onclick="a()">现存确诊</button>
+ <button type="button" class="btn btn6" onclick="b()">累计死亡</button>
++
+ <div id="top" style="width: 950px;height:100px;margin: auto;"></div>
+ <div id="main" style="width: 1500px;height:850px;top:50px;left:-130px"></div>
+ 
+@@ -29,7 +30,7 @@
+     var dataStr=[[${worldBeansList}]]
+     var AllCountData = [];
+     var AllDeadData = [];
+-
++    var NowCountData=[];
+     for(var i=0;i<dataStr.length;i++)
+     {
+         AllCountData.push({   name:dataStr[i].provinceProvinceName,
+@@ -39,11 +40,13 @@
+             name:dataStr[i].provinceProvinceName,
+             value:dataStr[i].provinceDeadCount
+         })
++
++
+     }
+ 
+     var AllCountData_option = {
+         title: {
+-            text: '世界疫情疫情累计确诊分布情况',
++            text: '世界疫情疫情现存确诊分布情况',
+             textStyle: {
+                 color: "black", // 主标题文字的颜色。
+                 fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
+@@ -61,7 +64,7 @@
+ 
+         series: [
+             {
+-                name: '累计确诊',
++                name: '现存确诊',
+                 type: 'map',
+                 mapType: 'world',
+                 //roam: false,
+@@ -147,6 +150,7 @@
+ 
+     function a(){chart.setOption(AllCountData_option,true)}
+     function b(){chart.setOption(AllDeadData_option,true)}
++
+ </script>
+ 
+ </body>

@@ -298,18 +298,16 @@ public class DataController {
     @ResponseBody
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-
-        if (province_id == null || province_id == 38) {
-
+//        if (province_id == null || province_id == 38) {
             List<DataBean> dataList = dataService.list();
             modelAndView.addObject("cityDataById", dataList);
+//        }
+//        else {
+//            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
+//            modelAndView.addObject("cityDataById", cityDataById);
+//        }
 
-        } else {
 
-            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-            modelAndView.addObject("cityDataById", cityDataById);
-
-        }
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
@@ -319,11 +317,9 @@ public class DataController {
     public List cityDataDetail(String id) {
         if (id == null || id.equals("38")) {
             List<DataBean> dataList = dataService.list();
-            System.out.println("++++++"+id+dataList);
             return dataList;
         } else {
             List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(Integer.parseInt(id));
-            System.out.println("++++++"+id+cityDataById);
             return cityDataById;
         }
     }

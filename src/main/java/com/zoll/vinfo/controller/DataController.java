@@ -56,7 +56,7 @@ public class DataController {
 
 
     /**
-     * 单个折线图显示现存确诊人数
+     * 折线图显示现存确诊人数
      *
      * @param
      * @return
@@ -140,7 +140,7 @@ public class DataController {
     }
 
     /**
-     * 显示全国排名前十的境外输入人数的条形统计图
+     * 显示全国排名前十的境外输入人数的柱状图
      *
      * @param
      * @return
@@ -210,7 +210,7 @@ public class DataController {
         modelAndView.addObject("mapCountData", new Gson().toJson(count));
         modelAndView.addObject("mapData", new Gson().toJson(result));
 
-        Map nowData = GraphHandler. getNowData();
+        Map nowData = GraphHandler.getNowData();
         modelAndView.addObject("todayChina", new JSONObject(nowData));
 
         modelAndView.setViewName("map");
@@ -218,8 +218,7 @@ public class DataController {
     }
 
     @GetMapping("/vaccines")
-    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id)
-    {
+    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
         if (name == null && province_id == null) {
             List<CityBean> list = cityService.list();
@@ -237,12 +236,6 @@ public class DataController {
         modelAndView.setViewName("vaccine");
         return modelAndView;
     }
-
-
-
-
-
-
 
 
     @GetMapping("/travel")
@@ -295,19 +288,10 @@ public class DataController {
     }
 
     @GetMapping("/cityData")
-    @ResponseBody
     public ModelAndView cityData(@RequestParam(value = "select2", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
-//        if (province_id == null || province_id == 38) {
-            List<DataBean> dataList = dataService.list();
-            modelAndView.addObject("cityDataById", dataList);
-//        }
-//        else {
-//            List<DataDetailBean> cityDataById = dataDetailService.findCityDataById(province_id);
-//            modelAndView.addObject("cityDataById", cityDataById);
-//        }
-
-
+        List<DataBean> dataList = dataService.list();
+        modelAndView.addObject("cityDataById", dataList);
         modelAndView.setViewName("provinceList");
         return modelAndView;
     }
@@ -325,8 +309,6 @@ public class DataController {
     }
 
 
-
-
     @GetMapping("/chinaData")
     public ModelAndView chinaData() {
         ModelAndView modelAndView = new ModelAndView();
@@ -335,35 +317,31 @@ public class DataController {
     }
 
 
-
     @GetMapping("/worldDataDetail")
-    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id)
-    {
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
 
-            List<WorldDataBean> worldDataBeanList = worldDataService.list();
-            modelAndView.addObject("worldBeansList1", worldDataBeanList);
-            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
-            modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        List<WorldDataBean> worldDataBeanList = worldDataService.list();
+        modelAndView.addObject("worldBeansList1", worldDataBeanList);
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
         modelAndView.setViewName("worldList");
 
         return modelAndView;
     }
+
+
     @RequestMapping("/worldDetail")
     @ResponseBody
-    public List worldData(String id)
-    {
-        if (id == null||id.equals("8")) {
+    public List worldData(String id) {
+        if (id == null || id.equals("8")) {
             List<WorldDataBean> worldDataBeanList = worldDataService.list();
             return worldDataBeanList;
         } else {
             List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(Integer.parseInt(id));
             return worldDataDetailBeanBeanList;
-
         }
     }
-
-
 
 
     @GetMapping("/countryDetail")

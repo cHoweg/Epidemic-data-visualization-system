@@ -2,6 +2,7 @@ package com.zoll.vinfo.handller;
 
 import com.zoll.vinfo.bean.*;
 import com.zoll.vinfo.service.*;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -31,13 +32,9 @@ public class DataHandler {
     @Autowired
     private NewsService newsService;
 
-    public static void main(String[] args) throws Exception {
-        // getData();
-        //CityService cityService = new CityService();
-        //List<String> cityByProvinceId = cityService.findCityByProvinceId(1);
-        WorldDataDetailService worldDataDetailService = new WorldDataDetailService();
-        List<WorldDataDetailBean> cityDataById = worldDataDetailService.findCityDataById(1);
-        System.out.println(cityDataById);
+    public static void main(String[] args) {
+        List<WorldDataDetailBean> data = WorldDataDetailHandler.getData();
+        System.out.println(data);
     }
 
 

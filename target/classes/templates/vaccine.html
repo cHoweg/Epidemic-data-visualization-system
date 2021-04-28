@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body class="news">
+
+    <span class="selectProvince">选择省份：</span>
+    <select class="select3" id="selectprovince" name="selectprovince" onchange="cityid()"></select>
+    <script type="text/javascript" th:inline="javascript">
+    //获得省名
+        var provinceList=[[${provinceList}]]
+        var getprovincename=[];
+        for (var i = 0; i < provinceList.length; i++) {
+            getprovincename.push(provinceList[i]["province"]);
+
+        }
+        var hash=[];
+        for (var i = 0; i < getprovincename.length; i++) {
+            if(getprovincename.indexOf(getprovincename[i])==i){
+                hash.push(getprovincename[i]);
+            }
+        }
+        var str=`<option></option>`
+        for(var i=0;i<hash.length;i++)
+        {
+            str+=`<option value="${i+1}">${hash[i]}</option>`
+        }
+        document.getElementById("selectprovince").innerHTML=str
+</script>
+
+    <span class="selectCity">选择城市：</span>
+    <select class="select3" id="selectcity" name="selectcity" onchange="detail()"></select>
+    <script type="text/javascript" th:inline="javascript">
+    //城市ajax
+    var cityid = function () {
+        var id = $("#selectprovince").val()
+        $.post({
+            url: "/vaccinesCity",
+            data: {"id":id},
+            success: function (data) {
+                var str=`<option></option>`
+                for(var i=0;i<data.length;i++)
+                {
+                    str+=`<option value="${data[i]}">${data[i]}</option>`
+                }
+                document.getElementById("selectcity").innerHTML=str
+            },
+            error: function () {
+            },
+        })}
+</script>
+
+
+
+<div class="box">
+    <div class="box2">
+        <div class="size">
+            <div class="form">
+                <div class="form-header text2">疫苗接种地址</div>
+                <div class="form-body">
+                    <div>
+                        <div class="list-group" id="list-group1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" th:inline="javascript">
+      //接种地址ajax
+      var detail=
+          function()
+          {
+              var name=$("#selectcity").val()
+              $.post({
+                  url: "/vaccinesDetail",
+                  data: {"name":name},
+                  success: function (data) {
+                      console.log(data)
+                      var str=``
+                      for(var i=0;i<data.length;i++)
+                      {
+                          str+=`<a class="list-group-item list-group-item-action">
+                                <span class="text">
+                                <p>机构名称：${data[i].name}</p>
+                                <p>机构地址：${data[i].address}</p>
+                                <p>联系方式：${data[i].phone}</p>
+                                </span>
+                            </a>`
+                      }
+                      document.getElementById("list-group1").innerHTML=str
+                  },
+                  error: function () {
+                  },
+              })
+          }
+    </script>
+
+
+</body>
+
+
+
+</html>

@@ -23,12 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/util/HttpURLConnectionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Rumors.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Rumors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/graphAdd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +65,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="4db0a4bc-c1c8-489c-b302-b26984922120" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -121,7 +119,7 @@
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -307,7 +305,7 @@
       <workItem from="1619579091018" duration="9290000" />
       <workItem from="1619591747936" duration="7861000" />
       <workItem from="1619600770191" duration="5787000" />
-      <workItem from="1619619273337" duration="5720000" />
+      <workItem from="1619619273337" duration="6226000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -512,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619624882474</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Default Changelist">
+      <created>1619625187479</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1619625187479</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

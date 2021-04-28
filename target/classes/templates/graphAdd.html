@@ -115,12 +115,14 @@
             name: '新增确诊',
             data: JSON.parse(worldAddConfirmList),
             yAxisIndex:0,
-            type: 'line'
+            type: 'line',
+            symbolSize:4
         }, {
             name: '累计治愈',
             data: JSON.parse(worldAddHealList),
             yAxisIndex:1,
-            type: 'line'
+            type: 'line',
+            symbolSize:4
         }]
     };
     // 使用刚指定的配置项和数据显示图表。

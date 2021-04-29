@@ -9,21 +9,27 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="travelPolicy">
-<div class="box1">
+<div class="box">
     <div class="box2">
         <div class="size">
             <div class="form1">
                 <div class="container1">
-                    <select class="selectBox" name="" id="fromprovince" onchange="fromcityid()"></select>
+                    <div class="form-header text2">出行政策查询</div>
+                    <div class="form-body">
+                        <div>
+                            <select class="selectBox" name="" id="fromprovince" onchange="fromcityid()"></select>
 
-                    <select class="selectBox" name="" id="fromcity"></select>
+                            <select class="selectBox" name="" id="fromcity"></select>
 
-                        <div class="icon"><img src="img/trans.png" height="50" width="50"></div>
+                            <div class="icon"><img src="img/trans.png" height="50" width="50"></div>
 
-                    <select class="selectBox" name="" id="toprovince" style="left: 50px" onchange="tocityid()"></select>
+                            <select class="selectBox" name="" id="toprovince" style="left: 50px" onchange="tocityid()"></select>
 
-                    <select class="selectBox" name="" id="tocity" style="left: 50px"></select>
-                    <button onclick="detail()">提交</button>
+                            <select class="selectBox" name="" id="tocity" style="left: 50px"></select>
+
+                            <div class="div3"><button class="btn7" onclick="detail()">查&emsp;询</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,27 +111,33 @@
                 data: {"from_name":from_name,"to_name":to_name},
                 //数据名称在TravelBean中
                 success: function (data) {
-                    var from_str=
-                        `
-                        <span>来自省份：${data[0].fromProvinceName}</span>
-                       <span>来自城市：${data[0].fromCityName}</span>
-                        <span>检验方式：${data[0].fromHealthCodeName}</span>
-                        <span>扫码教程：${data[0].fromHealthCodeGid}</span>
-                        <span>对来自中高风险人群的建议：${data[0].fromHighInDesc}</span>
-                        <span>对来自低风险人群的建议：${data[0].fromLowInDesc}</span>
-                        <span>对出省的人群的建议：${data[0].fromOutDesc}</span>
-                        `
+                    var from_str= `
+
+                        <a class="list-group-item list-group-item-action list3">
+                        <div class="text2 text3">出发地政策</div>
+                        <div><span class="text1">出发省份：</span>${data[0].fromProvinceName}</div></br>
+                        <div><span class="text1">出发城市：</span>${data[0].fromCityName}</div></br>
+                        <div><span class="text1">检验方式：</span>${data[0].fromHealthCodeName}</div></br>
+                        <div><span class="text1">扫码教程：</span>${data[0].fromHealthCodeGid}</div></br>
+                        <div><span class="text1">对来自中高风险人群的建议：</span></br> &emsp;&emsp;${data[0].fromHighInDesc}</div></br>
+                        <div><span class="text1">对来自低风险人群的建议：</span></br> &emsp;&emsp;${data[0].fromLowInDesc}</div></br>
+                        <div><span class="text1">对出省的人群的建议：</span></br> &emsp;&emsp;${data[0].fromOutDesc}</div>
+                        </a>`
                     document.getElementById("fromCityDetail").innerHTML=from_str
 
                     var to_str=
                         `
-                        <span>去往省份：${data[0].toProvinceName}</span>
-                       <span>去往城市：${data[0].toCityName}</span>
-                        <span>检验方式：${data[0].toHealthCodeName}</span>
-                        <span>扫码教程：${data[0].toHealthCodeGid}</span>
-                        <span>对来自中高风险人群的建议：${data[0].toHighInDesc}</span>
-                        <span>对来自低风险人群的建议：${data[0].toLowInDesc}</span>
-                        <span>对出省的人群的建议：${data[0].toOutDesc}</span>
+                        <a class="list-group-item list-group-item-action list3">
+                        <div class="text2 text3">抵达地政策</div>
+                        <div><span class="text1">抵达省份：</span>${data[0].toProvinceName}</div></br>
+                        <div><span class="text1">抵达城市：</span>${data[0].toCityName}</div></br>
+                        <div><span class="text1">检验方式：</span>${data[0].toHealthCodeName}</div></br>
+                        <div><span class="text1">扫码教程：</span>${data[0].toHealthCodeGid}</div></br>
+                        <div><span class="text1">对来自中高风险人群的建议：</span></br>&emsp;&emsp;${data[0].toHighInDesc}</div></br>
+                        <div><span class="text1">对来自低风险人群的建议：</span></br>&emsp;&emsp;${data[0].toLowInDesc}</div></br>
+                        <div><span class="text1">对出省的人群的建议：</span></br>&emsp;&emsp;${data[0].toOutDesc}</div>
+                        </a>
+                        </br></br></br>
                         `
 
                     document.getElementById("toCityDetail").innerHTML=to_str

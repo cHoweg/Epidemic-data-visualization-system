@@ -10,8 +10,9 @@
 </head>
 <body class="news">
 
-    选择省份：<select id="selectprovince" name="selectprovince" onchange="cityid()"></select>
-<script type="text/javascript" th:inline="javascript">
+    <span class="selectProvince">选择省份：</span>
+    <select class="select3" id="selectprovince" name="selectprovince" onchange="cityid()"></select>
+    <script type="text/javascript" th:inline="javascript">
     //获得省名
         var provinceList=[[${provinceList}]]
         var getprovincename=[];
@@ -33,8 +34,9 @@
         document.getElementById("selectprovince").innerHTML=str
 </script>
 
-    选择城市：<select id="selectcity" name="selectcity" onchange="detail()"></select>
-<script type="text/javascript" th:inline="javascript">
+    <span class="selectCity">选择城市：</span>
+    <select class="select3" id="selectcity" name="selectcity" onchange="detail()"></select>
+    <script type="text/javascript" th:inline="javascript">
     //城市ajax
     var cityid = function () {
         var id = $("#selectprovince").val()
@@ -60,7 +62,7 @@
     <div class="box2">
         <div class="size">
             <div class="form">
-                <div class="form-header">疫苗接种地址</div>
+                <div class="form-header text2">疫苗接种地址</div>
                 <div class="form-body">
                     <div>
                         <div class="list-group" id="list-group1">

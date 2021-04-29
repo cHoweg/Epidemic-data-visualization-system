@@ -339,6 +339,7 @@ public class DataController {
             Integer to_id = cityService.findCityIdByName(to_name);
         System.out.println(from_id+"++++"+to_id);
             List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+        System.out.println(TravelBeansList);
             return TravelBeansList;
     }
 

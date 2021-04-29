@@ -105,6 +105,7 @@
                 data: {"from_name":from_name,"to_name":to_name},
                 //数据名称在TravelBean中
                 success: function (data) {
+                    console.log(data)
                     var from_str=
                         `
                         <span>来自省份：${data[0].fromProvinceName}</span>
@@ -131,6 +132,8 @@
                     document.getElementById("toCityDetail").innerHTML=to_str
                 },
                 error: function () {
+                    document.getElementById("fromCityDetail").innerHTML="查询次数已达上限"
+                    document.getElementById("toCityDetail").innerHTML="查询次数已达上限"
                 },
             })
         }

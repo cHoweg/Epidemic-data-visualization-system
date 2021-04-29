@@ -310,6 +310,9 @@ ul{
 .provinceList::-webkit-scrollbar{
   width: 0;
 }
+.travelPolicy::-webkit-scrollbar{
+  width: 0;
+}
 
 .span1{
   height: 50px;
@@ -373,8 +376,15 @@ ul{
 }
 
 .container1{
-  display: inline-block;
+  display: inline-flex;
   margin: 0 auto;
+  position: relative;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;/*换行*/
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem/*圆角*/
 }
 
 @media (min-width: 1400px){
@@ -385,7 +395,7 @@ ul{
 
 .selectBox{
   height: 50px;
-  width: 200px;
+  width: 150px;
   font-size: 20px;
   color: black;
   border-top:hidden;
@@ -397,6 +407,7 @@ ul{
   display: inline-block;
   margin: 50px;
   margin-left: 0;
+  margin-bottom: 30px;
 }
 
 .icon{
@@ -470,7 +481,45 @@ ul{
   align-items: center;
 }
 
+.div3{
+  width: 300px;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.btn7{
+  width: 250px;
+  padding:8px;
+  background-color: #428bca;
+  border-color: #357ebd;
+  color: #fff;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -khtml-border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  font-weight: 900;
+  font-size:20px;
+  margin-left: 29px;
+}
 
+.list3{
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+.a1{
+  display: inline-block;
+}
+.text3{
+  text-align: center;
+  height: 35px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed darkgrey;
+}
 
 
 

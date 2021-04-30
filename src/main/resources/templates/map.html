@@ -17,7 +17,7 @@
 
 <script th:inline="javascript">
     var todayChina=[[${todayChina}]]
-    console.log(todayChina)
+
     str =`
         <div class="div1">
         <div class="span1" style="background-color:#fff4f4;"><span>累计确诊人数</br>${todayChina["confirm"]}</span></div>
@@ -37,6 +37,7 @@
 
     var nowconfirm = [[${mapData}]];
     var count = [[${mapCountData}]];
+
     var nowconfirm_option = {
         title: {
             text: '国内疫情疫情分布情况',
@@ -55,8 +56,23 @@
             trigger: 'item',
         },
 
-        series: [
-            {
+        visualMap: {
+            type: 'piecewise',
+            left: 'left',
+            top: 'bottom',
+            pieces: [                           //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                {min:0,max:10,color:"#ffffff"},
+                {min:11,max:50,color:"#f19595"},
+                {min:51,max:100,color:"rgba(238,118,71,0.91)"},
+                {min:101,max:200,color:"#f1c010"},
+                {min:201,color: "#f30505"}
+            ],
+
+            show: true//图注
+        },
+
+
+        series: {
                 name: '现存确诊',
                 type: 'map',
                 mapType: 'china',
@@ -78,7 +94,7 @@
 
                 data: JSON.parse(nowconfirm)
             }
-        ]
+
     }
 
     var count_option =  {
@@ -98,9 +114,23 @@
         tooltip: {
             trigger: 'item'
         },
+        visualMap: {
+            type: 'piecewise',
+            left: 'left',
+            top: 'bottom',
+            pieces: [                           //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                {min:0,max:100,color:"#ffffff"},
+                {min:101,max:500,color:"#efe4cb"},
+                {min:501,max:1000,color:"rgba(241,162,129,0.91)"},
+                {min:1001,max:5000,color:"#f1c010"},
+                {min:5001,max:10000,color: "#fa4b4b"},
+                {min:10001,color: "#ff0000"}
+            ],
 
+            show: true//图注
+        },
 
-        series: [
+        series:
             {
                 name: '累计确诊',
                 type: 'map',
@@ -122,7 +152,7 @@
 
                 data: JSON.parse(count)
             }
-        ]
+
     }
 
 
@@ -133,8 +163,8 @@
     var chart = echarts.init(document.getElementById("main"))
 
 
-    function a(){chart.setOption(nowconfirm_option)}
-    function b(){chart.setOption(count_option)}
+    function a(){chart.setOption(nowconfirm_option,true)}
+    function b(){chart.setOption(count_option,true)}
 
 
 </script>

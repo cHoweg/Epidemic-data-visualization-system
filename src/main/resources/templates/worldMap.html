@@ -16,6 +16,7 @@
 <div id="main" style="width: 1500px;height:850px;top:50px;left:-130px"></div>
 
 <script th:inline="javascript">
+    console.log("123")
     var todayWorld=[[${todayWorld}]]
     str =`
         <div class="div3">
@@ -44,9 +45,10 @@
 
     }
 
+
     var AllCountData_option = {
         title: {
-            text: '世界疫情疫情现存确诊分布情况',
+            text: '世界疫情疫情累计确诊分布情况',
             textStyle: {
                 color: "black", // 主标题文字的颜色。
                 fontStyle: "normal", // 主标题文字字体的风格。 'normal'  'italic'  'oblique'
@@ -61,10 +63,24 @@
         tooltip: {
             trigger: 'item'
         },
+        visualMap: {
+            type: 'piecewise',
+            left: 'left',
+            top: 'bottom',
+            pieces: [                           //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                {min:0,max:10000,color:"#ffffff"},
+                {min:10001,max:100000,color:"#f5d192"},
+                {min:100001,max:500000,color:"rgba(193,246,107,0.91)"},
+                {min:500001,max:1000000,color:"#3fecd8"},
+                {min:1000001,max:2000000,color: "#0f35f5"},
+                {min:2000001,max:3000000,color: "#f30aef"},
+                {min:3000001,color: "#ff0000"},
+            ],
 
-        series: [
-            {
-                name: '现存确诊',
+            show: true//图注
+        },
+        series: {
+                name: '累计确诊',
                 type: 'map',
                 mapType: 'world',
                 //roam: false,
@@ -89,9 +105,9 @@
                         }**/
                     }
                 },
-                data: AllCountData,
+                data:AllCountData ,
             },
-        ]
+
 
     };
     var AllDeadData_option  = {
@@ -111,9 +127,23 @@
         tooltip: {
             trigger: 'item'
         },
+        visualMap: {
+            type: 'piecewise',
+            left: 'left',
+            top: 'bottom',
+            pieces: [                           //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                {min:0,max:10000,color:"#ffffff"},
+                {min:10001,max:100000,color:"#f5d192"},
+                {min:100001,max:500000,color:"rgba(193,246,107,0.91)"},
+                {min:500001,max:1000000,color:"#3fecd8"},
+                {min:1000001,max:2000000,color: "#0f35f5"},
+                {min:2000001,max:3000000,color: "#f30aef"},
+                {min:3000001,color: "#ff0000"},
+            ],
 
-        series: [
-            {
+            show: true//图注
+        },
+        series:{
                 name: '累计死亡',
                 type: 'map',
                 mapType: 'world',
@@ -141,7 +171,7 @@
                 },
                 data: AllDeadData,
             },
-        ]
+
 
     };
 

@@ -23,14 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_23_21_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_23_21_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_0_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_0_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_15_14__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_15_14__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_22_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_22_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_25_1_11__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_25_1_11__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_26_13_49__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_26_13_49__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_28_18_28__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_28_18_28__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/travelPolicy.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/travelPolicy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/worldMap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/worldmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/travelPolicy.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/travelPolicy.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,11 +218,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.DataHandler" />
+      <item itemvalue="Application.VaccinesHandler" />
       <item itemvalue="JavaScript Debug.travelPolicy.html" />
       <item itemvalue="JUnit.JsoupHandler.test" />
       <item itemvalue="Spring Boot.MyApplication" />
-      <item itemvalue="应用程序.DataHandler" />
-      <item itemvalue="应用程序.VaccinesHandler" />
     </list>
     <recent_temporary>
       <list>
@@ -225,7 +232,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -306,6 +313,7 @@
       <workItem from="1619682380063" duration="197000" />
       <workItem from="1619761314078" duration="2167000" />
       <workItem from="1619763533837" duration="1005000" />
+      <workItem from="1619772085780" duration="1608000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -542,7 +550,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -610,56 +618,6 @@
     <MESSAGE value="day10完成疫情数据实时展示效果" />
     <MESSAGE value="Default Changelist" />
     <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="147" y="65" key="DiffContextDialog" timestamp="1619705670736">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1619705670736" />
-    <state width="1493" height="53" key="GridCell.Tab.0.bottom" timestamp="1619763513901">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619763513901" />
-    <state width="1493" height="53" key="GridCell.Tab.0.center" timestamp="1619763513900">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619763513900" />
-    <state width="1493" height="53" key="GridCell.Tab.0.left" timestamp="1619763513900">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619763513900" />
-    <state width="1493" height="53" key="GridCell.Tab.0.right" timestamp="1619763513900">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619763513900" />
-    <state width="1493" height="53" key="GridCell.Tab.1.bottom" timestamp="1619763513901">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619763513901" />
-    <state width="1493" height="53" key="GridCell.Tab.1.center" timestamp="1619763513901">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619763513901" />
-    <state width="1493" height="53" key="GridCell.Tab.1.left" timestamp="1619763513901">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619763513901" />
-    <state width="1493" height="53" key="GridCell.Tab.1.right" timestamp="1619763513901">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="53" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619763513901" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619761989175">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619761989175" />
-    <state x="564" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619705608371">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="564" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1619705608371" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1619762943222">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1619762943222" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

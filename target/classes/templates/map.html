@@ -61,11 +61,11 @@
             left: 'left',
             top: 'bottom',
             pieces: [                           //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                {min:0,max:10,color:"#ffffff"},
-                {min:11,max:50,color:"#f19595"},
-                {min:51,max:100,color:"rgba(238,118,71,0.91)"},
-                {min:101,max:200,color:"#f1c010"},
-                {min:201,color: "#f30505"}
+                {min:0,max:15,color:"#ffffff"},
+                {min:16,max:30,color:"#f19595"},
+                {min:31,max:45,color:"rgba(238,118,71,0.91)"},
+                {min:46,max:60,color:"#f1c010"},
+                {min:80,color: "#f30505"}
             ],
 
             show: true//图注
@@ -76,7 +76,11 @@
                 name: '现存确诊',
                 type: 'map',
                 mapType: 'china',
-                roam: false,
+                roam: true, //是否开启平游或缩放
+                scaleLimit: { //滚轮缩放的极限控制
+                    min: 1,
+                    max: 3
+                },
                 label: {
                     normal: {
                         formatter: '{b}:{c}',
@@ -135,7 +139,11 @@
                 name: '累计确诊',
                 type: 'map',
                 mapType: 'china',
-                roam: false,
+                roam: true, //是否开启平游或缩放
+                scaleLimit: { //滚轮缩放的极限控制
+                    min: 1,
+                    max: 3
+                },
                 label: {
                     normal: {
                         // formatter: '{b}',

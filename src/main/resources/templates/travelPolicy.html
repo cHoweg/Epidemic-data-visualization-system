@@ -9,7 +9,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="travelPolicy">
-<div class="box1">
+<div class="box">
     <div class="box2">
         <div class="size">
             <div class="form1">
@@ -18,15 +18,11 @@
                     <div class="form-body">
                         <div>
                             <select class="selectBox" name="" id="fromprovince" onchange="fromcityid()"></select>
-
-                    <select class="selectBox" name="" id="fromcity"></select>
-
-                        <div class="icon"><img src="img/trans.png" height="50" width="50"></div>
-
-                    <select class="selectBox" name="" id="toprovince" style="left: 50px" onchange="tocityid()"></select>
-
-                    <select class="selectBox" name="" id="tocity" style="left: 50px"></select>
-                    <button onclick="detail()">提交</button>
+                            <select class="selectBox" name="" id="fromcity"></select>
+                            <div class="icon"><img src="img/trans.png" height="50" width="50"></div>
+                            <select class="selectBox" name="" id="toprovince" style="left: 50px" onchange="tocityid()"></select>
+                            <select class="selectBox" name="" id="tocity" style="left: 50px"></select>
+                            <div class="div3"><button class="btn7" onclick="detail()">查&emsp;&emsp;询</button></div>
                 </div>
             </div>
         </div>
@@ -110,7 +106,7 @@
                 success: function (data) {
                     var from_str= `
 
-                        <a class="list-group-item list-group-item-action list3">
+                        <div class="list-group-item list-group-item-action list3" style="margin-left: 10px;">
                         <div class="text2 text3">出发地政策</div>
                         <div><span class="text1">出发省份：</span>${data[0].fromProvinceName}</div></br>
                         <div><span class="text1">出发城市：</span>${data[0].fromCityName}</div></br>
@@ -119,12 +115,12 @@
                         <div><span class="text1">对来自中高风险人群的建议：</span></br> &emsp;&emsp;${data[0].fromHighInDesc}</div></br>
                         <div><span class="text1">对来自低风险人群的建议：</span></br> &emsp;&emsp;${data[0].fromLowInDesc}</div></br>
                         <div><span class="text1">对出省的人群的建议：</span></br> &emsp;&emsp;${data[0].fromOutDesc}</div>
-                        </a>`
+                        </div>`
                     document.getElementById("fromCityDetail").innerHTML=from_str
 
                     var to_str=
                         `
-                        <a class="list-group-item list-group-item-action list3">
+                        <div class="list-group-item list-group-item-action list3" style="margin-left: 10px;">
                         <div class="text2 text3">抵达地政策</div>
                         <div><span class="text1">抵达省份：</span>${data[0].toProvinceName}</div></br>
                         <div><span class="text1">抵达城市：</span>${data[0].toCityName}</div></br>
@@ -133,7 +129,7 @@
                         <div><span class="text1">对来自中高风险人群的建议：</span></br>&emsp;&emsp;${data[0].toHighInDesc}</div></br>
                         <div><span class="text1">对来自低风险人群的建议：</span></br>&emsp;&emsp;${data[0].toLowInDesc}</div></br>
                         <div><span class="text1">对出省的人群的建议：</span></br>&emsp;&emsp;${data[0].toOutDesc}</div>
-                        </a>
+                        </div>
                         </br></br></br>
                         `
 

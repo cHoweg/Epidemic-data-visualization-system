@@ -22,33 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_23_21_42__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_0_42__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_24_22_42__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_25_1_11__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_26_13_49__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Update_at_2021_4_28_18_28__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_23_21_42_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_24_0_42_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_24_22_42_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_25_1_11_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_26_13_49_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_28_18_28_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zoll/vinfo/handller/JsoupHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/bean/MapBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/bean/MapBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/controller/DataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/DataHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/GraphHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zoll/vinfo/handller/JsoupHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/worldmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/worldmap.html" afterDir="false" />
-    </list>
+    <list default="true" id="72ede185-93ba-4c84-aefc-aba484a4a88f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,7 +314,7 @@
       <workItem from="1621341103107" duration="387000" />
       <workItem from="1621341584908" duration="1226000" />
       <workItem from="1622083739868" duration="864000" />
-      <workItem from="1622881843025" duration="2880000" />
+      <workItem from="1622881843025" duration="3267000" />
     </task>
     <task id="LOCAL-00001" summary="从网上获取数据存储到数据库每分钟更新查询">
       <created>1589373964263</created>
@@ -573,7 +547,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619761976044</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Default Changelist">
+      <created>1622885896468</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1622885896468</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Default Changelist">
+      <created>1622886376333</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1622886376333</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

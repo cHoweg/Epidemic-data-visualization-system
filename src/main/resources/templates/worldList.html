@@ -13,10 +13,10 @@
 <body class="worldList">
 
 
-    <select class="select1"  id="select1" name="select3" onchange="a()">
-        <option value=8>全球</option>
-        <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
-    </select>
+<select class="select1"  id="select1" name="select3" onchange="a()">
+    <option value=8>全球</option>
+    <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
+</select>
 
 <script type="text/javascript" th:inline="javascript">
     var a=function(){
@@ -50,7 +50,7 @@
                 for(var i=0;i<data.length;i++)
                 {
                     if(id!=8){
-                    str+=`
+                        str+=`
                         <tr class="pvl">
                             <td class="list2" >${data[i].provinceProvinceName}</td>
                             <td class="list2" >${data[i].provinceCurrentConfirmedCount}</td>
@@ -87,7 +87,7 @@
     </tr>
     </thead>
     <tbody id="tbody_list">
-        <tr class="list2"  id="6" th:each="data:${worldBeansList1}">
+    <tr class="list2"  id="6" th:each="data:${worldBeansList1}">
         <td class="list2"  id="7" th:text="${data.continentName}">name</td>
         <td class="list2"  id="8" th:text="${data.confirmedCount}">nowConfirm</td>
         <td class="list2"  id="9" th:text="${data.curedCount}">heal</td>

@@ -8,7 +8,6 @@ import com.zoll.vinfo.handller.RumorHandler;
 import com.zoll.vinfo.handller.TravelHandler;
 import com.zoll.vinfo.handller.VaccinesHandler;
 import com.zoll.vinfo.service.*;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -218,9 +216,7 @@ public class DataController {
     }
 
 
-
-
-//    @GetMapping("/vaccines")
+    //    @GetMapping("/vaccines")
 //    public ModelAndView vaccines(@RequestParam(value = "lzy写", required = false) String name, @RequestParam(value = "lzy", required = false) Integer province_id)
 //    {
 //        ModelAndView modelAndView = new ModelAndView();
@@ -241,120 +237,65 @@ public class DataController {
 //        return modelAndView;
 //    }
     @GetMapping("/vaccines")
-    public ModelAndView vaccines()
-    {
+    public ModelAndView vaccines() {
         ModelAndView modelAndView = new ModelAndView();
-            List<CityBean> provinceList = cityService.list();
-            modelAndView.addObject("provinceList", provinceList);
+        List<CityBean> provinceList = cityService.list();
+        modelAndView.addObject("provinceList", provinceList);
 
-            modelAndView.setViewName("vaccine");
-            return modelAndView;
+        modelAndView.setViewName("vaccine");
+        return modelAndView;
     }
 
     @RequestMapping("/vaccinesCity")
     @ResponseBody
-    public List vaccinesCity(Integer id)
-    {
+    public List vaccinesCity(Integer id) {
         List<String> cityList = cityService.findCityByProvinceId(id);
         return cityList;
     }
 
     @RequestMapping("/vaccinesDetail")
     @ResponseBody
-    public List vaccinesDetail(String name)
-    {
+    public List vaccinesDetail(String name) {
         int cityid = cityService.findCityIdByName(name);
         List<VaccinesBean> VaccinesBeansList = VaccinesHandler.getData(cityid);
         return VaccinesBeansList;
     }
 
 
-
-//    @GetMapping("/travel")
-//    public ModelAndView travel(String from_name,Integer from_province_id,String to_name,Integer to_province_id)
-//    {
-//        ModelAndView modelAndView = new ModelAndView();
-//        if (from_name == null || to_name == null) {
-//
-//            List<String> from_cityList = cityService.findCityByProvinceId(from_province_id);
-//            modelAndView.addObject("from_cityList", from_cityList);
-//
-//            List<String> to_cityList = cityService.findCityByProvinceId(to_province_id);
-//            modelAndView.addObject("to_cityList", to_cityList);
-//
-//        } else if (from_name != null && to_name != null) {
-//
-//            Integer from_id = cityService.findCityIdByName(from_name);
-//            Integer to_id = cityService.findCityIdByName(to_name);
-//            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
-//            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
-//
-//        } else System.out.println(from_name + "--" + from_province_id + "\t" + to_name + "--" + to_province_id);
-//
-//        modelAndView.setViewName("travel");
-//
-//        List<List<Map>> lists = TravelHandler.riskArea();
-//        List<Map> high_maps = lists.get(0);
-//        List<Map> middle_maps = lists.get(1);
-//        modelAndView.addObject("high_maps", new JSONArray(high_maps));
-//        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
-//
-//        return modelAndView;
-//    }
     @GetMapping("/travel")
-    public ModelAndView travel()
-    {
+    public ModelAndView travel() {
         ModelAndView modelAndView = new ModelAndView();
 
         List<CityBean> provinceList = cityService.list();
         modelAndView.addObject("provinceList", provinceList);//省份
 
-//
-//            Integer from_id = cityService.findCityIdByName(from_name);
-//            Integer to_id = cityService.findCityIdByName(to_name);
-//            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
-//            modelAndView.addObject("vaccinesBeansList", TravelBeansList);
-//        List<List<Map>> lists = TravelHandler.riskArea();
-//        List<Map> high_maps = lists.get(0);
-//        List<Map> middle_maps = lists.get(1);
-//        modelAndView.addObject("high_maps", new JSONArray(high_maps));
-//        modelAndView.addObject("middle_maps", new JSONArray(middle_maps));
         modelAndView.setViewName("travelPolicy");
         return modelAndView;
     }
 
     @RequestMapping("/TravelCity")
     @ResponseBody
-    public List fromTravelCity(Integer id)
-    {
+    public List fromTravelCity(Integer id) {
         List<String> cityList = cityService.findCityByProvinceId(id);
         return cityList;
     }
 
     @RequestMapping("/travelDetail")
     @ResponseBody
-    public List travelDetail(String from_name,String to_name)
-    {
-            Integer from_id = cityService.findCityIdByName(from_name);
-            Integer to_id = cityService.findCityIdByName(to_name);
-        System.out.println(from_id+"++++"+to_id);
-            List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
-        System.out.println(TravelBeansList);
-            return TravelBeansList;
+    public List travelDetail(String from_name, String to_name) {
+        Integer from_id = cityService.findCityIdByName(from_name);
+        Integer to_id = cityService.findCityIdByName(to_name);
+        System.out.println(from_id + "++++" + to_id);
+        List<TravelBean> TravelBeansList = TravelHandler.getData(from_id, to_id);
+        return TravelBeansList;
     }
-
-
-
-
-
-
-
 
 
     @GetMapping("/news")
     public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView();
         List<NewsBean> newsBeanList = newsService.list();
+        Collections.reverse(newsBeanList);
         modelAndView.addObject("newBeanList", newsBeanList);
         return modelAndView;
     }
@@ -391,8 +332,6 @@ public class DataController {
     }
 
 
-
-
     @GetMapping("/chinaData")
     public ModelAndView chinaData() {
         ModelAndView modelAndView = new ModelAndView();
@@ -401,28 +340,24 @@ public class DataController {
     }
 
 
-
     @GetMapping("/worldDataDetail")
-    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id)
-    {
+    public ModelAndView worldDetailData(@RequestParam(value = "select3", required = false) Integer province_id) {
         ModelAndView modelAndView = new ModelAndView();
 
-            List<WorldDataBean> worldDataBeanList = worldDataService.list();
-            modelAndView.addObject("worldBeansList1", worldDataBeanList);
-            List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
-            modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
+        List<WorldDataBean> worldDataBeanList = worldDataService.list();
+        modelAndView.addObject("worldBeansList1", worldDataBeanList);
+        List<WorldDataDetailBean> worldDataDetailBeanBeanList = worldDataDetailService.findCityDataById(province_id);
+        modelAndView.addObject("worldBeansList", worldDataDetailBeanBeanList);
         modelAndView.setViewName("worldList");
 
         return modelAndView;
     }
 
 
-
     @RequestMapping("/worldDetail")
     @ResponseBody
-    public List worldData(String id)
-    {
-        if (id == null||id.equals("8")) {
+    public List worldData(String id) {
+        if (id == null || id.equals("8")) {
             List<WorldDataBean> worldDataBeanList = worldDataService.list();
             return worldDataBeanList;
         } else {
@@ -431,8 +366,6 @@ public class DataController {
 
         }
     }
-
-
 
 
     @GetMapping("/countryDetail")

@@ -160,10 +160,12 @@ public class JsoupHandler {
 
     @Test
     public void test() {
-        String name = "广州";
+        /*String name = "广州";
         CityService cityService = new CityService();
         List<String> cityByProvinceId = cityService.findCityByProvinceId(1);
-        System.out.println(cityByProvinceId);
+        System.out.println(cityByProvinceId);*/
+        List<DataDetailBean> detailData = getDetailData();
+        System.out.println(detailData);
 
     }
 

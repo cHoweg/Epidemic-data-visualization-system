@@ -1,9 +1,0 @@
-<changelist name="在Update之前未提交更改_at_2021_4_24_0_42_[Default_Changelist]" date="1619196189631" recycled="true" deleted="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_24_0_42_[Default_Changelist]/shelved.patch" />
-  <option name="DESCRIPTION" value="在Update之前未提交更改 at 2021/4/24 0:42 [Default Changelist]" />
-  <binary>
-    <option name="BEFORE_PATH" value="target/classes/com/zoll/vinfo/controller/DataController.class" />
-    <option name="AFTER_PATH" value="target/classes/com/zoll/vinfo/controller/DataController.class" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在Update之前未提交更改_at_2021_4_24_0_42_[Default_Changelist]/DataController.class" />
-  </binary>
-</changelist>

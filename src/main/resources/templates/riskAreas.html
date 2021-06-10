@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link  rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link  rel="stylesheet" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body class="news">
+<div class="box">
+    <div class="box2">
+        <div class="size">
+            <div class="form">
+                <div class="form-header text2">中高风险地区</div>
+                <div class="form-body">
+                    <div>
+                        <div class="list-group" id="list-group1">
+                            <a class="list-group-item list-group-item-action" href="#">
+                                <span class="text" id="1"></span>
+                            </a>
+                            <a class="list-group-item list-group-item-action" href="#">
+                                <span class="text" id="2"></span>
+                            </a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" th:inline="javascript">
+
+    var a=[[${ }]]
+    var str=``;
+    for(var i=0;i<a.length;i++)
+    {
+        str+=`<a class="list-group-item list-group-item-action" href="${ }" target="_blank">
+                                <span class="text" id="1">
+                                <p><span class="text1">省份：</span>${  }</p>
+                                <p><span class="text1">城市：</span>${  }</p>
+                                <p><span class="text1">地区：</span>${  }</p>
+                                <p><span class="text1">具体地址：</span>${  }</p>
+                                </span>
+                            </a>`
+
+    }
+    console.log(a)
+    document.getElementById('list-group1').innerHTML = str
+
+</script>
+</html>

@@ -13,10 +13,10 @@
 <body class="worldList">
 
 
-    <select class="select1"  id="select1" name="select3" onchange="a()">
-        <option value=8>全球</option>
-        <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
-    </select>
+<select class="select1"  id="select1" name="select3" onchange="a()">
+    <option value=8>全球</option>
+    <option th:each="data:${worldBeansList1}" th:text="${data.continentName}" th:value="${dataStat.index}" ></option>
+</select>
 
 <script type="text/javascript" th:inline="javascript">
     var a=function(){
@@ -27,11 +27,30 @@
             success: function(data)
             {
                 var str=``
+                var title=``
                 console.log(data)
+                if(id!=8){
+                    title+=`    <thead id="thead_list">
+    <tr>
+        <th><p class="list1" >国家/大洲</p></th>
+        <th><p class="list1" >现有确诊</p></th>
+        <th><p class="list1" >累计治愈</p></th>
+        <th><p class="list1" >累计死亡</p></th>
+        <th><p class="list1" >累计确诊</p></th>
+    </tr>
+    </thead>`
+                }else {  title+=`    <thead id="thead_list">
+    <tr>
+        <th><p class="list1" >国家/大洲</p></th>
+        <th><p class="list1" >现有确诊</p></th>
+        <th><p class="list1" >累计治愈</p></th>
+        <th><p class="list1" >累计死亡</p></th>
+    </tr>
+    </thead>`}
                 for(var i=0;i<data.length;i++)
                 {
                     if(id!=8){
-                    str+=`
+                        str+=`
                         <tr class="pvl">
                             <td class="list2" >${data[i].provinceProvinceName}</td>
                             <td class="list2" >${data[i].provinceCurrentConfirmedCount}</td>
@@ -41,6 +60,7 @@
                         </tr>
 `}
                     else{
+
                         str+=`
                         <tr>
                             <td class="list2" >${data[i].continentName}</td>
@@ -50,6 +70,7 @@
                         </tr>
 `}
                 }
+                document.getElementById("thead_list").innerHTML=title
                 document.getElementById("tbody_list").innerHTML=str
             },
             error: function () {},
@@ -57,17 +78,16 @@
     }
 </script>
 <table class="table table-hover table1">
-    <thead>
+    <thead id="thead_list">
     <tr>
         <th><p class="list1" >国家/大洲</p></th>
         <th><p class="list1" >现有确诊</p></th>
         <th><p class="list1" >累计治愈</p></th>
         <th><p class="list1" >累计死亡</p></th>
-        <th><p class="list1" >累计确诊</p></th>
     </tr>
     </thead>
     <tbody id="tbody_list">
-        <tr class="list2"  id="6" th:each="data:${worldBeansList1}">
+    <tr class="list2"  id="6" th:each="data:${worldBeansList1}">
         <td class="list2"  id="7" th:text="${data.continentName}">name</td>
         <td class="list2"  id="8" th:text="${data.confirmedCount}">nowConfirm</td>
         <td class="list2"  id="9" th:text="${data.curedCount}">heal</td>

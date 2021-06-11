@@ -3,10 +3,7 @@ package com.zoll.vinfo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.zoll.vinfo.bean.*;
-import com.zoll.vinfo.handller.GraphHandler;
-import com.zoll.vinfo.handller.RumorHandler;
-import com.zoll.vinfo.handller.TravelHandler;
-import com.zoll.vinfo.handller.VaccinesHandler;
+import com.zoll.vinfo.handller.*;
 import com.zoll.vinfo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -378,4 +375,17 @@ public class DataController {
         modelAndView.setViewName("worldMap");
         return modelAndView;
     }
+
+    @GetMapping("/riskAreas")
+    public ModelAndView riskAreas() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<RiskAreaBean> RiskAreaList = RiskAreaHandler.getData();
+        System.out.println(RiskAreaList);
+        modelAndView.addObject("RiskAreaList", RiskAreaList);
+        modelAndView.setViewName("riskAreas");
+        return modelAndView;
+    }
+
+
+
 }

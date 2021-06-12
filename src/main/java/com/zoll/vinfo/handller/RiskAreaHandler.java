@@ -34,7 +34,7 @@ public class RiskAreaHandler {
 
 
         Map arrayList = (Map) map.get("result");
-        String date = (String) map.get("updated_date");
+        String date = (String) arrayList.get("updated_date");
         //System.out.println(arrayList);
         List<RiskAreaBean> result = new ArrayList<>();
         ArrayList highList = (ArrayList) arrayList.get("high_list");

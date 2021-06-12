@@ -39,14 +39,25 @@
     var str=``;
     for(var i=0;i<a.length;i++)
     {
+        if(a[i].type=='高风险地区'){
         str+=`<a class="list-group-item list-group-item-action" href="#">
                                 <span class="text" id="1">
-                                <p><span class="text1">时间：</span>${a[i].date}</p>
-                                <p><span class="text1">类型：</span>${a[i].type}</p>
-                                <p><span class="text1">区域：</span>${a[i].areaName}</p>
-                                <p><span class="text1">街道：</span>${a[i].communitys}</p>
+                                <p style="color: red"><span class="text1" >时间：</span>${a[i].date}</p>
+                                <p style="color: red"><span class="text1" >类型：</span>${a[i].type}</p>
+                                <p style="color: red"><span class="text1" >区域：</span>${a[i].areaName}</p>
+                                <p style="color: red"><span class="text1" >街道：</span>${a[i].communitys}</p>
+                                </span>
+                            </a>`}
+        else {
+            str+=`<a class="list-group-item list-group-item-action" href="#">
+                                <span class="text" id="1">
+                                <p style="color: orange"><span class="text1" >时间：</span>${a[i].date}</p>
+                                <p style="color: orange"><span class="text1" >类型：</span>${a[i].type}</p>
+                                <p style="color: orange"><span class="text1" >区域：</span>${a[i].areaName}</p>
+                                <p style="color: orange"><span class="text1" >街道：</span>${a[i].communitys}</p>
                                 </span>
                             </a>`
+        }
 
     }
 
